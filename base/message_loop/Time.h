@@ -25,7 +25,7 @@ typedef std::chrono::system_clock Time;
     
 }
 
-#define timeDeltaFromSeconds(seconds) (WukongBase::Base::TimeDelta((long long)(seconds * WukongEngine::Base::kMicroSecondsPerSecond)))
+#define timeDeltaFromSeconds(seconds) (WukongBase::Base::TimeDelta((long long)(seconds * WukongBase::Base::kMicroSecondsPerSecond)))
 
 #define timeDeltaToMilliseconds(timeDelta) (std::chrono::duration_cast<std::chrono::milliseconds>(timeDelta).count())
 
