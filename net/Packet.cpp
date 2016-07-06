@@ -9,7 +9,7 @@
 #include "Packet.h"
 #include "Endian.h"
 
-namespace WukongEngine {
+namespace WukongBase {
 namespace Net {
     
 const int kTCPSessionHeadSize = 4;    

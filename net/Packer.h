@@ -11,7 +11,7 @@
 
 #include <memory>
 
-namespace WukongEngine {
+namespace WukongBase {
 namespace Net {
     
 class Packet;

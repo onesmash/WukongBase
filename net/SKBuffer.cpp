@@ -9,7 +9,7 @@
 #include "SKBuffer.h"
 #include <cassert>
 
-namespace WukongEngine {
+namespace WukongBase {
 namespace Net {
     
 SKBuffer::SKBuffer(size_t size):

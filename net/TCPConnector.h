@@ -12,7 +12,7 @@
 #include "IPAddress.h"
 #include "TCPSocket.h"
 
-namespace WukongEngine {
+namespace WukongBase {
     
 namespace Base {
 class MessageLoop;

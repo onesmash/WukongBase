@@ -13,7 +13,7 @@
 #include "TCPConnector.h"
 #include "TCPSession.h"
 
-namespace WukongEngine {
+namespace WukongBase {
     
 namespace Base {
 class MessageLoop;

@@ -9,7 +9,7 @@
 #include "Thread.h"
 #include "MessageLoop.h"
 
-namespace WukongEngine {
+namespace WukongBase {
 
 namespace Base {
 

@@ -14,7 +14,7 @@
 #include "Time.h"
 #include <mutex>
 
-namespace WukongEngine {
+namespace WukongBase {
 
 namespace Base {
     

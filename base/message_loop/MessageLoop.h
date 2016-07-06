@@ -17,7 +17,7 @@
 #include <unordered_map>
 #include <list>
 
-namespace WukongEngine {
+namespace WukongBase {
 
 namespace Base {
     

@@ -18,7 +18,7 @@
 #include <memory>
 #include <unordered_set>
 
-namespace WukongEngine {
+namespace WukongBase {
     
 class MessageLoop;
 

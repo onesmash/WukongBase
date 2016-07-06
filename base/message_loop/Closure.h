@@ -11,7 +11,7 @@
 
 #include <functional>
 
-namespace WukongEngine {
+namespace WukongBase {
 
 namespace Base  {
     typedef std::function<void(void)> Closure;

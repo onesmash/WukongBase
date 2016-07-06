@@ -9,7 +9,7 @@
 #include "TCPSession.h"
 #include "Packet.h"
 
-namespace WukongEngine {
+namespace WukongBase {
 namespace Net {
     
 TCPSession::TCPSession(const std::shared_ptr<TCPSocket>& socket, const IPAddress& localAddress, const IPAddress& peerAddress)

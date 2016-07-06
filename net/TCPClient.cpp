@@ -10,7 +10,7 @@
 #include "MessageLoop.h"
 #include "TCPConnector.h"
 
-namespace WukongEngine {
+namespace WukongBase {
 
 namespace Net {
 

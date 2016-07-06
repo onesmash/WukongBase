@@ -13,7 +13,7 @@
 #include <thread>
 #include <memory>
 
-namespace WukongEngine {
+namespace WukongBase {
     
 namespace Base {
     

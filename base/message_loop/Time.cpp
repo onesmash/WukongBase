@@ -8,7 +8,7 @@
 
 #include "Time.h"
 
-namespace WukongEngine {
+namespace WukongBase {
 
 namespace Base {
     

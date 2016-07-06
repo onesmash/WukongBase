@@ -12,7 +12,7 @@
 #include "Time.h"
 #include <queue>
 
-namespace WukongEngine {
+namespace WukongBase {
 
 namespace Base {
 

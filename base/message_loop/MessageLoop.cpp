@@ -12,7 +12,7 @@
 #include <iostream>
 using namespace std;
 
-namespace WukongEngine {
+namespace WukongBase {
 
 namespace Base {
     

@@ -10,7 +10,7 @@
 #include "Packet.h"
 #include <cstdlib>
 
-namespace WukongEngine {
+namespace WukongBase {
 namespace Net {
     
 void onAllocBuf(uv_handle_t* handle, size_t suggested_size, uv_buf_t* buf)

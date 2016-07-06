@@ -9,7 +9,7 @@
 #include "IOBuffer.h"
 #include <cstring>
 
-namespace WukongEngine {
+namespace WukongBase {
     
 namespace Base {
     

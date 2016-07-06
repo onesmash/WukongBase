@@ -10,7 +10,7 @@
 #define __Net__Packet__
 #include "SKBuffer.h"
 
-namespace WukongEngine {
+namespace WukongBase {
 namespace Net {
     
 extern const int kTCPSessionHeadSize;
