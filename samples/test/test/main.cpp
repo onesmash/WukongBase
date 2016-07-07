@@ -15,7 +15,7 @@ using namespace std;
 void connectCallback(const std::shared_ptr<WukongBase::Net::TCPSession>& session)
 {
     WukongBase::Net::Packet packet;
-    char httpReq[] = "GET /16/0706/12/BR9QB7DP00014PRF.html HTTP/1.1 \r\nHOST: news.163.com\r\n\r\n";
+    char httpReq[] = "GET / HTTP/1.1 \r\nHOST: onesmash.github.io\r\nUser-Agent: Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1A543 Safari/419.3\r\n\r\n";
     packet.append(httpReq, sizeof(httpReq));
     session->send(std::move(packet));
     session->startRead();
@@ -37,7 +37,7 @@ int main(int argc, const char * argv[]) {
     WukongBase::Base::Thread thread("test");
     thread.start();
     
-    WukongBase::Net::TCPClient client(thread.messageLoop(), WukongBase::Net::IPAddress("122.228.84.23", 80));
+    WukongBase::Net::TCPClient client(thread.messageLoop(), WukongBase::Net::IPAddress("151.101.16.133", 80));
     client.setConnectCallback(connectCallback);
     client.setWriteCompleteCallback(writeCallback);
     client.setMessageCallback(messageCallback);
