@@ -20,6 +20,8 @@ public:
     SKBuffer(const SKBuffer& buffer);
     SKBuffer(SKBuffer&& buffer);
     
+    ~SKBuffer() {}
+    
     SKBuffer& operator=(const SKBuffer& buffer);
     SKBuffer& operator=(SKBuffer&& buffer);
     

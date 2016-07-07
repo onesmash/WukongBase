@@ -16,6 +16,7 @@
 #include "MessageLoop.h"
 #include <functional>
 #include <memory>
+#include <unordered_map>
 #include <unordered_set>
 
 namespace WukongBase {
@@ -115,13 +116,16 @@ public:
     
 private:
     
+    typedef std::unordered_map<void*, std::shared_ptr<WriteRequest>> WriteRequestMap;
+    
     Base::MessageLoop* messageLoop_;
     
     char readBuffer[kReadBufSize];
     TCPSocketHandle tcpSocket_;
     TCPSocketConnectRequest tcpConnectReq_;
     TCPSocketShutdownRequest tcpShutdownReq_;
-    std::unordered_set<std::shared_ptr<WriteRequest>> writeRequestSet_;
+    WriteRequestMap writeRequestMap_;
+    //std::unordered_set<std::shared_ptr<WriteRequest>> writeRequestSet_;
     
     ConnectionAcceptCallback connectionAcceptCallback_;
     ReadCompleteCallback readCompleteCallback_;

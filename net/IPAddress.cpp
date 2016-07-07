@@ -35,22 +35,15 @@ IPAddress::IPAddress(uint16_t port, bool loopback, bool isIPv6)
     
 IPAddress::IPAddress(const sockaddr* address)
 {
-    if (address->sa_family == AF_INET)
-        address_ = *(const sockaddr_in*)address;
-    else if (address->sa_family == AF_INET6)
-        address6_ = *(const sockaddr_in6*)address;
-    else {
-        perror("only support AF_INET and AF_INET6");
-        abort();
-    }
+    address6_ = *(const sockaddr_in6*)address;
 }
     
 IPAddress::IPAddress(const std::string& ip, uint16_t port, bool isIPv6)
 {
     if(isIPv6) {
-        uv_ip4_addr(ip.c_str(), port, &address_);
-    } else {
         uv_ip6_addr(ip.c_str(), port, &address6_);
+    } else {
+        uv_ip4_addr(ip.c_str(), port, &address_);
     }
 }
     

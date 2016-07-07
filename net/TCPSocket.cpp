@@ -115,7 +115,7 @@ int TCPSocket::write(const Packet& packet)
     writeRequest->writeRequest.data = writeRequest;
     uv_buf_t buf = uv_buf_init((char*)writeRequest->packet.data(), (unsigned)writeRequest->packet.size());
     std::shared_ptr<WriteRequest> ptr = std::shared_ptr<WriteRequest>(writeRequest);
-    writeRequestSet_.insert(ptr);
+    writeRequestMap_.insert({writeRequest, ptr});
     return -uv_write(&writeRequest->writeRequest, (uv_stream_t*)&tcpSocket_, &buf, 1, onWriteComplete);
 }
     
@@ -126,7 +126,7 @@ int TCPSocket::write(Packet&& packet)
     writeRequest->writeRequest.data = writeRequest;
     uv_buf_t buf = uv_buf_init((char*)writeRequest->packet.data(), (unsigned)writeRequest->packet.size());
     std::shared_ptr<WriteRequest> ptr = std::shared_ptr<WriteRequest>(writeRequest);
-    writeRequestSet_.insert(ptr);
+    writeRequestMap_.insert({writeRequest, ptr});
     return -uv_write(&writeRequest->writeRequest, (uv_stream_t*)&tcpSocket_, &buf, 1, onWriteComplete);
 }
     
@@ -163,8 +163,7 @@ void TCPSocket::didWriteComplete(TCPSocketWriteRequest* request, bool success)
 {
     WriteRequest* writeRequest = (WriteRequest*)request->data;
     writeCompleteCallback_(success);
-    std::shared_ptr<WriteRequest> ptr = std::shared_ptr<WriteRequest>(writeRequest);
-    writeRequestSet_.erase(ptr);
+    writeRequestMap_.erase(writeRequest);
 }
     
 void TCPSocket::didCloseComplete()

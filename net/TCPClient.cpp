@@ -44,6 +44,8 @@ void TCPClient::didConnectComplete(const std::shared_ptr<TCPSocket>& socket)
     session_->setWriteCompleteCallback(std::bind(&TCPClient::didWriteComplete, this, std::placeholders::_1));
     session_->setCloseCallback(std::bind(&TCPClient::didCloseComplete, this));
     
+    connectCallback_(session_);
+    
 }
     
 void TCPClient::didReadComplete(std::shared_ptr<Base::IOBuffer>& buffer)

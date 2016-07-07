@@ -22,16 +22,21 @@ SKBuffer::SKBuffer(size_t size):
 }
     
 SKBuffer::SKBuffer(const SKBuffer& buffer)
+:   headIndex_(buffer.headIndex_),
+    dataIndex_(buffer.dataIndex_),
+    tailIndex_(buffer.tailIndex_),
+    buffer_(buffer.buffer_)
+{
+}
+
+SKBuffer::SKBuffer(SKBuffer&& buffer): buffer_(std::move(buffer.buffer_))
 {
     headIndex_ = buffer.headIndex_;
     dataIndex_ = buffer.dataIndex_;
     tailIndex_ = buffer.tailIndex_;
-    buffer_ = buffer.buffer_;
-}
-
-SKBuffer::SKBuffer(SKBuffer&& buffer)
-{
-    swap(buffer);
+    buffer.headIndex_ = 0;
+    buffer.dataIndex_ = 0;
+    buffer.tailIndex_ = 0;
 }
     
 void SKBuffer::swap(SKBuffer& buffer)

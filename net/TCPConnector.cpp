@@ -43,6 +43,8 @@ void TCPConnector::didConnectComplete(bool success)
 {
     if(success) {
         newTCPSessionCallback_(socket_);
+    } else {
+        newTCPSessionCallback_(std::shared_ptr<TCPSocket>());
     }
 }
 }

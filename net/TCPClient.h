@@ -22,10 +22,10 @@ class IOBuffer;
 
 namespace Net {
     
-typedef std::function<void(const std::shared_ptr<TCPSession>&, std::shared_ptr<Base::IOBuffer>&)> MessageCallback;
-    
 class TCPClient {
 public:
+    typedef std::function<void(const std::shared_ptr<TCPSession>&, std::shared_ptr<Base::IOBuffer>&)> MessageCallback;
+    typedef std::function<void(const std::shared_ptr<TCPSession>&)> ConnectCallback;
     
     TCPClient(Base::MessageLoop* messageLoop, const IPAddress& serverAddress);
     ~TCPClient();
