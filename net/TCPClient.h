@@ -25,6 +25,7 @@ namespace Net {
 class TCPClient {
 public:
     typedef std::function<void(const std::shared_ptr<TCPSession>&, std::shared_ptr<Base::IOBuffer>&)> MessageCallback;
+    typedef std::function<void(std::shared_ptr<TCPSession>&, bool)> WriteCompleteCallback;
     typedef std::function<void(const std::shared_ptr<TCPSession>&)> ConnectCallback;
     
     TCPClient(Base::MessageLoop* messageLoop, const IPAddress& serverAddress);

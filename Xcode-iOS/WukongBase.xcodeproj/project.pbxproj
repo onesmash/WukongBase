@@ -50,6 +50,8 @@
 		03380C421D2D4B1A00CB6B4E /* Task.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03380B5B1D2D4B1900CB6B4E /* Task.cpp */; };
 		03380C431D2D4B1A00CB6B4E /* Time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03380B5D1D2D4B1900CB6B4E /* Time.cpp */; };
 		03380C441D2D4B1A00CB6B4E /* Thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03380B601D2D4B1900CB6B4E /* Thread.cpp */; };
+		03FDCD051D2F841800DF5949 /* TCPAcceptor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03FDCD031D2F841800DF5949 /* TCPAcceptor.cpp */; };
+		03FDCD081D2F8CFC00DF5949 /* TCPServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03FDCD061D2F8CFC00DF5949 /* TCPServer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -140,6 +142,10 @@
 		03380B601D2D4B1900CB6B4E /* Thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Thread.cpp; sourceTree = "<group>"; };
 		03380B611D2D4B1900CB6B4E /* Thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Thread.h; sourceTree = "<group>"; };
 		03380C4D1D2D4C5E00CB6B4E /* uv-unix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uv-unix.h"; sourceTree = "<group>"; };
+		03FDCD031D2F841800DF5949 /* TCPAcceptor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TCPAcceptor.cpp; sourceTree = "<group>"; };
+		03FDCD041D2F841800DF5949 /* TCPAcceptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPAcceptor.h; sourceTree = "<group>"; };
+		03FDCD061D2F8CFC00DF5949 /* TCPServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TCPServer.cpp; sourceTree = "<group>"; };
+		03FDCD071D2F8CFC00DF5949 /* TCPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPServer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +207,10 @@
 				03380A071D2D4B1900CB6B4E /* TCPSession.h */,
 				03380A081D2D4B1900CB6B4E /* TCPSocket.cpp */,
 				03380A091D2D4B1900CB6B4E /* TCPSocket.h */,
+				03FDCD031D2F841800DF5949 /* TCPAcceptor.cpp */,
+				03FDCD041D2F841800DF5949 /* TCPAcceptor.h */,
+				03FDCD061D2F8CFC00DF5949 /* TCPServer.cpp */,
+				03FDCD071D2F8CFC00DF5949 /* TCPServer.h */,
 			);
 			path = net;
 			sourceTree = "<group>";
@@ -387,6 +397,7 @@
 				03380B7E1D2D4B1900CB6B4E /* dl.c in Sources */,
 				03380B621D2D4B1900CB6B4E /* Endian.cpp in Sources */,
 				03380B831D2D4B1900CB6B4E /* getnameinfo.c in Sources */,
+				03FDCD051D2F841800DF5949 /* TCPAcceptor.cpp in Sources */,
 				03380C421D2D4B1A00CB6B4E /* Task.cpp in Sources */,
 				03380B841D2D4B1900CB6B4E /* kqueue.c in Sources */,
 				03380B7D1D2D4B1900CB6B4E /* darwin.c in Sources */,
@@ -395,6 +406,7 @@
 				03380C411D2D4B1A00CB6B4E /* MessageLoop.cpp in Sources */,
 				03380B771D2D4B1900CB6B4E /* threadpool.c in Sources */,
 				03380B751D2D4B1900CB6B4E /* fs-poll.c in Sources */,
+				03FDCD081D2F8CFC00DF5949 /* TCPServer.cpp in Sources */,
 				03380B991D2D4B1900CB6B4E /* uv-common.c in Sources */,
 				03380B8E1D2D4B1900CB6B4E /* process.c in Sources */,
 				03380C441D2D4B1A00CB6B4E /* Thread.cpp in Sources */,

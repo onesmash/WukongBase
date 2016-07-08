@@ -24,7 +24,7 @@ void onConnectReq(uv_stream_t* server, int status)
 {
     if(status == 0) {
         TCPSocket* serverSocket = (TCPSocket*)server->data;
-        serverSocket->didAcceptComplete();
+        serverSocket->didReciveConnectRequest();
     } else {
         
     }
@@ -78,7 +78,7 @@ TCPSocket::~TCPSocket()
 int TCPSocket::open(Base::MessageLoop* messageLoop)
 {
     messageLoop_ = messageLoop;
-    int res = uv_tcp_init(&messageLoop_->eventLoop(), &tcpSocket_);
+    int res = -uv_tcp_init(&messageLoop_->eventLoop(), &tcpSocket_);
     tcpSocket_.data = this;
     return res;
 }
@@ -91,6 +91,11 @@ int TCPSocket::bind(const IPAddress& address)
 int TCPSocket::listen(int backlog)
 {
     return -uv_listen((uv_stream_t*)&tcpSocket_, backlog, onConnectReq);
+}
+    
+int TCPSocket::accept(TCPSocket& socket)
+{
+    return -uv_accept((uv_stream_t*)&tcpSocket_, (uv_stream_t*)socket.tcpSocketHandle());
 }
     
 int TCPSocket::connect(const IPAddress& address)
@@ -141,12 +146,9 @@ int TCPSocket::close()
     return 0;
 }
     
-void TCPSocket::didAcceptComplete()
+void TCPSocket::didReciveConnectRequest()
 {
-    std::shared_ptr<TCPSocket> socketP = std::shared_ptr<TCPSocket>(new TCPSocket());
-    int res = uv_accept((uv_stream_t*)&tcpSocket_, (uv_stream_t*)socketP->tcpSocketHandle());
-    if(res > 0)
-        connectionAcceptCallback_(socketP);
+    acceptCallback_();
 }
     
 void TCPSocket::didConnectComplete(bool success)

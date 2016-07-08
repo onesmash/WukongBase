@@ -31,7 +31,7 @@ class TCPSocket;
     
 typedef std::function<void(std::shared_ptr<Base::IOBuffer>&)> ReadCompleteCallback;
 typedef std::function<void(bool)> WriteCompleteCallback;
-typedef std::function<void(const std::shared_ptr<TCPSocket>&)> ConnectionAcceptCallback;
+typedef std::function<void()> AcceptCallback;
 typedef std::function<void(bool)> ConnectCallback;
 typedef std::function<void(bool)> CloseCallback;
 
@@ -47,6 +47,8 @@ public:
     int bind(const IPAddress& address);
     
     int listen(int backlog);
+    
+    int accept(TCPSocket& socket);
     
     int connect(const IPAddress& address);
     
@@ -67,9 +69,9 @@ public:
     
     const TCPSocketHandle* tcpSocketHandle() const { return &tcpSocket_; }
     
-    void setConnectionAcceptCallback(const ConnectionAcceptCallback& cb)
+    void setAcceptCallback(const AcceptCallback& cb)
     {
-        connectionAcceptCallback_ = cb;
+        acceptCallback_ = cb;
     }
     
     void setReadCompleteCallback(const ReadCompleteCallback& cb)
@@ -104,7 +106,7 @@ private:
     };
     
 public:
-    void didAcceptComplete();
+    void didReciveConnectRequest();
     
     void didConnectComplete(bool sucess);
     
@@ -127,7 +129,7 @@ private:
     WriteRequestMap writeRequestMap_;
     //std::unordered_set<std::shared_ptr<WriteRequest>> writeRequestSet_;
     
-    ConnectionAcceptCallback connectionAcceptCallback_;
+    AcceptCallback acceptCallback_;
     ReadCompleteCallback readCompleteCallback_;
     WriteCompleteCallback writeCompleteCallback_;
     ConnectCallback connectCallback_;

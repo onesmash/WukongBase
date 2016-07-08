@@ -55,7 +55,7 @@ void TCPClient::didReadComplete(std::shared_ptr<Base::IOBuffer>& buffer)
 
 void TCPClient::didWriteComplete(bool success)
 {
-    writeCompleteCallback_(success);
+    writeCompleteCallback_(session_, success);
 }
 
 void TCPClient::didCloseComplete()
