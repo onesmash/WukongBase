@@ -23,6 +23,10 @@ TCPAcceptor::TCPAcceptor(Base::MessageLoop* messageLoop, const IPAddress& listen
     
 }
     
+TCPAcceptor::~TCPAcceptor()
+{
+}
+    
 void TCPAcceptor::listen(int backlog)
 {
     messageLoop_->postTask(std::bind(&TCPAcceptor::listenInLoop, this, backlog));
