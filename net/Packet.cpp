@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 Xuhui. All rights reserved.
 //
 
-#include "Packet.h"
-#include "Endian.h"
+#include "net/Packet.h"
+#include "net/Endian.h"
 
 namespace WukongBase {
 namespace Net {

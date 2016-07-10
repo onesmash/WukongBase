@@ -6,8 +6,8 @@
 //  Copyright © 2016年 Xuhui. All rights reserved.
 //
 
-#include "TCPConnector.h"
-#include "MessageLoop.h"
+#include "net/TCPConnector.h"
+#include "base/message_loop/MessageLoop.h"
 
 namespace WukongBase {
 

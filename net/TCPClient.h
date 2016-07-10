@@ -9,9 +9,9 @@
 #ifndef TCPClient_h
 #define TCPClient_h
 
-#include "IPAddress.h"
-#include "TCPConnector.h"
-#include "TCPSession.h"
+#include "net/IPAddress.h"
+#include "net/TCPConnector.h"
+#include "net/TCPSession.h"
 
 namespace WukongBase {
     

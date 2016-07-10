@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 Xuhui. All rights reserved.
 //
 
-#include "SKBuffer.h"
+#include "net/SKBuffer.h"
 #include <cassert>
 
 namespace WukongBase {

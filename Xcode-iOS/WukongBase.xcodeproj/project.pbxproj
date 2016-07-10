@@ -16,40 +16,40 @@
 		03380B681D2D4B1900CB6B4E /* TCPConnector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03380A041D2D4B1900CB6B4E /* TCPConnector.cpp */; };
 		03380B691D2D4B1900CB6B4E /* TCPSession.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03380A061D2D4B1900CB6B4E /* TCPSession.cpp */; };
 		03380B6A1D2D4B1900CB6B4E /* TCPSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03380A081D2D4B1900CB6B4E /* TCPSocket.cpp */; };
-		03380B751D2D4B1900CB6B4E /* fs-poll.c in Sources */ = {isa = PBXBuildFile; fileRef = 03380A6C1D2D4B1900CB6B4E /* fs-poll.c */; };
-		03380B761D2D4B1900CB6B4E /* inet.c in Sources */ = {isa = PBXBuildFile; fileRef = 03380A6E1D2D4B1900CB6B4E /* inet.c */; };
-		03380B771D2D4B1900CB6B4E /* threadpool.c in Sources */ = {isa = PBXBuildFile; fileRef = 03380A701D2D4B1900CB6B4E /* threadpool.c */; };
-		03380B7A1D2D4B1900CB6B4E /* async.c in Sources */ = {isa = PBXBuildFile; fileRef = 03380A741D2D4B1900CB6B4E /* async.c */; };
-		03380B7B1D2D4B1900CB6B4E /* core.c in Sources */ = {isa = PBXBuildFile; fileRef = 03380A761D2D4B1900CB6B4E /* core.c */; };
-		03380B7C1D2D4B1900CB6B4E /* darwin-proctitle.c in Sources */ = {isa = PBXBuildFile; fileRef = 03380A771D2D4B1900CB6B4E /* darwin-proctitle.c */; };
-		03380B7D1D2D4B1900CB6B4E /* darwin.c in Sources */ = {isa = PBXBuildFile; fileRef = 03380A781D2D4B1900CB6B4E /* darwin.c */; };
-		03380B7E1D2D4B1900CB6B4E /* dl.c in Sources */ = {isa = PBXBuildFile; fileRef = 03380A791D2D4B1900CB6B4E /* dl.c */; };
-		03380B801D2D4B1900CB6B4E /* fs.c in Sources */ = {isa = PBXBuildFile; fileRef = 03380A7B1D2D4B1900CB6B4E /* fs.c */; };
-		03380B811D2D4B1900CB6B4E /* fsevents.c in Sources */ = {isa = PBXBuildFile; fileRef = 03380A7C1D2D4B1900CB6B4E /* fsevents.c */; };
-		03380B821D2D4B1900CB6B4E /* getaddrinfo.c in Sources */ = {isa = PBXBuildFile; fileRef = 03380A7D1D2D4B1900CB6B4E /* getaddrinfo.c */; };
-		03380B831D2D4B1900CB6B4E /* getnameinfo.c in Sources */ = {isa = PBXBuildFile; fileRef = 03380A7E1D2D4B1900CB6B4E /* getnameinfo.c */; };
-		03380B841D2D4B1900CB6B4E /* kqueue.c in Sources */ = {isa = PBXBuildFile; fileRef = 03380A801D2D4B1900CB6B4E /* kqueue.c */; };
-		03380B881D2D4B1900CB6B4E /* loop-watcher.c in Sources */ = {isa = PBXBuildFile; fileRef = 03380A851D2D4B1900CB6B4E /* loop-watcher.c */; };
-		03380B891D2D4B1900CB6B4E /* loop.c in Sources */ = {isa = PBXBuildFile; fileRef = 03380A861D2D4B1900CB6B4E /* loop.c */; };
-		03380B8C1D2D4B1900CB6B4E /* pipe.c in Sources */ = {isa = PBXBuildFile; fileRef = 03380A891D2D4B1900CB6B4E /* pipe.c */; };
-		03380B8D1D2D4B1900CB6B4E /* poll.c in Sources */ = {isa = PBXBuildFile; fileRef = 03380A8A1D2D4B1900CB6B4E /* poll.c */; };
-		03380B8E1D2D4B1900CB6B4E /* process.c in Sources */ = {isa = PBXBuildFile; fileRef = 03380A8B1D2D4B1900CB6B4E /* process.c */; };
-		03380B8F1D2D4B1900CB6B4E /* proctitle.c in Sources */ = {isa = PBXBuildFile; fileRef = 03380A8C1D2D4B1900CB6B4E /* proctitle.c */; };
-		03380B911D2D4B1900CB6B4E /* signal.c in Sources */ = {isa = PBXBuildFile; fileRef = 03380A8E1D2D4B1900CB6B4E /* signal.c */; };
-		03380B921D2D4B1900CB6B4E /* stream.c in Sources */ = {isa = PBXBuildFile; fileRef = 03380A901D2D4B1900CB6B4E /* stream.c */; };
-		03380B941D2D4B1900CB6B4E /* tcp.c in Sources */ = {isa = PBXBuildFile; fileRef = 03380A921D2D4B1900CB6B4E /* tcp.c */; };
-		03380B951D2D4B1900CB6B4E /* thread.c in Sources */ = {isa = PBXBuildFile; fileRef = 03380A931D2D4B1900CB6B4E /* thread.c */; };
-		03380B961D2D4B1900CB6B4E /* timer.c in Sources */ = {isa = PBXBuildFile; fileRef = 03380A941D2D4B1900CB6B4E /* timer.c */; };
-		03380B971D2D4B1900CB6B4E /* tty.c in Sources */ = {isa = PBXBuildFile; fileRef = 03380A951D2D4B1900CB6B4E /* tty.c */; };
-		03380B981D2D4B1900CB6B4E /* udp.c in Sources */ = {isa = PBXBuildFile; fileRef = 03380A961D2D4B1900CB6B4E /* udp.c */; };
-		03380B991D2D4B1900CB6B4E /* uv-common.c in Sources */ = {isa = PBXBuildFile; fileRef = 03380A971D2D4B1900CB6B4E /* uv-common.c */; };
-		03380B9A1D2D4B1900CB6B4E /* version.c in Sources */ = {isa = PBXBuildFile; fileRef = 03380A991D2D4B1900CB6B4E /* version.c */; };
 		03380C3F1D2D4B1A00CB6B4E /* IOBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03380B531D2D4B1900CB6B4E /* IOBuffer.cpp */; };
 		03380C401D2D4B1A00CB6B4E /* ConcurrentTaskQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03380B571D2D4B1900CB6B4E /* ConcurrentTaskQueue.cpp */; };
 		03380C411D2D4B1A00CB6B4E /* MessageLoop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03380B591D2D4B1900CB6B4E /* MessageLoop.cpp */; };
 		03380C421D2D4B1A00CB6B4E /* Task.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03380B5B1D2D4B1900CB6B4E /* Task.cpp */; };
 		03380C431D2D4B1A00CB6B4E /* Time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03380B5D1D2D4B1900CB6B4E /* Time.cpp */; };
 		03380C441D2D4B1A00CB6B4E /* Thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03380B601D2D4B1900CB6B4E /* Thread.cpp */; };
+		0356BA201D32525B005C95CD /* fs-poll.c in Sources */ = {isa = PBXBuildFile; fileRef = 0356B9301D32525B005C95CD /* fs-poll.c */; };
+		0356BA211D32525B005C95CD /* inet.c in Sources */ = {isa = PBXBuildFile; fileRef = 0356B9321D32525B005C95CD /* inet.c */; };
+		0356BA221D32525B005C95CD /* threadpool.c in Sources */ = {isa = PBXBuildFile; fileRef = 0356B9341D32525B005C95CD /* threadpool.c */; };
+		0356BA251D32525B005C95CD /* async.c in Sources */ = {isa = PBXBuildFile; fileRef = 0356B9381D32525B005C95CD /* async.c */; };
+		0356BA261D32525B005C95CD /* core.c in Sources */ = {isa = PBXBuildFile; fileRef = 0356B93A1D32525B005C95CD /* core.c */; };
+		0356BA271D32525B005C95CD /* darwin-proctitle.c in Sources */ = {isa = PBXBuildFile; fileRef = 0356B93B1D32525B005C95CD /* darwin-proctitle.c */; };
+		0356BA281D32525B005C95CD /* darwin.c in Sources */ = {isa = PBXBuildFile; fileRef = 0356B93C1D32525B005C95CD /* darwin.c */; };
+		0356BA291D32525B005C95CD /* dl.c in Sources */ = {isa = PBXBuildFile; fileRef = 0356B93D1D32525B005C95CD /* dl.c */; };
+		0356BA2B1D32525B005C95CD /* fs.c in Sources */ = {isa = PBXBuildFile; fileRef = 0356B93F1D32525B005C95CD /* fs.c */; };
+		0356BA2C1D32525B005C95CD /* fsevents.c in Sources */ = {isa = PBXBuildFile; fileRef = 0356B9401D32525B005C95CD /* fsevents.c */; };
+		0356BA2D1D32525B005C95CD /* getaddrinfo.c in Sources */ = {isa = PBXBuildFile; fileRef = 0356B9411D32525B005C95CD /* getaddrinfo.c */; };
+		0356BA2E1D32525B005C95CD /* getnameinfo.c in Sources */ = {isa = PBXBuildFile; fileRef = 0356B9421D32525B005C95CD /* getnameinfo.c */; };
+		0356BA2F1D32525B005C95CD /* kqueue.c in Sources */ = {isa = PBXBuildFile; fileRef = 0356B9441D32525B005C95CD /* kqueue.c */; };
+		0356BA331D32525B005C95CD /* loop-watcher.c in Sources */ = {isa = PBXBuildFile; fileRef = 0356B9491D32525B005C95CD /* loop-watcher.c */; };
+		0356BA341D32525B005C95CD /* loop.c in Sources */ = {isa = PBXBuildFile; fileRef = 0356B94A1D32525B005C95CD /* loop.c */; };
+		0356BA371D32525B005C95CD /* pipe.c in Sources */ = {isa = PBXBuildFile; fileRef = 0356B94D1D32525B005C95CD /* pipe.c */; };
+		0356BA381D32525B005C95CD /* poll.c in Sources */ = {isa = PBXBuildFile; fileRef = 0356B94E1D32525B005C95CD /* poll.c */; };
+		0356BA391D32525B005C95CD /* process.c in Sources */ = {isa = PBXBuildFile; fileRef = 0356B94F1D32525B005C95CD /* process.c */; };
+		0356BA3A1D32525B005C95CD /* proctitle.c in Sources */ = {isa = PBXBuildFile; fileRef = 0356B9501D32525B005C95CD /* proctitle.c */; };
+		0356BA3C1D32525B005C95CD /* signal.c in Sources */ = {isa = PBXBuildFile; fileRef = 0356B9521D32525B005C95CD /* signal.c */; };
+		0356BA3D1D32525B005C95CD /* stream.c in Sources */ = {isa = PBXBuildFile; fileRef = 0356B9541D32525B005C95CD /* stream.c */; };
+		0356BA3F1D32525B005C95CD /* tcp.c in Sources */ = {isa = PBXBuildFile; fileRef = 0356B9561D32525B005C95CD /* tcp.c */; };
+		0356BA401D32525B005C95CD /* thread.c in Sources */ = {isa = PBXBuildFile; fileRef = 0356B9571D32525B005C95CD /* thread.c */; };
+		0356BA411D32525B005C95CD /* timer.c in Sources */ = {isa = PBXBuildFile; fileRef = 0356B9581D32525B005C95CD /* timer.c */; };
+		0356BA421D32525B005C95CD /* tty.c in Sources */ = {isa = PBXBuildFile; fileRef = 0356B9591D32525B005C95CD /* tty.c */; };
+		0356BA431D32525B005C95CD /* udp.c in Sources */ = {isa = PBXBuildFile; fileRef = 0356B95A1D32525B005C95CD /* udp.c */; };
+		0356BA441D32525B005C95CD /* uv-common.c in Sources */ = {isa = PBXBuildFile; fileRef = 0356B95B1D32525B005C95CD /* uv-common.c */; };
+		0356BA451D32525B005C95CD /* version.c in Sources */ = {isa = PBXBuildFile; fileRef = 0356B95D1D32525B005C95CD /* version.c */; };
 		03FDCD051D2F841800DF5949 /* TCPAcceptor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03FDCD031D2F841800DF5949 /* TCPAcceptor.cpp */; };
 		03FDCD081D2F8CFC00DF5949 /* TCPServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03FDCD061D2F8CFC00DF5949 /* TCPServer.cpp */; };
 /* End PBXBuildFile section */
@@ -86,48 +86,6 @@
 		03380A071D2D4B1900CB6B4E /* TCPSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPSession.h; sourceTree = "<group>"; };
 		03380A081D2D4B1900CB6B4E /* TCPSocket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TCPSocket.cpp; sourceTree = "<group>"; };
 		03380A091D2D4B1900CB6B4E /* TCPSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPSocket.h; sourceTree = "<group>"; };
-		03380A471D2D4B1900CB6B4E /* tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tree.h; sourceTree = "<group>"; };
-		03380A481D2D4B1900CB6B4E /* uv-aix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uv-aix.h"; sourceTree = "<group>"; };
-		03380A491D2D4B1900CB6B4E /* uv-bsd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uv-bsd.h"; sourceTree = "<group>"; };
-		03380A4A1D2D4B1900CB6B4E /* uv-darwin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uv-darwin.h"; sourceTree = "<group>"; };
-		03380A4B1D2D4B1900CB6B4E /* uv-errno.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uv-errno.h"; sourceTree = "<group>"; };
-		03380A4E1D2D4B1900CB6B4E /* uv-threadpool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uv-threadpool.h"; sourceTree = "<group>"; };
-		03380A501D2D4B1900CB6B4E /* uv-version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uv-version.h"; sourceTree = "<group>"; };
-		03380A521D2D4B1900CB6B4E /* uv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uv.h; sourceTree = "<group>"; };
-		03380A6C1D2D4B1900CB6B4E /* fs-poll.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "fs-poll.c"; sourceTree = "<group>"; };
-		03380A6D1D2D4B1900CB6B4E /* heap-inl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "heap-inl.h"; sourceTree = "<group>"; };
-		03380A6E1D2D4B1900CB6B4E /* inet.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = inet.c; sourceTree = "<group>"; };
-		03380A6F1D2D4B1900CB6B4E /* queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = queue.h; sourceTree = "<group>"; };
-		03380A701D2D4B1900CB6B4E /* threadpool.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = threadpool.c; sourceTree = "<group>"; };
-		03380A741D2D4B1900CB6B4E /* async.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = async.c; sourceTree = "<group>"; };
-		03380A751D2D4B1900CB6B4E /* atomic-ops.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "atomic-ops.h"; sourceTree = "<group>"; };
-		03380A761D2D4B1900CB6B4E /* core.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = core.c; sourceTree = "<group>"; };
-		03380A771D2D4B1900CB6B4E /* darwin-proctitle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "darwin-proctitle.c"; sourceTree = "<group>"; };
-		03380A781D2D4B1900CB6B4E /* darwin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = darwin.c; sourceTree = "<group>"; };
-		03380A791D2D4B1900CB6B4E /* dl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dl.c; sourceTree = "<group>"; };
-		03380A7B1D2D4B1900CB6B4E /* fs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fs.c; sourceTree = "<group>"; };
-		03380A7C1D2D4B1900CB6B4E /* fsevents.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fsevents.c; sourceTree = "<group>"; };
-		03380A7D1D2D4B1900CB6B4E /* getaddrinfo.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = getaddrinfo.c; sourceTree = "<group>"; };
-		03380A7E1D2D4B1900CB6B4E /* getnameinfo.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = getnameinfo.c; sourceTree = "<group>"; };
-		03380A7F1D2D4B1900CB6B4E /* internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = internal.h; sourceTree = "<group>"; };
-		03380A801D2D4B1900CB6B4E /* kqueue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kqueue.c; sourceTree = "<group>"; };
-		03380A851D2D4B1900CB6B4E /* loop-watcher.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "loop-watcher.c"; sourceTree = "<group>"; };
-		03380A861D2D4B1900CB6B4E /* loop.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = loop.c; sourceTree = "<group>"; };
-		03380A891D2D4B1900CB6B4E /* pipe.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pipe.c; sourceTree = "<group>"; };
-		03380A8A1D2D4B1900CB6B4E /* poll.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = poll.c; sourceTree = "<group>"; };
-		03380A8B1D2D4B1900CB6B4E /* process.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = process.c; sourceTree = "<group>"; };
-		03380A8C1D2D4B1900CB6B4E /* proctitle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = proctitle.c; sourceTree = "<group>"; };
-		03380A8E1D2D4B1900CB6B4E /* signal.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = signal.c; sourceTree = "<group>"; };
-		03380A8F1D2D4B1900CB6B4E /* spinlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spinlock.h; sourceTree = "<group>"; };
-		03380A901D2D4B1900CB6B4E /* stream.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stream.c; sourceTree = "<group>"; };
-		03380A921D2D4B1900CB6B4E /* tcp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tcp.c; sourceTree = "<group>"; };
-		03380A931D2D4B1900CB6B4E /* thread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = thread.c; sourceTree = "<group>"; };
-		03380A941D2D4B1900CB6B4E /* timer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = timer.c; sourceTree = "<group>"; };
-		03380A951D2D4B1900CB6B4E /* tty.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tty.c; sourceTree = "<group>"; };
-		03380A961D2D4B1900CB6B4E /* udp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = udp.c; sourceTree = "<group>"; };
-		03380A971D2D4B1900CB6B4E /* uv-common.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "uv-common.c"; sourceTree = "<group>"; };
-		03380A981D2D4B1900CB6B4E /* uv-common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uv-common.h"; sourceTree = "<group>"; };
-		03380A991D2D4B1900CB6B4E /* version.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = version.c; sourceTree = "<group>"; };
 		03380B531D2D4B1900CB6B4E /* IOBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IOBuffer.cpp; sourceTree = "<group>"; };
 		03380B541D2D4B1900CB6B4E /* IOBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOBuffer.h; sourceTree = "<group>"; };
 		03380B561D2D4B1900CB6B4E /* Closure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Closure.h; sourceTree = "<group>"; };
@@ -141,7 +99,47 @@
 		03380B5E1D2D4B1900CB6B4E /* Time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Time.h; sourceTree = "<group>"; };
 		03380B601D2D4B1900CB6B4E /* Thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Thread.cpp; sourceTree = "<group>"; };
 		03380B611D2D4B1900CB6B4E /* Thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Thread.h; sourceTree = "<group>"; };
-		03380C4D1D2D4C5E00CB6B4E /* uv-unix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uv-unix.h"; sourceTree = "<group>"; };
+		0356B90B1D32525B005C95CD /* tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tree.h; sourceTree = "<group>"; };
+		0356B90E1D32525B005C95CD /* uv-darwin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uv-darwin.h"; sourceTree = "<group>"; };
+		0356B90F1D32525B005C95CD /* uv-errno.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uv-errno.h"; sourceTree = "<group>"; };
+		0356B9121D32525B005C95CD /* uv-threadpool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uv-threadpool.h"; sourceTree = "<group>"; };
+		0356B9131D32525B005C95CD /* uv-unix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uv-unix.h"; sourceTree = "<group>"; };
+		0356B9141D32525B005C95CD /* uv-version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uv-version.h"; sourceTree = "<group>"; };
+		0356B9161D32525B005C95CD /* uv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uv.h; sourceTree = "<group>"; };
+		0356B9301D32525B005C95CD /* fs-poll.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "fs-poll.c"; sourceTree = "<group>"; };
+		0356B9311D32525B005C95CD /* heap-inl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "heap-inl.h"; sourceTree = "<group>"; };
+		0356B9321D32525B005C95CD /* inet.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = inet.c; sourceTree = "<group>"; };
+		0356B9331D32525B005C95CD /* queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = queue.h; sourceTree = "<group>"; };
+		0356B9341D32525B005C95CD /* threadpool.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = threadpool.c; sourceTree = "<group>"; };
+		0356B9381D32525B005C95CD /* async.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = async.c; sourceTree = "<group>"; };
+		0356B9391D32525B005C95CD /* atomic-ops.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "atomic-ops.h"; sourceTree = "<group>"; };
+		0356B93A1D32525B005C95CD /* core.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = core.c; sourceTree = "<group>"; };
+		0356B93B1D32525B005C95CD /* darwin-proctitle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "darwin-proctitle.c"; sourceTree = "<group>"; };
+		0356B93C1D32525B005C95CD /* darwin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = darwin.c; sourceTree = "<group>"; };
+		0356B93D1D32525B005C95CD /* dl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dl.c; sourceTree = "<group>"; };
+		0356B93F1D32525B005C95CD /* fs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fs.c; sourceTree = "<group>"; };
+		0356B9401D32525B005C95CD /* fsevents.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fsevents.c; sourceTree = "<group>"; };
+		0356B9411D32525B005C95CD /* getaddrinfo.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = getaddrinfo.c; sourceTree = "<group>"; };
+		0356B9421D32525B005C95CD /* getnameinfo.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = getnameinfo.c; sourceTree = "<group>"; };
+		0356B9431D32525B005C95CD /* internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = internal.h; sourceTree = "<group>"; };
+		0356B9441D32525B005C95CD /* kqueue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kqueue.c; sourceTree = "<group>"; };
+		0356B9491D32525B005C95CD /* loop-watcher.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "loop-watcher.c"; sourceTree = "<group>"; };
+		0356B94A1D32525B005C95CD /* loop.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = loop.c; sourceTree = "<group>"; };
+		0356B94D1D32525B005C95CD /* pipe.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pipe.c; sourceTree = "<group>"; };
+		0356B94E1D32525B005C95CD /* poll.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = poll.c; sourceTree = "<group>"; };
+		0356B94F1D32525B005C95CD /* process.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = process.c; sourceTree = "<group>"; };
+		0356B9501D32525B005C95CD /* proctitle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = proctitle.c; sourceTree = "<group>"; };
+		0356B9521D32525B005C95CD /* signal.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = signal.c; sourceTree = "<group>"; };
+		0356B9531D32525B005C95CD /* spinlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spinlock.h; sourceTree = "<group>"; };
+		0356B9541D32525B005C95CD /* stream.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stream.c; sourceTree = "<group>"; };
+		0356B9561D32525B005C95CD /* tcp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tcp.c; sourceTree = "<group>"; };
+		0356B9571D32525B005C95CD /* thread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = thread.c; sourceTree = "<group>"; };
+		0356B9581D32525B005C95CD /* timer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = timer.c; sourceTree = "<group>"; };
+		0356B9591D32525B005C95CD /* tty.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tty.c; sourceTree = "<group>"; };
+		0356B95A1D32525B005C95CD /* udp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = udp.c; sourceTree = "<group>"; };
+		0356B95B1D32525B005C95CD /* uv-common.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "uv-common.c"; sourceTree = "<group>"; };
+		0356B95C1D32525B005C95CD /* uv-common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uv-common.h"; sourceTree = "<group>"; };
+		0356B95D1D32525B005C95CD /* version.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = version.c; sourceTree = "<group>"; };
 		03FDCD031D2F841800DF5949 /* TCPAcceptor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TCPAcceptor.cpp; sourceTree = "<group>"; };
 		03FDCD041D2F841800DF5949 /* TCPAcceptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPAcceptor.h; sourceTree = "<group>"; };
 		03FDCD061D2F8CFC00DF5949 /* TCPServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TCPServer.cpp; sourceTree = "<group>"; };
@@ -218,83 +216,9 @@
 		03380A0A1D2D4B1900CB6B4E /* third_party */ = {
 			isa = PBXGroup;
 			children = (
-				03380A0B1D2D4B1900CB6B4E /* libuv */,
+				0356B8CF1D32525B005C95CD /* libuv */,
 			);
 			path = third_party;
-			sourceTree = "<group>";
-		};
-		03380A0B1D2D4B1900CB6B4E /* libuv */ = {
-			isa = PBXGroup;
-			children = (
-				03380A431D2D4B1900CB6B4E /* include */,
-				03380A6B1D2D4B1900CB6B4E /* src */,
-			);
-			path = libuv;
-			sourceTree = "<group>";
-		};
-		03380A431D2D4B1900CB6B4E /* include */ = {
-			isa = PBXGroup;
-			children = (
-				03380C4D1D2D4C5E00CB6B4E /* uv-unix.h */,
-				03380A471D2D4B1900CB6B4E /* tree.h */,
-				03380A481D2D4B1900CB6B4E /* uv-aix.h */,
-				03380A491D2D4B1900CB6B4E /* uv-bsd.h */,
-				03380A4A1D2D4B1900CB6B4E /* uv-darwin.h */,
-				03380A4B1D2D4B1900CB6B4E /* uv-errno.h */,
-				03380A4E1D2D4B1900CB6B4E /* uv-threadpool.h */,
-				03380A501D2D4B1900CB6B4E /* uv-version.h */,
-				03380A521D2D4B1900CB6B4E /* uv.h */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
-		03380A6B1D2D4B1900CB6B4E /* src */ = {
-			isa = PBXGroup;
-			children = (
-				03380A6C1D2D4B1900CB6B4E /* fs-poll.c */,
-				03380A6D1D2D4B1900CB6B4E /* heap-inl.h */,
-				03380A6E1D2D4B1900CB6B4E /* inet.c */,
-				03380A6F1D2D4B1900CB6B4E /* queue.h */,
-				03380A701D2D4B1900CB6B4E /* threadpool.c */,
-				03380A711D2D4B1900CB6B4E /* unix */,
-				03380A971D2D4B1900CB6B4E /* uv-common.c */,
-				03380A981D2D4B1900CB6B4E /* uv-common.h */,
-				03380A991D2D4B1900CB6B4E /* version.c */,
-			);
-			path = src;
-			sourceTree = "<group>";
-		};
-		03380A711D2D4B1900CB6B4E /* unix */ = {
-			isa = PBXGroup;
-			children = (
-				03380A741D2D4B1900CB6B4E /* async.c */,
-				03380A751D2D4B1900CB6B4E /* atomic-ops.h */,
-				03380A761D2D4B1900CB6B4E /* core.c */,
-				03380A771D2D4B1900CB6B4E /* darwin-proctitle.c */,
-				03380A781D2D4B1900CB6B4E /* darwin.c */,
-				03380A791D2D4B1900CB6B4E /* dl.c */,
-				03380A7B1D2D4B1900CB6B4E /* fs.c */,
-				03380A7C1D2D4B1900CB6B4E /* fsevents.c */,
-				03380A7D1D2D4B1900CB6B4E /* getaddrinfo.c */,
-				03380A7E1D2D4B1900CB6B4E /* getnameinfo.c */,
-				03380A7F1D2D4B1900CB6B4E /* internal.h */,
-				03380A801D2D4B1900CB6B4E /* kqueue.c */,
-				03380A851D2D4B1900CB6B4E /* loop-watcher.c */,
-				03380A861D2D4B1900CB6B4E /* loop.c */,
-				03380A891D2D4B1900CB6B4E /* pipe.c */,
-				03380A8A1D2D4B1900CB6B4E /* poll.c */,
-				03380A8B1D2D4B1900CB6B4E /* process.c */,
-				03380A8C1D2D4B1900CB6B4E /* proctitle.c */,
-				03380A8E1D2D4B1900CB6B4E /* signal.c */,
-				03380A8F1D2D4B1900CB6B4E /* spinlock.h */,
-				03380A901D2D4B1900CB6B4E /* stream.c */,
-				03380A921D2D4B1900CB6B4E /* tcp.c */,
-				03380A931D2D4B1900CB6B4E /* thread.c */,
-				03380A941D2D4B1900CB6B4E /* timer.c */,
-				03380A951D2D4B1900CB6B4E /* tty.c */,
-				03380A961D2D4B1900CB6B4E /* udp.c */,
-			);
-			path = unix;
 			sourceTree = "<group>";
 		};
 		03380B521D2D4B1900CB6B4E /* base */ = {
@@ -331,6 +255,79 @@
 				03380B611D2D4B1900CB6B4E /* Thread.h */,
 			);
 			path = thread;
+			sourceTree = "<group>";
+		};
+		0356B8CF1D32525B005C95CD /* libuv */ = {
+			isa = PBXGroup;
+			children = (
+				0356B9071D32525B005C95CD /* include */,
+				0356B92F1D32525B005C95CD /* src */,
+			);
+			name = libuv;
+			path = libuv/libuv;
+			sourceTree = "<group>";
+		};
+		0356B9071D32525B005C95CD /* include */ = {
+			isa = PBXGroup;
+			children = (
+				0356B90B1D32525B005C95CD /* tree.h */,
+				0356B90E1D32525B005C95CD /* uv-darwin.h */,
+				0356B90F1D32525B005C95CD /* uv-errno.h */,
+				0356B9121D32525B005C95CD /* uv-threadpool.h */,
+				0356B9131D32525B005C95CD /* uv-unix.h */,
+				0356B9141D32525B005C95CD /* uv-version.h */,
+				0356B9161D32525B005C95CD /* uv.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		0356B92F1D32525B005C95CD /* src */ = {
+			isa = PBXGroup;
+			children = (
+				0356B9301D32525B005C95CD /* fs-poll.c */,
+				0356B9311D32525B005C95CD /* heap-inl.h */,
+				0356B9321D32525B005C95CD /* inet.c */,
+				0356B9331D32525B005C95CD /* queue.h */,
+				0356B9341D32525B005C95CD /* threadpool.c */,
+				0356B9351D32525B005C95CD /* unix */,
+				0356B95B1D32525B005C95CD /* uv-common.c */,
+				0356B95C1D32525B005C95CD /* uv-common.h */,
+				0356B95D1D32525B005C95CD /* version.c */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		0356B9351D32525B005C95CD /* unix */ = {
+			isa = PBXGroup;
+			children = (
+				0356B9381D32525B005C95CD /* async.c */,
+				0356B9391D32525B005C95CD /* atomic-ops.h */,
+				0356B93A1D32525B005C95CD /* core.c */,
+				0356B93B1D32525B005C95CD /* darwin-proctitle.c */,
+				0356B93C1D32525B005C95CD /* darwin.c */,
+				0356B93D1D32525B005C95CD /* dl.c */,
+				0356B93F1D32525B005C95CD /* fs.c */,
+				0356B9401D32525B005C95CD /* fsevents.c */,
+				0356B9411D32525B005C95CD /* getaddrinfo.c */,
+				0356B9421D32525B005C95CD /* getnameinfo.c */,
+				0356B9431D32525B005C95CD /* internal.h */,
+				0356B9441D32525B005C95CD /* kqueue.c */,
+				0356B9491D32525B005C95CD /* loop-watcher.c */,
+				0356B94A1D32525B005C95CD /* loop.c */,
+				0356B94D1D32525B005C95CD /* pipe.c */,
+				0356B94E1D32525B005C95CD /* poll.c */,
+				0356B94F1D32525B005C95CD /* process.c */,
+				0356B9501D32525B005C95CD /* proctitle.c */,
+				0356B9521D32525B005C95CD /* signal.c */,
+				0356B9531D32525B005C95CD /* spinlock.h */,
+				0356B9541D32525B005C95CD /* stream.c */,
+				0356B9561D32525B005C95CD /* tcp.c */,
+				0356B9571D32525B005C95CD /* thread.c */,
+				0356B9581D32525B005C95CD /* timer.c */,
+				0356B9591D32525B005C95CD /* tty.c */,
+				0356B95A1D32525B005C95CD /* udp.c */,
+			);
+			path = unix;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -389,51 +386,51 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03380B7B1D2D4B1900CB6B4E /* core.c in Sources */,
-				03380B881D2D4B1900CB6B4E /* loop-watcher.c in Sources */,
-				03380B821D2D4B1900CB6B4E /* getaddrinfo.c in Sources */,
 				03380C401D2D4B1A00CB6B4E /* ConcurrentTaskQueue.cpp in Sources */,
 				03380B671D2D4B1900CB6B4E /* TCPClient.cpp in Sources */,
-				03380B7E1D2D4B1900CB6B4E /* dl.c in Sources */,
 				03380B621D2D4B1900CB6B4E /* Endian.cpp in Sources */,
-				03380B831D2D4B1900CB6B4E /* getnameinfo.c in Sources */,
+				0356BA3C1D32525B005C95CD /* signal.c in Sources */,
+				0356BA371D32525B005C95CD /* pipe.c in Sources */,
+				0356BA421D32525B005C95CD /* tty.c in Sources */,
+				0356BA451D32525B005C95CD /* version.c in Sources */,
+				0356BA2D1D32525B005C95CD /* getaddrinfo.c in Sources */,
+				0356BA3F1D32525B005C95CD /* tcp.c in Sources */,
+				0356BA281D32525B005C95CD /* darwin.c in Sources */,
+				0356BA3A1D32525B005C95CD /* proctitle.c in Sources */,
+				0356BA2C1D32525B005C95CD /* fsevents.c in Sources */,
+				0356BA2B1D32525B005C95CD /* fs.c in Sources */,
+				0356BA401D32525B005C95CD /* thread.c in Sources */,
+				0356BA411D32525B005C95CD /* timer.c in Sources */,
+				0356BA431D32525B005C95CD /* udp.c in Sources */,
+				0356BA3D1D32525B005C95CD /* stream.c in Sources */,
+				0356BA251D32525B005C95CD /* async.c in Sources */,
 				03FDCD051D2F841800DF5949 /* TCPAcceptor.cpp in Sources */,
 				03380C421D2D4B1A00CB6B4E /* Task.cpp in Sources */,
-				03380B841D2D4B1900CB6B4E /* kqueue.c in Sources */,
-				03380B7D1D2D4B1900CB6B4E /* darwin.c in Sources */,
-				03380B811D2D4B1900CB6B4E /* fsevents.c in Sources */,
-				03380B9A1D2D4B1900CB6B4E /* version.c in Sources */,
 				03380C411D2D4B1A00CB6B4E /* MessageLoop.cpp in Sources */,
-				03380B771D2D4B1900CB6B4E /* threadpool.c in Sources */,
-				03380B751D2D4B1900CB6B4E /* fs-poll.c in Sources */,
+				0356BA381D32525B005C95CD /* poll.c in Sources */,
+				0356BA271D32525B005C95CD /* darwin-proctitle.c in Sources */,
 				03FDCD081D2F8CFC00DF5949 /* TCPServer.cpp in Sources */,
-				03380B991D2D4B1900CB6B4E /* uv-common.c in Sources */,
-				03380B8E1D2D4B1900CB6B4E /* process.c in Sources */,
+				0356BA261D32525B005C95CD /* core.c in Sources */,
+				0356BA221D32525B005C95CD /* threadpool.c in Sources */,
 				03380C441D2D4B1A00CB6B4E /* Thread.cpp in Sources */,
+				0356BA331D32525B005C95CD /* loop-watcher.c in Sources */,
 				03380B691D2D4B1900CB6B4E /* TCPSession.cpp in Sources */,
-				03380B891D2D4B1900CB6B4E /* loop.c in Sources */,
 				03380B661D2D4B1900CB6B4E /* SKBuffer.cpp in Sources */,
-				03380B801D2D4B1900CB6B4E /* fs.c in Sources */,
+				0356BA291D32525B005C95CD /* dl.c in Sources */,
+				0356BA341D32525B005C95CD /* loop.c in Sources */,
 				03380C431D2D4B1A00CB6B4E /* Time.cpp in Sources */,
-				03380B7C1D2D4B1900CB6B4E /* darwin-proctitle.c in Sources */,
-				03380B981D2D4B1900CB6B4E /* udp.c in Sources */,
+				0356BA2E1D32525B005C95CD /* getnameinfo.c in Sources */,
 				03380B6A1D2D4B1900CB6B4E /* TCPSocket.cpp in Sources */,
 				03380B631D2D4B1900CB6B4E /* IPAddress.cpp in Sources */,
-				03380B8D1D2D4B1900CB6B4E /* poll.c in Sources */,
-				03380B961D2D4B1900CB6B4E /* timer.c in Sources */,
-				03380B921D2D4B1900CB6B4E /* stream.c in Sources */,
+				0356BA211D32525B005C95CD /* inet.c in Sources */,
 				03380B641D2D4B1900CB6B4E /* Packer.cpp in Sources */,
-				03380B911D2D4B1900CB6B4E /* signal.c in Sources */,
-				03380B7A1D2D4B1900CB6B4E /* async.c in Sources */,
 				03380C3F1D2D4B1A00CB6B4E /* IOBuffer.cpp in Sources */,
-				03380B8C1D2D4B1900CB6B4E /* pipe.c in Sources */,
-				03380B971D2D4B1900CB6B4E /* tty.c in Sources */,
-				03380B951D2D4B1900CB6B4E /* thread.c in Sources */,
+				0356BA201D32525B005C95CD /* fs-poll.c in Sources */,
+				0356BA2F1D32525B005C95CD /* kqueue.c in Sources */,
 				03380B651D2D4B1900CB6B4E /* Packet.cpp in Sources */,
+				0356BA391D32525B005C95CD /* process.c in Sources */,
+				0356BA441D32525B005C95CD /* uv-common.c in Sources */,
 				03380B681D2D4B1900CB6B4E /* TCPConnector.cpp in Sources */,
-				03380B941D2D4B1900CB6B4E /* tcp.c in Sources */,
-				03380B8F1D2D4B1900CB6B4E /* proctitle.c in Sources */,
-				03380B761D2D4B1900CB6B4E /* inet.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,6 +478,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = ".. ../third_party/libuv";
 			};
 			name = Debug;
 		};
@@ -518,6 +516,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = ".. ../third_party/libuv";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

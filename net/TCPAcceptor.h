@@ -9,8 +9,8 @@
 #ifndef TCPAcceptor_h
 #define TCPAcceptor_h
 
-#include "IPAddress.h"
-#include "TCPSocket.h"
+#include "net/IPAddress.h"
+#include "net/TCPSocket.h"
 
 namespace WukongBase {
 

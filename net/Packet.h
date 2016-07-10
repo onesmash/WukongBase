@@ -8,7 +8,7 @@
 
 #ifndef __Net__Packet__
 #define __Net__Packet__
-#include "SKBuffer.h"
+#include "net/SKBuffer.h"
 
 namespace WukongBase {
 namespace Net {

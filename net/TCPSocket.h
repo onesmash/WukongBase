@@ -9,11 +9,11 @@
 #ifndef __Net__TCPSocket__
 #define __Net__TCPSocket__
 
-#include "IPAddress.h"
-#include "IOBuffer.h"
-#include "uv.h"
-#include "Packet.h"
-#include "MessageLoop.h"
+#include "net/IPAddress.h"
+#include "base/IOBuffer.h"
+#include "libuv/include/uv.h"
+#include "net/Packet.h"
+#include "base/message_loop/MessageLoop.h"
 #include <functional>
 #include <memory>
 #include <unordered_map>
@@ -118,7 +118,7 @@ public:
     
 private:
     
-    typedef std::unordered_map<void*, std::shared_ptr<WriteRequest>> WriteRequestMap;
+    typedef std::unordered_map<void*, std::shared_ptr<WriteRequest> > WriteRequestMap;
     
     Base::MessageLoop* messageLoop_;
     

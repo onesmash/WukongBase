@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 Xuhui. All rights reserved.
 //
 
-#include "Thread.h"
-#include "MessageLoop.h"
+#include "base/thread/Thread.h"
+#include "base/message_loop/MessageLoop.h"
 
 namespace WukongBase {
 
@@ -26,7 +26,9 @@ Thread::Thread(const std::string& name):
     
 Thread::~Thread()
 {
-    stop();
+    if(thread_->joinable()) {
+       stop();
+    }
 }
     
 bool Thread::start()
@@ -45,9 +47,15 @@ bool Thread::start()
 void Thread::stop()
 {
     if(!started_ && !messageLoop_) return;
-    messageLoop_->postTask(std::bind(&Thread::stopMessageLoop, this));
-    thread_->join();
+    if(messageLoop_->running()) {
+        messageLoop_->postTask(std::bind(&Thread::stopMessageLoop, this));
+    }
     started_ = false;
+}
+    
+void Thread::join()
+{
+    thread_->join();
 }
     
 void Thread::stopMessageLoop()
@@ -58,11 +66,9 @@ void Thread::stopMessageLoop()
 void Thread::threadMain()
 {
     messageLoop_ = new MessageLoop();
-    
     cv_.notify_one();
     
     messageLoop_->run();
-    messageLoop_ = NULL;
 }
     
 }

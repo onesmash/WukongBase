@@ -9,8 +9,8 @@
 #ifndef __Net__TCPSession__
 #define __Net__TCPSession__
 
-#include "TCPSocket.h"
-#include "IPAddress.h"
+#include "net/TCPSocket.h"
+#include "net/IPAddress.h"
 
 namespace WukongBase {
 namespace Net {

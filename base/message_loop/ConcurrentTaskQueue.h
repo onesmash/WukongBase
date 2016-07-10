@@ -9,9 +9,9 @@
 #ifndef __Base__ConcurrentTaskQueue__
 #define __Base__ConcurrentTaskQueue__
 
-#include "Closure.h"
-#include "Task.h"
-#include "Time.h"
+#include "base/message_loop/Closure.h"
+#include "base/message_loop/Task.h"
+#include "base/message_loop/Time.h"
 #include <mutex>
 
 namespace WukongBase {

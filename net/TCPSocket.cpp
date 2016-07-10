@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 Xuhui. All rights reserved.
 //
 
-#include "TCPSocket.h"
-#include "Packet.h"
+#include "net/TCPSocket.h"
+#include "net/Packet.h"
 #include <cstdlib>
 
 namespace WukongBase {

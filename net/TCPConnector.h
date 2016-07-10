@@ -9,8 +9,8 @@
 #ifndef TCPConnector_h
 #define TCPConnector_h
 
-#include "IPAddress.h"
-#include "TCPSocket.h"
+#include "net/IPAddress.h"
+#include "net/TCPSocket.h"
 
 namespace WukongBase {
     

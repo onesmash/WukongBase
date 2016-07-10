@@ -6,9 +6,9 @@
 //  Copyright © 2016年 Xuhui. All rights reserved.
 //
 
-#include "TCPClient.h"
-#include "MessageLoop.h"
-#include "TCPConnector.h"
+#include "net/TCPClient.h"
+#include "base/message_loop/MessageLoop.h"
+#include "net/TCPConnector.h"
 
 namespace WukongBase {
 
@@ -36,16 +36,17 @@ void TCPClient::disconnect()
     
 void TCPClient::didConnectComplete(const std::shared_ptr<TCPSocket>& socket)
 {
-    const IPAddress& localAddress = IPAddress::getLocalAddress(*socket);
-    const IPAddress& peerAddress = IPAddress::getPeerAddress(*socket);
-    
-    session_ =  std::shared_ptr<TCPSession>(new TCPSession(socket, localAddress, peerAddress));
-    session_->setReadCompleteCallback(std::bind(&TCPClient::didReadComplete, this, std::placeholders::_1));
-    session_->setWriteCompleteCallback(std::bind(&TCPClient::didWriteComplete, this, std::placeholders::_1));
-    session_->setCloseCallback(std::bind(&TCPClient::didCloseComplete, this));
-    
-    connectCallback_(session_);
-    
+    if(socket) {
+        const IPAddress& localAddress = IPAddress::getLocalAddress(*socket);
+        const IPAddress& peerAddress = IPAddress::getPeerAddress(*socket);
+        
+        session_ =  std::shared_ptr<TCPSession>(new TCPSession(socket, localAddress, peerAddress));
+        session_->setReadCompleteCallback(std::bind(&TCPClient::didReadComplete, this, std::placeholders::_1));
+        session_->setWriteCompleteCallback(std::bind(&TCPClient::didWriteComplete, this, std::placeholders::_1));
+        session_->setCloseCallback(std::bind(&TCPClient::didCloseComplete, this));
+        
+        connectCallback_(session_);
+    }
 }
     
 void TCPClient::didReadComplete(std::shared_ptr<Base::IOBuffer>& buffer)

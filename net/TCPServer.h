@@ -9,9 +9,9 @@
 #ifndef TCPServer_h
 #define TCPServer_h
 
-#include "IPAddress.h"
-#include "TCPAcceptor.h"
-#include "TCPSession.h"
+#include "net/IPAddress.h"
+#include "net/TCPAcceptor.h"
+#include "net/TCPSession.h"
 
 namespace WukongBase {
 
@@ -31,6 +31,21 @@ public:
     ~TCPServer();
     
     void start();
+    
+     void setConnectCallback(const ConnectCallback& cb)
+    {
+        connectCallback_ = cb;
+    }
+    
+    void setWriteCompleteCallback(const WriteCompleteCallback& cb)
+    {
+        writeCompleteCallback_ = cb;
+    }
+    
+    void setMessageCallback(const MessageCallback& cb)
+    {
+        messageCallback_ = cb;
+    }
     
 private:
     

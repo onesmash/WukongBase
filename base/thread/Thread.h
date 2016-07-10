@@ -30,6 +30,8 @@ public:
     
     void stop();
     
+    void join();
+    
     MessageLoop* messageLoop() {
         return messageLoop_;
     }

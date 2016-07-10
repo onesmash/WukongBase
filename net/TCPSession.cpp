@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 Xuhui. All rights reserved.
 //
 
-#include "TCPSession.h"
-#include "Packet.h"
+#include "net/TCPSession.h"
+#include "net/Packet.h"
 
 namespace WukongBase {
 namespace Net {

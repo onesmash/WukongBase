@@ -8,11 +8,11 @@
 
 #ifndef __Base__MessageLoop__
 #define __Base__MessageLoop__
-#include "uv.h"
-#include "Closure.h"
-#include "Time.h"
-#include "Task.h"
-#include "ConcurrentTaskQueue.h"
+#include "libuv/include/uv.h"
+#include "base/message_loop/Closure.h"
+#include "base/message_loop/Time.h"
+#include "base/message_loop/Task.h"
+#include "base/message_loop/ConcurrentTaskQueue.h"
 #include <memory>
 #include <unordered_map>
 #include <list>
@@ -35,7 +35,7 @@ public:
     
     EventLoop& eventLoop() { return eventLoop_; }
     
-    bool running();
+    bool running() { return running_; }
     
     void postTask(const Closure& closure);
     
@@ -51,6 +51,8 @@ public:
     
     int taskQueueSize() { return taskQueue_.size(); }
     
+    void quite();
+    
 //    void addObserver(MessageLoopObserver& observer);
 //    
 //    void removeObserver(const MessageLoopObserver& observer);
@@ -60,8 +62,6 @@ public:
 protected:
     
     void run();
-    
-    void quite();
     
 private:
     

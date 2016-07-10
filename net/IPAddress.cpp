@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 Xuhui. All rights reserved.
 //
 
-#include "IPAddress.h"
-#include "uv.h"
-#include "TCPSocket.h"
+#include "net/IPAddress.h"
+#include "libuv/include/uv.h"
+#include "net/TCPSocket.h"
 #include <arpa/inet.h>
 #include <cstdlib>
 

@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 Xuhui. All rights reserved.
 //
 
-#include "IOBuffer.h"
+#include "base/IOBuffer.h"
 #include <cstring>
 
 namespace WukongBase {

@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 Xuhui. All rights reserved.
 //
 
-#include "ConcurrentTaskQueue.h"
-#include "MessageLoop.h"
+#include "base/message_loop/ConcurrentTaskQueue.h"
+#include "base/message_loop/MessageLoop.h"
 
 namespace WukongBase {
 
