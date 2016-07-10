@@ -1,0 +1,3 @@
+[submodule "third_party/libuv/libuv"]
+	path = third_party/libuv/libuv
+	url = https://github.com/onesmash/libuv.git
