@@ -50,6 +50,9 @@
 		0356BA431D32525B005C95CD /* udp.c in Sources */ = {isa = PBXBuildFile; fileRef = 0356B95A1D32525B005C95CD /* udp.c */; };
 		0356BA441D32525B005C95CD /* uv-common.c in Sources */ = {isa = PBXBuildFile; fileRef = 0356B95B1D32525B005C95CD /* uv-common.c */; };
 		0356BA451D32525B005C95CD /* version.c in Sources */ = {isa = PBXBuildFile; fileRef = 0356B95D1D32525B005C95CD /* version.c */; };
+		03D7ABD41D337788000C5E89 /* URLRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03D7ABD21D337788000C5E89 /* URLRequest.cpp */; };
+		03D7ABD71D33779A000C5E89 /* HTTPClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03D7ABD51D33779A000C5E89 /* HTTPClient.cpp */; };
+		03D7ABDA1D3377B4000C5E89 /* HTTPSession.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03D7ABD81D3377B4000C5E89 /* HTTPSession.cpp */; };
 		03FDCD051D2F841800DF5949 /* TCPAcceptor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03FDCD031D2F841800DF5949 /* TCPAcceptor.cpp */; };
 		03FDCD081D2F8CFC00DF5949 /* TCPServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03FDCD061D2F8CFC00DF5949 /* TCPServer.cpp */; };
 /* End PBXBuildFile section */
@@ -140,6 +143,12 @@
 		0356B95B1D32525B005C95CD /* uv-common.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "uv-common.c"; sourceTree = "<group>"; };
 		0356B95C1D32525B005C95CD /* uv-common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uv-common.h"; sourceTree = "<group>"; };
 		0356B95D1D32525B005C95CD /* version.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = version.c; sourceTree = "<group>"; };
+		03D7ABD21D337788000C5E89 /* URLRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = URLRequest.cpp; sourceTree = "<group>"; };
+		03D7ABD31D337788000C5E89 /* URLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLRequest.h; sourceTree = "<group>"; };
+		03D7ABD51D33779A000C5E89 /* HTTPClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTTPClient.cpp; sourceTree = "<group>"; };
+		03D7ABD61D33779A000C5E89 /* HTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPClient.h; sourceTree = "<group>"; };
+		03D7ABD81D3377B4000C5E89 /* HTTPSession.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTTPSession.cpp; sourceTree = "<group>"; };
+		03D7ABD91D3377B4000C5E89 /* HTTPSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPSession.h; sourceTree = "<group>"; };
 		03FDCD031D2F841800DF5949 /* TCPAcceptor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TCPAcceptor.cpp; sourceTree = "<group>"; };
 		03FDCD041D2F841800DF5949 /* TCPAcceptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPAcceptor.h; sourceTree = "<group>"; };
 		03FDCD061D2F8CFC00DF5949 /* TCPServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TCPServer.cpp; sourceTree = "<group>"; };
@@ -209,6 +218,12 @@
 				03FDCD041D2F841800DF5949 /* TCPAcceptor.h */,
 				03FDCD061D2F8CFC00DF5949 /* TCPServer.cpp */,
 				03FDCD071D2F8CFC00DF5949 /* TCPServer.h */,
+				03D7ABD21D337788000C5E89 /* URLRequest.cpp */,
+				03D7ABD31D337788000C5E89 /* URLRequest.h */,
+				03D7ABD51D33779A000C5E89 /* HTTPClient.cpp */,
+				03D7ABD61D33779A000C5E89 /* HTTPClient.h */,
+				03D7ABD81D3377B4000C5E89 /* HTTPSession.cpp */,
+				03D7ABD91D3377B4000C5E89 /* HTTPSession.h */,
 			);
 			path = net;
 			sourceTree = "<group>";
@@ -387,8 +402,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				03380C401D2D4B1A00CB6B4E /* ConcurrentTaskQueue.cpp in Sources */,
+				03D7ABD71D33779A000C5E89 /* HTTPClient.cpp in Sources */,
 				03380B671D2D4B1900CB6B4E /* TCPClient.cpp in Sources */,
 				03380B621D2D4B1900CB6B4E /* Endian.cpp in Sources */,
+				03D7ABDA1D3377B4000C5E89 /* HTTPSession.cpp in Sources */,
 				0356BA3C1D32525B005C95CD /* signal.c in Sources */,
 				0356BA371D32525B005C95CD /* pipe.c in Sources */,
 				0356BA421D32525B005C95CD /* tty.c in Sources */,
@@ -403,6 +420,7 @@
 				0356BA411D32525B005C95CD /* timer.c in Sources */,
 				0356BA431D32525B005C95CD /* udp.c in Sources */,
 				0356BA3D1D32525B005C95CD /* stream.c in Sources */,
+				03D7ABD41D337788000C5E89 /* URLRequest.cpp in Sources */,
 				0356BA251D32525B005C95CD /* async.c in Sources */,
 				03FDCD051D2F841800DF5949 /* TCPAcceptor.cpp in Sources */,
 				03380C421D2D4B1A00CB6B4E /* Task.cpp in Sources */,

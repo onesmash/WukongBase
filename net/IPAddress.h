@@ -10,11 +10,17 @@
 #define __Net__IPAddress__
 
 #include <string>
+#include <vector>
+#include <functional>
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
 
 namespace WukongBase {
+    
+namespace Base {
+    class MessageLoop;
+}
     
 namespace Net {
     
@@ -24,15 +30,23 @@ class IPAddress {
     
 public:
     IPAddress();
-    virtual ~IPAddress();
     IPAddress(uint16_t port, bool loopback = false, bool isIPv6 = false);
     IPAddress(const std::string& ip, uint16_t port, bool isIPv6 = false);
     IPAddress(const sockaddr* address);
     IPAddress(const IPAddress& address);
+    virtual ~IPAddress();
+    
+    void setPort(uint16_t port) { address_.sin_port = htons(port); }
+    
+    bool valid() { return valid_; }
     
     const sockaddr* sockAddress() const;
     
+    static std::vector<IPAddress> resolve(const std::string& hostName, bool isTCP = true);
+    
 private:
+    
+    bool valid_;
     
     union {
         sockaddr_in address_;

@@ -19,6 +19,12 @@ TCPClient::TCPClient(Base::MessageLoop* messageLoop, const IPAddress& serverAddr
 {
     connector_->setNewTCPSessionCallback(std::bind(&TCPClient::didConnectComplete, this, std::placeholders::_1));
 }
+    
+TCPClient::TCPClient(Base::MessageLoop* messageLoop, const std::string& hostName, uint16_t port)
+:   connector_(new TCPConnector(messageLoop, hostName, port))
+{
+    connector_->setNewTCPSessionCallback(std::bind(&TCPClient::didConnectComplete, this, std::placeholders::_1));
+}
   
 TCPClient::~TCPClient()
 {

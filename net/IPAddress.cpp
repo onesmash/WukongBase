@@ -8,14 +8,25 @@
 
 #include "net/IPAddress.h"
 #include "net/TCPSocket.h"
+#include "libuv/include/uv.h"
 #include <arpa/inet.h>
+#include <netdb.h>
 #include <cstdlib>
 
 namespace WukongBase {
     
 namespace Net {
     
-IPAddress::IPAddress(uint16_t port, bool loopback, bool isIPv6)
+void onGetaddrinfoComplete(uv_getaddrinfo_t* req, int status, struct addrinfo* res)
+{
+    
+}
+    
+IPAddress::IPAddress(): valid_(false)
+{
+}
+    
+IPAddress::IPAddress(uint16_t port, bool loopback, bool isIPv6): valid_(true)
 {
     if(isIPv6) {
         bzero(&address6_, sizeof address6_);
@@ -32,12 +43,12 @@ IPAddress::IPAddress(uint16_t port, bool loopback, bool isIPv6)
     }
 }
     
-IPAddress::IPAddress(const sockaddr* address)
+IPAddress::IPAddress(const sockaddr* address): valid_(true)
 {
     address6_ = *(const sockaddr_in6*)address;
 }
     
-IPAddress::IPAddress(const std::string& ip, uint16_t port, bool isIPv6)
+IPAddress::IPAddress(const std::string& ip, uint16_t port, bool isIPv6): valid_(true)
 {
     if(isIPv6) {
         uv_ip6_addr(ip.c_str(), port, &address6_);
@@ -46,7 +57,7 @@ IPAddress::IPAddress(const std::string& ip, uint16_t port, bool isIPv6)
     }
 }
     
-IPAddress::IPAddress(const IPAddress& address)
+IPAddress::IPAddress(const IPAddress& address): valid_(address.valid_)
 {
     address_ = address.address_;
 }
@@ -59,6 +70,24 @@ IPAddress::~IPAddress()
 const sockaddr* IPAddress::sockAddress() const
 {
     return reinterpret_cast<const struct sockaddr*>(&address6_);
+}
+    
+std::vector<IPAddress> IPAddress::resolve(const std::string& hostName, bool isTCP)
+{
+    std::vector<IPAddress> addresses;
+    addrinfo hints;
+    addrinfo* info = NULL;
+    
+    hints.ai_family = PF_UNSPEC;
+    hints.ai_socktype = isTCP ? SOCK_STREAM : SOCK_DGRAM;
+    int err = getaddrinfo(hostName.c_str(), NULL, NULL, &info);
+    if(err) {
+        return addresses;
+    }
+    for (addrinfo* res = info; res; res = res->ai_next) {
+        addresses.push_back(IPAddress(res->ai_addr));
+    }
+    return addresses;
 }
     
 }

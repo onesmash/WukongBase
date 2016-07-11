@@ -12,6 +12,7 @@
 #include "net/IPAddress.h"
 #include "net/TCPConnector.h"
 #include "net/TCPSession.h"
+#include <string>
 
 namespace WukongBase {
     
@@ -29,6 +30,7 @@ public:
     typedef std::function<void(const std::shared_ptr<TCPSession>&)> ConnectCallback;
     
     TCPClient(Base::MessageLoop* messageLoop, const IPAddress& serverAddress);
+    TCPClient(Base::MessageLoop* messageLoop, const std::string& hostName, uint16_t port);
     ~TCPClient();
     
     void connect();
