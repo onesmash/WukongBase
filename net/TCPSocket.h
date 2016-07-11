@@ -62,6 +62,9 @@ public:
     
     int close();
     
+    IPAddress getLocalAddress();
+    IPAddress getPeerAddress();
+    
     void setReadBufSize(int size);
     
     char* readBuf() const { return (char*)&readBuffer; }

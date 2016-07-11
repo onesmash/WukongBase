@@ -7,7 +7,6 @@
 //
 
 #include "net/IPAddress.h"
-#include "libuv/include/uv.h"
 #include "net/TCPSocket.h"
 #include <arpa/inet.h>
 #include <cstdlib>
@@ -60,22 +59,6 @@ IPAddress::~IPAddress()
 const sockaddr* IPAddress::sockAddress() const
 {
     return reinterpret_cast<const struct sockaddr*>(&address6_);
-}
-    
-IPAddress IPAddress::getLocalAddress(const TCPSocket& socket)
-{
-    sockaddr_storage addr;
-    int len = 0;
-    uv_tcp_getsockname(socket.tcpSocketHandle(), reinterpret_cast<struct sockaddr*>(&addr), &len);
-    return IPAddress(reinterpret_cast<struct sockaddr*>(&addr));
-}
-
-IPAddress IPAddress::getPeerAddress(const TCPSocket& socket)
-{
-    sockaddr_storage addr;
-    int len = 0;
-    uv_tcp_getpeername(socket.tcpSocketHandle(), reinterpret_cast<struct sockaddr*>(&addr), &len);
-    return IPAddress(reinterpret_cast<struct sockaddr*>(&addr));
 }
     
 }

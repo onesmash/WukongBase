@@ -32,9 +32,6 @@ public:
     
     const sockaddr* sockAddress() const;
     
-    static IPAddress getLocalAddress(const TCPSocket& socket);
-    static IPAddress getPeerAddress(const TCPSocket& socket);
-    
 private:
     
     union {

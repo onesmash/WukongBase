@@ -30,8 +30,8 @@ void TCPServer::start()
     
 void TCPServer::didConnectComplete(const std::shared_ptr<TCPSocket>& socket)
 {
-    const IPAddress& localAddress = IPAddress::getLocalAddress(*socket);
-    const IPAddress& peerAddress = IPAddress::getPeerAddress(*socket);
+    const IPAddress& localAddress = socket->getLocalAddress();
+    const IPAddress& peerAddress = socket->getPeerAddress();
     
     std::shared_ptr<TCPSession> session(new TCPSession(socket, localAddress, peerAddress));
     session->setReadCompleteCallback(std::bind(&TCPServer::didReadComplete, this, session, std::placeholders::_1));

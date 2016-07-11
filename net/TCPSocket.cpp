@@ -146,6 +146,22 @@ int TCPSocket::close()
     return 0;
 }
     
+    IPAddress TCPSocket::getLocalAddress()
+{
+    sockaddr_storage addr;
+    int len = 0;
+    uv_tcp_getsockname(&tcpSocket_, reinterpret_cast<struct sockaddr*>(&addr), &len);
+    return IPAddress(reinterpret_cast<struct sockaddr*>(&addr));
+}
+
+IPAddress TCPSocket::getPeerAddress()
+{
+    sockaddr_storage addr;
+    int len = 0;
+    uv_tcp_getpeername(&tcpSocket_, reinterpret_cast<struct sockaddr*>(&addr), &len);
+    return IPAddress(reinterpret_cast<struct sockaddr*>(&addr));
+}
+
 void TCPSocket::didReciveConnectRequest()
 {
     acceptCallback_();

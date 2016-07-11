@@ -37,8 +37,8 @@ void TCPClient::disconnect()
 void TCPClient::didConnectComplete(const std::shared_ptr<TCPSocket>& socket)
 {
     if(socket) {
-        const IPAddress& localAddress = IPAddress::getLocalAddress(*socket);
-        const IPAddress& peerAddress = IPAddress::getPeerAddress(*socket);
+        const IPAddress& localAddress = socket->getLocalAddress();
+        const IPAddress& peerAddress = socket->getPeerAddress();
         
         session_ =  std::shared_ptr<TCPSession>(new TCPSession(socket, localAddress, peerAddress));
         session_->setReadCompleteCallback(std::bind(&TCPClient::didReadComplete, this, std::placeholders::_1));
