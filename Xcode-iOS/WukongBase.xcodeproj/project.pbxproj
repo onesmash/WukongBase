@@ -50,6 +50,10 @@
 		0356BA431D32525B005C95CD /* udp.c in Sources */ = {isa = PBXBuildFile; fileRef = 0356B95A1D32525B005C95CD /* udp.c */; };
 		0356BA441D32525B005C95CD /* uv-common.c in Sources */ = {isa = PBXBuildFile; fileRef = 0356B95B1D32525B005C95CD /* uv-common.c */; };
 		0356BA451D32525B005C95CD /* version.c in Sources */ = {isa = PBXBuildFile; fileRef = 0356B95D1D32525B005C95CD /* version.c */; };
+		03D451BE1D34D03200A2C630 /* http_parser.c in Sources */ = {isa = PBXBuildFile; fileRef = 03D451B41D34D03200A2C630 /* http_parser.c */; };
+		03D451C41D34DBE700A2C630 /* URLResponse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03D451C21D34DBE700A2C630 /* URLResponse.cpp */; };
+		03D451C71D35322900A2C630 /* HTTPParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03D451C51D35322900A2C630 /* HTTPParser.cpp */; };
+		03D451CA1D36830200A2C630 /* URL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03D451C81D36830200A2C630 /* URL.cpp */; };
 		03D7ABD41D337788000C5E89 /* URLRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03D7ABD21D337788000C5E89 /* URLRequest.cpp */; };
 		03D7ABD71D33779A000C5E89 /* HTTPClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03D7ABD51D33779A000C5E89 /* HTTPClient.cpp */; };
 		03D7ABDA1D3377B4000C5E89 /* HTTPSession.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03D7ABD81D3377B4000C5E89 /* HTTPSession.cpp */; };
@@ -143,6 +147,14 @@
 		0356B95B1D32525B005C95CD /* uv-common.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "uv-common.c"; sourceTree = "<group>"; };
 		0356B95C1D32525B005C95CD /* uv-common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uv-common.h"; sourceTree = "<group>"; };
 		0356B95D1D32525B005C95CD /* version.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = version.c; sourceTree = "<group>"; };
+		03D451B41D34D03200A2C630 /* http_parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = http_parser.c; sourceTree = "<group>"; };
+		03D451B61D34D03200A2C630 /* http_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = http_parser.h; sourceTree = "<group>"; };
+		03D451C21D34DBE700A2C630 /* URLResponse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = URLResponse.cpp; sourceTree = "<group>"; };
+		03D451C31D34DBE700A2C630 /* URLResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLResponse.h; sourceTree = "<group>"; };
+		03D451C51D35322900A2C630 /* HTTPParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTTPParser.cpp; sourceTree = "<group>"; };
+		03D451C61D35322900A2C630 /* HTTPParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPParser.h; sourceTree = "<group>"; };
+		03D451C81D36830200A2C630 /* URL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = URL.cpp; sourceTree = "<group>"; };
+		03D451C91D36830200A2C630 /* URL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URL.h; sourceTree = "<group>"; };
 		03D7ABD21D337788000C5E89 /* URLRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = URLRequest.cpp; sourceTree = "<group>"; };
 		03D7ABD31D337788000C5E89 /* URLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLRequest.h; sourceTree = "<group>"; };
 		03D7ABD51D33779A000C5E89 /* HTTPClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HTTPClient.cpp; sourceTree = "<group>"; };
@@ -220,10 +232,16 @@
 				03FDCD071D2F8CFC00DF5949 /* TCPServer.h */,
 				03D7ABD21D337788000C5E89 /* URLRequest.cpp */,
 				03D7ABD31D337788000C5E89 /* URLRequest.h */,
+				03D451C21D34DBE700A2C630 /* URLResponse.cpp */,
+				03D451C31D34DBE700A2C630 /* URLResponse.h */,
 				03D7ABD51D33779A000C5E89 /* HTTPClient.cpp */,
 				03D7ABD61D33779A000C5E89 /* HTTPClient.h */,
+				03D451C51D35322900A2C630 /* HTTPParser.cpp */,
+				03D451C61D35322900A2C630 /* HTTPParser.h */,
 				03D7ABD81D3377B4000C5E89 /* HTTPSession.cpp */,
 				03D7ABD91D3377B4000C5E89 /* HTTPSession.h */,
+				03D451C81D36830200A2C630 /* URL.cpp */,
+				03D451C91D36830200A2C630 /* URL.h */,
 			);
 			path = net;
 			sourceTree = "<group>";
@@ -231,6 +249,7 @@
 		03380A0A1D2D4B1900CB6B4E /* third_party */ = {
 			isa = PBXGroup;
 			children = (
+				03D451AB1D34D03200A2C630 /* http_parser */,
 				0356B8CF1D32525B005C95CD /* libuv */,
 			);
 			path = third_party;
@@ -345,6 +364,16 @@
 			path = unix;
 			sourceTree = "<group>";
 		};
+		03D451AB1D34D03200A2C630 /* http_parser */ = {
+			isa = PBXGroup;
+			children = (
+				03D451B41D34D03200A2C630 /* http_parser.c */,
+				03D451B61D34D03200A2C630 /* http_parser.h */,
+			);
+			name = http_parser;
+			path = http_parser/http_parser;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -421,8 +450,10 @@
 				0356BA431D32525B005C95CD /* udp.c in Sources */,
 				0356BA3D1D32525B005C95CD /* stream.c in Sources */,
 				03D7ABD41D337788000C5E89 /* URLRequest.cpp in Sources */,
+				03D451C71D35322900A2C630 /* HTTPParser.cpp in Sources */,
 				0356BA251D32525B005C95CD /* async.c in Sources */,
 				03FDCD051D2F841800DF5949 /* TCPAcceptor.cpp in Sources */,
+				03D451C41D34DBE700A2C630 /* URLResponse.cpp in Sources */,
 				03380C421D2D4B1A00CB6B4E /* Task.cpp in Sources */,
 				03380C411D2D4B1A00CB6B4E /* MessageLoop.cpp in Sources */,
 				0356BA381D32525B005C95CD /* poll.c in Sources */,
@@ -434,6 +465,7 @@
 				0356BA331D32525B005C95CD /* loop-watcher.c in Sources */,
 				03380B691D2D4B1900CB6B4E /* TCPSession.cpp in Sources */,
 				03380B661D2D4B1900CB6B4E /* SKBuffer.cpp in Sources */,
+				03D451CA1D36830200A2C630 /* URL.cpp in Sources */,
 				0356BA291D32525B005C95CD /* dl.c in Sources */,
 				0356BA341D32525B005C95CD /* loop.c in Sources */,
 				03380C431D2D4B1A00CB6B4E /* Time.cpp in Sources */,
@@ -441,6 +473,7 @@
 				03380B6A1D2D4B1900CB6B4E /* TCPSocket.cpp in Sources */,
 				03380B631D2D4B1900CB6B4E /* IPAddress.cpp in Sources */,
 				0356BA211D32525B005C95CD /* inet.c in Sources */,
+				03D451BE1D34D03200A2C630 /* http_parser.c in Sources */,
 				03380B641D2D4B1900CB6B4E /* Packer.cpp in Sources */,
 				03380C3F1D2D4B1A00CB6B4E /* IOBuffer.cpp in Sources */,
 				0356BA201D32525B005C95CD /* fs-poll.c in Sources */,
@@ -496,7 +529,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				USER_HEADER_SEARCH_PATHS = ".. ../third_party/libuv";
+				USER_HEADER_SEARCH_PATHS = ".. ../third_party/libuv ../third_party/http_parser";
 			};
 			name = Debug;
 		};
@@ -534,7 +567,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				USER_HEADER_SEARCH_PATHS = ".. ../third_party/libuv";
+				USER_HEADER_SEARCH_PATHS = ".. ../third_party/libuv ../third_party/http_parser";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

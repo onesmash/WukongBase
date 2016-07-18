@@ -7,6 +7,7 @@
 //
 
 #include "base/thread/Thread.h"
+#include "base/message_loop//Time.h"
 #include "base/message_loop/MessageLoop.h"
 
 namespace WukongBase {
@@ -27,7 +28,8 @@ Thread::Thread(const std::string& name):
 Thread::~Thread()
 {
     if(thread_->joinable()) {
-       stop();
+        stop();
+        thread_->join();
     }
 }
     
@@ -69,6 +71,11 @@ void Thread::threadMain()
     cv_.notify_one();
     
     messageLoop_->run();
+}
+    
+void Thread::sleep(double seconds)
+{
+    std::this_thread::sleep_for(std::chrono::microseconds((long long)(seconds * kMicroSecondsPerSecond)));
 }
     
 }

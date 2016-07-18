@@ -15,7 +15,7 @@
 namespace WukongBase {
 
 namespace Base {
-    class MessageLoop;
+class MessageLoop;
 }
 
 namespace Net {

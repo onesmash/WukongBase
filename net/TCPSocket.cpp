@@ -8,6 +8,7 @@
 
 #include "net/TCPSocket.h"
 #include "net/Packet.h"
+#include "base/message_loop/MessageLoop.h"
 #include <cstdlib>
 
 namespace WukongBase {
@@ -120,7 +121,7 @@ int TCPSocket::write(const Packet& packet)
     writeRequest->writeRequest.data = writeRequest;
     uv_buf_t buf = uv_buf_init((char*)writeRequest->packet.data(), (unsigned)writeRequest->packet.size());
     std::shared_ptr<WriteRequest> ptr = std::shared_ptr<WriteRequest>(writeRequest);
-    writeRequestMap_.insert({writeRequest, ptr});
+    writeRequestMap_[writeRequest] = ptr;
     return -uv_write(&writeRequest->writeRequest, (uv_stream_t*)&tcpSocket_, &buf, 1, onWriteComplete);
 }
     
@@ -131,7 +132,7 @@ int TCPSocket::write(Packet&& packet)
     writeRequest->writeRequest.data = writeRequest;
     uv_buf_t buf = uv_buf_init((char*)writeRequest->packet.data(), (unsigned)writeRequest->packet.size());
     std::shared_ptr<WriteRequest> ptr = std::shared_ptr<WriteRequest>(writeRequest);
-    writeRequestMap_.insert({writeRequest, ptr});
+    writeRequestMap_.insert({{writeRequest, ptr}});
     return -uv_write(&writeRequest->writeRequest, (uv_stream_t*)&tcpSocket_, &buf, 1, onWriteComplete);
 }
     

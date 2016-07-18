@@ -34,6 +34,16 @@ void TCPClient::connect()
 {
     connector_->connect();
 }
+    
+void TCPClient::connect(const IPAddress& serverAddress)
+{
+    connector_->connect(serverAddress);
+}
+
+void TCPClient::connect(const std::string& hostName, uint16_t port)
+{
+    connector_->connect(hostName, port);
+}
 
 void TCPClient::disconnect()
 {
@@ -55,7 +65,7 @@ void TCPClient::didConnectComplete(const std::shared_ptr<TCPSocket>& socket)
     }
 }
     
-void TCPClient::didReadComplete(std::shared_ptr<Base::IOBuffer>& buffer)
+void TCPClient::didReadComplete(const std::shared_ptr<Base::IOBuffer>& buffer)
 {
     messageCallback_(session_, buffer);
 }
@@ -67,6 +77,7 @@ void TCPClient::didWriteComplete(bool success)
 
 void TCPClient::didCloseComplete()
 {
+    closeCallback_();
 }
     
 }

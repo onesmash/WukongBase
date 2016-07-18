@@ -40,12 +40,12 @@ void TCPServer::didConnectComplete(const std::shared_ptr<TCPSocket>& socket)
     connectCallback_(session);
 }
 
-void TCPServer::didReadComplete(std::shared_ptr<TCPSession>& session, std::shared_ptr<Base::IOBuffer>& buffer)
+void TCPServer::didReadComplete(const std::shared_ptr<TCPSession>& session, const std::shared_ptr<Base::IOBuffer>& buffer)
 {
     messageCallback_(session, buffer);
 }
 
-void TCPServer::didWriteComplete(std::shared_ptr<TCPSession>& session, bool success)
+void TCPServer::didWriteComplete(const std::shared_ptr<TCPSession>& session, bool success)
 {
     writeCompleteCallback_(session, success);
 }

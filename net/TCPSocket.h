@@ -13,7 +13,6 @@
 #include "base/IOBuffer.h"
 #include "libuv/include/uv.h"
 #include "net/Packet.h"
-#include "base/message_loop/MessageLoop.h"
 #include <functional>
 #include <memory>
 #include <unordered_map>
@@ -21,7 +20,9 @@
 
 namespace WukongBase {
     
+namespace Base {
 class MessageLoop;
+}
 
 namespace Net {
     
@@ -29,7 +30,7 @@ namespace Net {
    
 class TCPSocket;
     
-typedef std::function<void(std::shared_ptr<Base::IOBuffer>&)> ReadCompleteCallback;
+typedef std::function<void(const std::shared_ptr<Base::IOBuffer>&)> ReadCompleteCallback;
 typedef std::function<void(bool)> WriteCompleteCallback;
 typedef std::function<void()> AcceptCallback;
 typedef std::function<void(bool)> ConnectCallback;

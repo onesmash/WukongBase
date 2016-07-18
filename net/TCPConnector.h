@@ -30,6 +30,8 @@ public:
     ~TCPConnector();
     
     void connect();
+    void connect(const IPAddress& serverAddress);
+    void connect(const std::string& hostName, uint16_t port);
     
     void setNewTCPSessionCallback(const NewTCPSessionCallback& cb)
     {

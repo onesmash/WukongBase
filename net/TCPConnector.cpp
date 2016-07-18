@@ -38,6 +38,18 @@ void TCPConnector::connect()
     messageLoop_->postTask(std::bind(&TCPConnector::connectInLoop, this));
 }
     
+void TCPConnector::connect(const IPAddress& serverAddress)
+{
+    serverAddress_ = serverAddress;
+    connect();
+}
+
+void TCPConnector::connect(const std::string& hostName, uint16_t port)
+{
+    messageLoop_->postTask(std::bind(&TCPConnector::resolveInLoop, this, hostName, port));
+    connect();
+}
+    
 void TCPConnector::connectInLoop()
 {
     if(serverAddress_.valid()) {

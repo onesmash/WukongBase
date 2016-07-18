@@ -50,7 +50,7 @@ private:
     
     enum State { kDisconnected, kConnecting, kConnected, kDisconnecting };
     
-    void didReadComplete(std::shared_ptr<Base::IOBuffer>& buffer);
+    void didReadComplete(const std::shared_ptr<Base::IOBuffer>& buffer);
     void didWriteComplete(bool success);
     void didCloseComplete();
     

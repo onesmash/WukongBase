@@ -35,6 +35,8 @@ public:
     MessageLoop* messageLoop() {
         return messageLoop_;
     }
+    
+    static void sleep(double seconds);
    
 private:
     
