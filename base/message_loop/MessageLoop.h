@@ -49,9 +49,11 @@ public:
     
     char* wakeUpPipeMessageBuf() { return wakeUpPipeMessageBuf_; }
     
-    int taskQueueSize() { return taskQueue_.size(); }
+    size_t taskQueueSize() { return taskQueue_.size(); }
     
     void quite();
+    
+    bool attachToCurrentThread();
     
 //    void addObserver(MessageLoopObserver& observer);
 //    
@@ -59,9 +61,10 @@ public:
     
     TimePoint recentNow_;
     
+    void run();
+    
 protected:
     
-    void run();
     
 private:
     

@@ -63,10 +63,6 @@ MessageLoop::MessageLoop():
     uv_timer_init(&eventLoop_, &timer_);
     recentNow_ = Time::now();
     std::unique_lock<std::mutex> lock(mutex_);
-    if(messageLoopTLSKey <= 0) {
-        uv_key_create(&messageLoopTLSKey);
-    }
-    uv_key_set(&messageLoopTLSKey, this);
 }
     
 MessageLoop::~MessageLoop()
@@ -82,6 +78,22 @@ MessageLoop::~MessageLoop()
     if(uv_loop_close(&eventLoop_) == UV_EBUSY) {
         abort();
     }
+}
+    
+bool MessageLoop::attachToCurrentThread()
+{
+    if(messageLoopTLSKey <= 0) {
+        uv_key_create(&messageLoopTLSKey);
+    }
+    MessageLoop* loop = (MessageLoop*)uv_key_get(&messageLoopTLSKey);
+    if(loop == nullptr) {
+        uv_key_set(&messageLoopTLSKey, this);
+        return true;
+    }
+    if(loop == this) {
+        return true;
+    }
+    return false;
 }
     
 MessageLoop* MessageLoop::current()

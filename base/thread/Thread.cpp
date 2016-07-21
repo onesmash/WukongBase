@@ -68,6 +68,7 @@ void Thread::stopMessageLoop()
 void Thread::threadMain()
 {
     messageLoop_ = new MessageLoop();
+    messageLoop_->attachToCurrentThread();
     cv_.notify_one();
     
     messageLoop_->run();
