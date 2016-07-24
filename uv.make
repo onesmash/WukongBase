@@ -39,6 +39,9 @@ ifeq ($(config),debug_osx)
   define PRELINKCMDS
   endef
   define POSTBUILDCMDS
+	@echo Running postbuild commands
+	mkdir -p ./bin/include/libuv/
+	cp -rf /Users/xuhui/Code/WukongBase/third_party/libuv/libuv/include/ ./bin/include/libuv/
   endef
 all: $(TARGETDIR) $(OBJDIR) prebuild prelink $(TARGET)
 	@:
@@ -74,6 +77,9 @@ ifeq ($(config),release_osx)
   define PRELINKCMDS
   endef
   define POSTBUILDCMDS
+	@echo Running postbuild commands
+	mkdir -p ./bin/include/libuv/
+	cp -rf /Users/xuhui/Code/WukongBase/third_party/libuv/libuv/include/ ./bin/include/libuv/
   endef
 all: $(TARGETDIR) $(OBJDIR) prebuild prelink $(TARGET)
 	@:

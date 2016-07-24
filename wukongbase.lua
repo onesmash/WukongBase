@@ -16,6 +16,11 @@ workspace "wukongbase"
 		removefiles {".git/**"}
 	
 project "wukongbase"
+	postbuildcommands {
+		"{MKDIR} %{cfg.targetdir}/include/base/message_loop",
+		"{MKDIR} %{cfg.targetdir}/include/base/thread",
+		"{MKDIR} %{cfg.targetdir}/include/net/", 
+	}
 	includedirs {".", "third_party/libuv/", "third_party/http_parser/"}
 	files {"base/**.cpp", "net/*.cpp", "third_party/http_parser/http_parser/http_parser.c"}
 	libdirs {"bin"}
