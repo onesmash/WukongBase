@@ -39,6 +39,14 @@ ifeq ($(config),debug_osx)
   define PRELINKCMDS
   endef
   define POSTBUILDCMDS
+	@echo Running postbuild commands
+	mkdir -p bin/include/base/message_loop
+	mkdir -p bin/include/base/thread
+	mkdir -p bin/include/net/
+	cp -rf base/*.h bin/include/base
+	cp -rf base/message_loop/*.h bin/include/base/message_loop
+	cp -rf base/thread/*.h bin/include/base/thread
+	cp -rf net/*.h bin/include/net
   endef
 all: $(TARGETDIR) $(OBJDIR) prebuild prelink $(TARGET)
 	@:
@@ -74,6 +82,14 @@ ifeq ($(config),release_osx)
   define PRELINKCMDS
   endef
   define POSTBUILDCMDS
+	@echo Running postbuild commands
+	mkdir -p bin/include/base/message_loop
+	mkdir -p bin/include/base/thread
+	mkdir -p bin/include/net/
+	cp -rf base/*.h bin/include/base
+	cp -rf base/message_loop/*.h bin/include/base/message_loop
+	cp -rf base/thread/*.h bin/include/base/thread
+	cp -rf net/*.h bin/include/net
   endef
 all: $(TARGETDIR) $(OBJDIR) prebuild prelink $(TARGET)
 	@:
