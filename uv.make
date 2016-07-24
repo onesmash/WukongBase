@@ -22,7 +22,7 @@ ifeq ($(config),debug_osx)
   endif
   TARGETDIR = bin
   TARGET = $(TARGETDIR)/libuv.a
-  OBJDIR = obj/OSX/Debug/uv
+  OBJDIR = obj/osx/debug/uv
   DEFINES += -DDEBUG
   INCLUDES += -Ithird_party/libuv/libuv/include -Ithird_party/libuv/libuv/src
   FORCE_INCLUDE +=
@@ -57,7 +57,7 @@ ifeq ($(config),release_osx)
   endif
   TARGETDIR = bin
   TARGET = $(TARGETDIR)/libuv.a
-  OBJDIR = obj/OSX/Release/uv
+  OBJDIR = obj/osx/release/uv
   DEFINES += -DNDEBUG
   INCLUDES += -Ithird_party/libuv/libuv/include -Ithird_party/libuv/libuv/src
   FORCE_INCLUDE +=

@@ -16,8 +16,9 @@ int main()
     server.setWriteCompleteCallback([](const std::shared_ptr<WukongBase::Net::TCPSession>& session, bool success) {
         
     });
-    server.setMessageCallback([](const std::shared_ptr<WukongBase::Net::TCPSession>& session, std::shared_ptr<WukongBase::Base::IOBuffer>& buffer) {
-        cout << buffer->data() << endl;
+    server.setMessageCallback([](const std::shared_ptr<WukongBase::Net::TCPSession>& session, const std::shared_ptr<WukongBase::Base::IOBuffer>& buffer) {
+        cout.write(buffer->data(), buffer->size());
+        cout << endl;
     });
     server.start();
     thread.join();

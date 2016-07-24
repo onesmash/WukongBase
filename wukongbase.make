@@ -22,9 +22,9 @@ ifeq ($(config),debug_osx)
   endif
   TARGETDIR = bin
   TARGET = $(TARGETDIR)/libwukongbase.a
-  OBJDIR = obj/OSX/Debug/wukongbase
+  OBJDIR = obj/osx/debug/wukongbase
   DEFINES += -DDEBUG
-  INCLUDES += -I. -Ithird_party/libuv
+  INCLUDES += -I. -Ithird_party/libuv -Ithird_party/http_parser
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g
@@ -57,9 +57,9 @@ ifeq ($(config),release_osx)
   endif
   TARGETDIR = bin
   TARGET = $(TARGETDIR)/libwukongbase.a
-  OBJDIR = obj/OSX/Release/wukongbase
+  OBJDIR = obj/osx/release/wukongbase
   DEFINES += -DNDEBUG
-  INCLUDES += -I. -Ithird_party/libuv
+  INCLUDES += -I. -Ithird_party/libuv -Ithird_party/http_parser
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2
@@ -87,7 +87,11 @@ OBJECTS := \
 	$(OBJDIR)/Task.o \
 	$(OBJDIR)/Time.o \
 	$(OBJDIR)/Thread.o \
+	$(OBJDIR)/ThreadPool.o \
 	$(OBJDIR)/Endian.o \
+	$(OBJDIR)/HTTPClient.o \
+	$(OBJDIR)/HTTPParser.o \
+	$(OBJDIR)/HTTPSession.o \
 	$(OBJDIR)/IPAddress.o \
 	$(OBJDIR)/Packer.o \
 	$(OBJDIR)/Packet.o \
@@ -98,6 +102,10 @@ OBJECTS := \
 	$(OBJDIR)/TCPServer.o \
 	$(OBJDIR)/TCPSession.o \
 	$(OBJDIR)/TCPSocket.o \
+	$(OBJDIR)/URL.o \
+	$(OBJDIR)/URLRequest.o \
+	$(OBJDIR)/URLResponse.o \
+	$(OBJDIR)/http_parser.o \
 
 RESOURCES := \
 
@@ -173,7 +181,19 @@ $(OBJDIR)/Time.o: base/message_loop/Time.cpp
 $(OBJDIR)/Thread.o: base/thread/Thread.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/ThreadPool.o: base/thread/ThreadPool.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/Endian.o: net/Endian.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/HTTPClient.o: net/HTTPClient.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/HTTPParser.o: net/HTTPParser.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/HTTPSession.o: net/HTTPSession.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/IPAddress.o: net/IPAddress.cpp
@@ -206,6 +226,18 @@ $(OBJDIR)/TCPSession.o: net/TCPSession.cpp
 $(OBJDIR)/TCPSocket.o: net/TCPSocket.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/URL.o: net/URL.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/URLRequest.o: net/URLRequest.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/URLResponse.o: net/URLResponse.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/http_parser.o: third_party/http_parser/http_parser/http_parser.c
+	@echo $(notdir $<)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 
 -include $(OBJECTS:%.o=%.d)
 ifneq (,$(PCH))

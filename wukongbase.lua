@@ -1,6 +1,6 @@
 workspace "wukongbase"
-	configurations { "Debug", "Release" }
-	platforms {"OSX"}
+	configurations { "debug", "release" }
+	platforms {"osx"}
 	kind "StaticLib"
 	language "C++"
 	flags {"C++11"}
@@ -16,8 +16,8 @@ workspace "wukongbase"
 		removefiles {".git/**"}
 	
 project "wukongbase"
-	includedirs {".", "third_party/libuv/"}
-	files {"base/**.cpp", "net/*.cpp"}
+	includedirs {".", "third_party/libuv/", "third_party/http_parser/"}
+	files {"base/**.cpp", "net/*.cpp", "third_party/http_parser/http_parser/http_parser.c"}
 	libdirs {"bin"}
 	links {"c++", "uv"}
 

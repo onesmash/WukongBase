@@ -3,7 +3,7 @@ project "uv"
 	language "C++"
 	includedirs {"libuv/include", "libuv/src"}
 	files {"libuv/src/**.h", "libuv/src/**.c"}
-	filter "platforms:OSX"
+	filter "platforms:osx"
 		removefiles {"libuv/src/unix/aix.c",
 						"libuv/src/unix/android-ifaddrs.c",
 						"libuv/src/unix/freebsd.c",

@@ -21,7 +21,7 @@ int main()
     client.setWriteCompleteCallback([](const std::shared_ptr<WukongBase::Net::TCPSession>& session, bool success) {
         
     });
-    client.setMessageCallback([](const std::shared_ptr<WukongBase::Net::TCPSession>& session, std::shared_ptr<WukongBase::Base::IOBuffer>& buffer) {
+    client.setMessageCallback([](const std::shared_ptr<WukongBase::Net::TCPSession>& session, const std::shared_ptr<WukongBase::Base::IOBuffer>& buffer) {
         
     });
     client.connect();

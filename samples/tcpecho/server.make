@@ -20,9 +20,9 @@ ifeq ($(config),debug_osx)
   ifeq ($(origin AR), default)
     AR = ar
   endif
-  TARGETDIR = bin/OSX/Debug
+  TARGETDIR = bin/osx/debug
   TARGET = $(TARGETDIR)/server
-  OBJDIR = obj/OSX/Debug/server
+  OBJDIR = obj/osx/debug/server
   DEFINES += -DDEBUG
   INCLUDES += -I../.. -I../../third_party/libuv
   FORCE_INCLUDE +=
@@ -35,6 +35,8 @@ ifeq ($(config),debug_osx)
   ALL_LDFLAGS += $(LDFLAGS) -L../../bin
   LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
   define PREBUILDCMDS
+	@echo Running prebuild commands
+	make -C ../../ config=debug_osx target=wukongbase
   endef
   define PRELINKCMDS
   endef
@@ -55,9 +57,9 @@ ifeq ($(config),release_osx)
   ifeq ($(origin AR), default)
     AR = ar
   endif
-  TARGETDIR = bin/OSX/Release
+  TARGETDIR = bin/osx/release
   TARGET = $(TARGETDIR)/server
-  OBJDIR = obj/OSX/Release/server
+  OBJDIR = obj/osx/release/server
   DEFINES += -DNDEBUG
   INCLUDES += -I../.. -I../../third_party/libuv
   FORCE_INCLUDE +=
@@ -70,6 +72,8 @@ ifeq ($(config),release_osx)
   ALL_LDFLAGS += $(LDFLAGS) -L../../bin
   LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
   define PREBUILDCMDS
+	@echo Running prebuild commands
+	make -C ../../ config=release_osx target=wukongbase
   endef
   define PRELINKCMDS
   endef
