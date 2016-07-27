@@ -8,7 +8,7 @@
 
 #ifndef __Base__MessageLoop__
 #define __Base__MessageLoop__
-#include "libuv/include/uv.h"
+#include "uv.h"
 #include "base/message_loop/Closure.h"
 #include "base/message_loop/Time.h"
 #include "base/message_loop/Task.h"

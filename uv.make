@@ -11,15 +11,7 @@ endif
 .PHONY: clean prebuild prelink
 
 ifeq ($(config),debug_osx)
-  ifeq ($(origin CC), default)
-    CC = clang
-  endif
-  ifeq ($(origin CXX), default)
-    CXX = clang++
-  endif
-  ifeq ($(origin AR), default)
-    AR = ar
-  endif
+  RESCOMP = windres
   TARGETDIR = bin
   TARGET = $(TARGETDIR)/libuv.a
   OBJDIR = obj/osx/debug/uv
@@ -49,28 +41,20 @@ all: $(TARGETDIR) $(OBJDIR) prebuild prelink $(TARGET)
 endif
 
 ifeq ($(config),release_osx)
-  ifeq ($(origin CC), default)
-    CC = clang
-  endif
-  ifeq ($(origin CXX), default)
-    CXX = clang++
-  endif
-  ifeq ($(origin AR), default)
-    AR = ar
-  endif
+  RESCOMP = windres
   TARGETDIR = bin
   TARGET = $(TARGETDIR)/libuv.a
   OBJDIR = obj/osx/release/uv
-  DEFINES += -DNDEBUG
+  DEFINES +=
   INCLUDES += -Ithird_party/libuv/libuv/include -Ithird_party/libuv/libuv/src
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
-  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2
+  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS)
   ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CFLAGS) -std=c++11
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
   LIBS +=
   LDDEPS +=
-  ALL_LDFLAGS += $(LDFLAGS)
+  ALL_LDFLAGS += $(LDFLAGS) -Wl,-x
   LINKCMD = $(AR) -rcs "$@" $(OBJECTS)
   define PREBUILDCMDS
   endef

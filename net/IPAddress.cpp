@@ -8,7 +8,7 @@
 
 #include "net/IPAddress.h"
 #include "net/TCPSocket.h"
-#include "libuv/include/uv.h"
+#include "uv.h"
 #include <arpa/inet.h>
 #include <netdb.h>
 #include <cstdlib>

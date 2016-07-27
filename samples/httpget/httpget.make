@@ -24,7 +24,7 @@ ifeq ($(config),debug_osx)
   TARGET = $(TARGETDIR)/httpget
   OBJDIR = obj/osx/debug
   DEFINES += -DDEBUG
-  INCLUDES += -I../.. -I../../third_party/libuv
+  INCLUDES += -I../../bin/include -I../../bin/include/libuv
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g
@@ -61,7 +61,7 @@ ifeq ($(config),release_osx)
   TARGET = $(TARGETDIR)/httpget
   OBJDIR = obj/osx/release
   DEFINES += -DNDEBUG
-  INCLUDES += -I../.. -I../../third_party/libuv
+  INCLUDES += -I../../bin/include -I../../bin/include/libuv
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2

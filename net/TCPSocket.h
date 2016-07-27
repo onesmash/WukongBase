@@ -11,7 +11,7 @@
 
 #include "net/IPAddress.h"
 #include "base/IOBuffer.h"
-#include "libuv/include/uv.h"
+#include "uv.h"
 #include "net/Packet.h"
 #include <functional>
 #include <memory>

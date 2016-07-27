@@ -5,10 +5,10 @@ workspace "wukongbase"
 	language "C++"
 	flags {"C++11"}
 	targetdir "bin"
-	filter "configurations:Debug"
+	filter "configurations:debug"
       defines { "DEBUG" }
       flags { "Symbols" }
-	filter "configurations:Release"
+	filter "configurations:delease"
       defines { "NDEBUG" }
       optimize "On"
 						
@@ -25,7 +25,7 @@ project "wukongbase"
 		"{COPY} base/thread/*.h %{cfg.targetdir}/include/base/thread",
 		"{COPY} net/*.h %{cfg.targetdir}/include/net"
 	}
-	includedirs {".", "third_party/libuv/", "third_party/http_parser/"}
+	includedirs {".", "bin/include/libuv", "third_party/http_parser/"}
 	files {"base/**.cpp", "net/*.cpp", "third_party/http_parser/http_parser/http_parser.c"}
 	libdirs {"bin"}
 	links {"c++", "uv"}

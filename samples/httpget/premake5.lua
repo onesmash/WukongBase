@@ -4,7 +4,7 @@ workspace "httpget"
 	kind "ConsoleApp"
 	language "C++"
 	flags {"C++11"}
-	includedirs {"../../", "../../third_party/libuv"}
+	includedirs {"../../bin/include", "../../bin/include/libuv"}
 	filter "configurations:debug"
       defines { "DEBUG" }
       flags { "Symbols" }

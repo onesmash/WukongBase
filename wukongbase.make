@@ -11,26 +11,18 @@ endif
 .PHONY: clean prebuild prelink
 
 ifeq ($(config),debug_osx)
-  ifeq ($(origin CC), default)
-    CC = clang
-  endif
-  ifeq ($(origin CXX), default)
-    CXX = clang++
-  endif
-  ifeq ($(origin AR), default)
-    AR = ar
-  endif
+  RESCOMP = windres
   TARGETDIR = bin
   TARGET = $(TARGETDIR)/libwukongbase.a
   OBJDIR = obj/osx/debug/wukongbase
   DEFINES += -DDEBUG
-  INCLUDES += -I. -Ithird_party/libuv -Ithird_party/http_parser
+  INCLUDES += -I. -Ibin/include/libuv -Ithird_party/http_parser
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g
   ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CFLAGS) -std=c++11
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS += bin/libuv.a -lc++
+  LIBS += -Wl,--start-group bin/libuv.a -lc++ -Wl,--end-group
   LDDEPS += bin/libuv.a
   ALL_LDFLAGS += $(LDFLAGS) -Lbin
   LINKCMD = $(AR) -rcs "$@" $(OBJECTS)
@@ -54,28 +46,20 @@ all: $(TARGETDIR) $(OBJDIR) prebuild prelink $(TARGET)
 endif
 
 ifeq ($(config),release_osx)
-  ifeq ($(origin CC), default)
-    CC = clang
-  endif
-  ifeq ($(origin CXX), default)
-    CXX = clang++
-  endif
-  ifeq ($(origin AR), default)
-    AR = ar
-  endif
+  RESCOMP = windres
   TARGETDIR = bin
   TARGET = $(TARGETDIR)/libwukongbase.a
   OBJDIR = obj/osx/release/wukongbase
-  DEFINES += -DNDEBUG
-  INCLUDES += -I. -Ithird_party/libuv -Ithird_party/http_parser
+  DEFINES +=
+  INCLUDES += -I. -Ibin/include/libuv -Ithird_party/http_parser
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
-  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2
+  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS)
   ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CFLAGS) -std=c++11
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS += bin/libuv.a -lc++
+  LIBS += -Wl,--start-group bin/libuv.a -lc++ -Wl,--end-group
   LDDEPS += bin/libuv.a
-  ALL_LDFLAGS += $(LDFLAGS) -Lbin
+  ALL_LDFLAGS += $(LDFLAGS) -Lbin -Wl,-x
   LINKCMD = $(AR) -rcs "$@" $(OBJECTS)
   define PREBUILDCMDS
   endef
