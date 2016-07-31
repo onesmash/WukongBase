@@ -24,6 +24,7 @@ namespace Net {
 class TCPClient;
 class TCPSession;
 class URLResponse;
+class Packet;
     
 class HTTPSession {
 
@@ -97,7 +98,7 @@ private:
     void didConnectComplete(const std::shared_ptr<TCPSession>&);
     void didCloseComplete();
     void didRecvMessageComplete(const std::shared_ptr<TCPSession>&, const std::shared_ptr<Base::IOBuffer>&);
-    void didWriteComplete(const std::shared_ptr<TCPSession>&, bool);
+    void didWriteComplete(const std::shared_ptr<TCPSession>&, const Packet&, bool);
     
     void didBeginParse();
     void didCompleteParse();

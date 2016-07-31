@@ -35,7 +35,7 @@ void TCPServer::didConnectComplete(const std::shared_ptr<TCPSocket>& socket)
     
     std::shared_ptr<TCPSession> session(new TCPSession(socket, localAddress, peerAddress));
     session->setReadCompleteCallback(std::bind(&TCPServer::didReadComplete, this, session, std::placeholders::_1));
-    session->setWriteCompleteCallback(std::bind(&TCPServer::didWriteComplete, this, session, std::placeholders::_1));
+    session->setWriteCompleteCallback(std::bind(&TCPServer::didWriteComplete, this, session, std::placeholders::_1, std::placeholders::_2));
     
     connectCallback_(session);
 }
@@ -45,9 +45,9 @@ void TCPServer::didReadComplete(const std::shared_ptr<TCPSession>& session, cons
     messageCallback_(session, buffer);
 }
 
-void TCPServer::didWriteComplete(const std::shared_ptr<TCPSession>& session, bool success)
+void TCPServer::didWriteComplete(const std::shared_ptr<TCPSession>& session, const Packet& packet, bool success)
 {
-    writeCompleteCallback_(session, success);
+    writeCompleteCallback_(session, packet, success);
 }
     
     

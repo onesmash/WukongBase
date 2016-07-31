@@ -31,7 +31,7 @@ namespace Net {
 class TCPSocket;
     
 typedef std::function<void(const std::shared_ptr<Base::IOBuffer>&)> ReadCompleteCallback;
-typedef std::function<void(bool)> WriteCompleteCallback;
+typedef std::function<void(const Packet& packet, bool)> WriteCompleteCallback;
 typedef std::function<void()> AcceptCallback;
 typedef std::function<void(bool)> ConnectCallback;
 typedef std::function<void(bool)> CloseCallback;

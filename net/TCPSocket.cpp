@@ -181,7 +181,7 @@ void TCPSocket::didReadComplete(std::shared_ptr<Base::IOBuffer>& buffer)
 void TCPSocket::didWriteComplete(TCPSocketWriteRequest* request, bool success)
 {
     WriteRequest* writeRequest = (WriteRequest*)request->data;
-    writeCompleteCallback_(success);
+    writeCompleteCallback_(writeRequest->packet, success);
     writeRequestMap_.erase(writeRequest);
 }
     

@@ -21,7 +21,7 @@ HTTPSession::HTTPSession(const std::shared_ptr<TCPClient>& tcpClient)
 {
     tcpClient_->setConnectCallback(std::bind(&HTTPSession::didConnectComplete, this, std::placeholders::_1));
     tcpClient_->setMessageCallback(std::bind(&HTTPSession::didRecvMessageComplete, this, std::placeholders::_1, std::placeholders::_2));
-    tcpClient_->setWriteCompleteCallback(std::bind(&HTTPSession::didWriteComplete, this, std::placeholders::_1, std::placeholders::_2));
+    tcpClient_->setWriteCompleteCallback(std::bind(&HTTPSession::didWriteComplete, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
     tcpClient_->setCloseCallback(std::bind(&HTTPSession::didCloseComplete, this));
     parser_.setDataCallback(std::bind(&HTTPSession::didRecvData, this, std::placeholders::_1));
     parser_.setMessageBeginCallback(std::bind(&HTTPSession::didBeginParse, this));
@@ -78,7 +78,7 @@ void HTTPSession::didRecvMessageComplete(const std::shared_ptr<TCPSession>& sess
     parser_.parse(buffer->data(), buffer->size());
 }
 
-void HTTPSession::didWriteComplete(const std::shared_ptr<TCPSession>& session, bool success)
+void HTTPSession::didWriteComplete(const std::shared_ptr<TCPSession>& session, const Packet& packet, bool success)
 {
     requestCallback_(*this, paddingRequests_.front(), success);
 }

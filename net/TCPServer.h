@@ -25,7 +25,7 @@ class TCPServer {
 public:
     typedef std::function<void(const std::shared_ptr<TCPSession>&, const std::shared_ptr<Base::IOBuffer>&)> MessageCallback;
     typedef std::function<void(const std::shared_ptr<TCPSession>&)> ConnectCallback;
-    typedef std::function<void(const std::shared_ptr<TCPSession>&, bool)> WriteCompleteCallback;
+    typedef std::function<void(const std::shared_ptr<TCPSession>&, const Packet&, bool)> WriteCompleteCallback;
     
     TCPServer(Base::MessageLoop* messageLoop, const IPAddress& listenAddress);
     ~TCPServer();
@@ -51,7 +51,7 @@ private:
     
     void didConnectComplete(const std::shared_ptr<TCPSocket>& socket);
     void didReadComplete(const std::shared_ptr<TCPSession>&, const std::shared_ptr<Base::IOBuffer>& buffer);
-    void didWriteComplete(const std::shared_ptr<TCPSession>&, bool success);
+    void didWriteComplete(const std::shared_ptr<TCPSession>&, const Packet& packet, bool success);
     
     ConnectCallback connectCallback_;
     WriteCompleteCallback writeCompleteCallback_;

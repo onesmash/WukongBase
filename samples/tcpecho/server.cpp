@@ -13,7 +13,7 @@ int main()
 	server.setConnectCallback([](const std::shared_ptr<WukongBase::Net::TCPSession>& session){
         session->startRead();
     });
-    server.setWriteCompleteCallback([](const std::shared_ptr<WukongBase::Net::TCPSession>& session, bool success) {
+    server.setWriteCompleteCallback([](const std::shared_ptr<WukongBase::Net::TCPSession>& session, const WukongBase::Net::Packet& packet, bool success) {
         
     });
     server.setMessageCallback([](const std::shared_ptr<WukongBase::Net::TCPSession>& session, const std::shared_ptr<WukongBase::Base::IOBuffer>& buffer) {

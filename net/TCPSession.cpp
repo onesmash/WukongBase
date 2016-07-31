@@ -18,7 +18,7 @@ TCPSession::TCPSession(const std::shared_ptr<TCPSocket>& socket, const IPAddress
         peerAddress_(peerAddress),
         state_(kConnecting)
 {
-    socket_->setWriteCompleteCallback(std::bind(&TCPSession::didWriteComplete, this, std::placeholders::_1));
+    socket_->setWriteCompleteCallback(std::bind(&TCPSession::didWriteComplete, this, std::placeholders::_1, std::placeholders::_2));
     socket_->setReadCompleteCallback(std::bind(&TCPSession::didReadComplete, this, std::placeholders::_1));
     socket_->setCloseCallback(std::bind(&TCPSession::didCloseComplete, this));
 }
@@ -53,9 +53,9 @@ void TCPSession::close()
     socket_->close();
 }
     
-void TCPSession::didWriteComplete(bool success)
+void TCPSession::didWriteComplete(const Packet& packet, bool success)
 {
-    writeCompleteCallback_(success);
+    writeCompleteCallback_(packet, success);
 }
     
 void TCPSession::didReadComplete(const std::shared_ptr<Base::IOBuffer>& buffer)

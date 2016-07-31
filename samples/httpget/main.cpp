@@ -16,7 +16,7 @@ int main()
         session->send(std::move(packet));
         session->startRead();
     });
-    client.setWriteCompleteCallback([](const shared_ptr<WukongBase::Net::TCPSession>& session, bool success) {
+    client.setWriteCompleteCallback([](const shared_ptr<WukongBase::Net::TCPSession>& session, const WukongBase::Net::Packet& packet, bool success) {
         
     });
     client.setMessageCallback([](const shared_ptr<WukongBase::Net::TCPSession>& session, const shared_ptr<WukongBase::Base::IOBuffer>& buffer) {
