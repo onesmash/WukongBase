@@ -15,10 +15,6 @@
 
 namespace WukongBase {
     
-namespace Base {
-class IOBuffer;
-}
-    
 namespace Net {
     
 class TCPClient;
@@ -31,7 +27,7 @@ class HTTPSession {
 public:
     typedef std::function<void(const HTTPSession&, const std::shared_ptr<URLRequest>&, bool)> RequestCallback;
     typedef std::function<void(const HTTPSession&, const std::shared_ptr<URLRequest>&, URLResponse&&)> ResponseCallback;
-    typedef std::function<void(const HTTPSession&, const std::shared_ptr<URLRequest>&, Base::IOBuffer&&)> DataCallback;
+    typedef std::function<void(const HTTPSession&, const std::shared_ptr<URLRequest>&, Packet&&)> DataCallback;
     typedef std::function<void(const HTTPSession&, const std::shared_ptr<URLRequest>&)> DataCompleteCallback;
     typedef std::function<void(const HTTPSession&)> CloseCallback;
     HTTPSession(const std::shared_ptr<TCPClient>& tcpClient);
@@ -97,13 +93,13 @@ private:
     
     void didConnectComplete(const std::shared_ptr<TCPSession>&);
     void didCloseComplete();
-    void didRecvMessageComplete(const std::shared_ptr<TCPSession>&, const std::shared_ptr<Base::IOBuffer>&);
+    void didRecvMessageComplete(const std::shared_ptr<TCPSession>&, const std::shared_ptr<Packet>&);
     void didWriteComplete(const std::shared_ptr<TCPSession>&, const Packet&, bool);
     
     void didBeginParse();
     void didCompleteParse();
     void didRecvResponse(URLResponse&& response);
-    void didRecvData(Base::IOBuffer&& buffer);
+    void didRecvData(Packet&& buffer);
     
     enum State { kDisconnected, kConnecting, kConnected, kDisconnecting };
     

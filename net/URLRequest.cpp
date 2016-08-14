@@ -68,8 +68,9 @@ void URLRequest::addHeader(const std::string& field, const std::string& value)
     headers_[field] = value;
 }
     
-std::string URLRequest::data()
+Packet URLRequest::pack() const
 {
+    Packet packet;
     std::stringstream data;
     data << method_ << " " << URL_.path() << " HTTP/" << version_ << "\r\n";
     data << "Host: " << URL_.host() << ":" << URL_.port() << "\r\n";
@@ -78,7 +79,13 @@ std::string URLRequest::data()
     }
     data << "\r\n";
     data.write(&*body_.begin(), body_.size());
-    return data.str();
+    packet.append((void*)data.str().c_str(), data.str().size());
+    return packet;
+}
+
+bool URLRequest::unpack(Packet& packet)
+{
+    return false;
 }
 }
 }

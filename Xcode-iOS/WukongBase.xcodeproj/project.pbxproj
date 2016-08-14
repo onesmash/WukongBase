@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		030C61D71D545AF9006BC7A5 /* ThreadPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 030C61D51D545AF9006BC7A5 /* ThreadPool.cpp */; };
 		03380B621D2D4B1900CB6B4E /* Endian.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 033809F81D2D4B1900CB6B4E /* Endian.cpp */; };
 		03380B631D2D4B1900CB6B4E /* IPAddress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 033809FA1D2D4B1900CB6B4E /* IPAddress.cpp */; };
 		03380B641D2D4B1900CB6B4E /* Packer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 033809FC1D2D4B1900CB6B4E /* Packer.cpp */; };
@@ -74,6 +75,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		030C61D51D545AF9006BC7A5 /* ThreadPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadPool.cpp; sourceTree = "<group>"; };
+		030C61D61D545AF9006BC7A5 /* ThreadPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadPool.h; sourceTree = "<group>"; };
 		031CF8A11D2D4ABC0020ABBE /* libWukongBase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libWukongBase.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		033809F81D2D4B1900CB6B4E /* Endian.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Endian.cpp; sourceTree = "<group>"; };
 		033809F91D2D4B1900CB6B4E /* Endian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Endian.h; sourceTree = "<group>"; };
@@ -285,6 +288,8 @@
 		03380B5F1D2D4B1900CB6B4E /* thread */ = {
 			isa = PBXGroup;
 			children = (
+				030C61D51D545AF9006BC7A5 /* ThreadPool.cpp */,
+				030C61D61D545AF9006BC7A5 /* ThreadPool.h */,
 				03380B601D2D4B1900CB6B4E /* Thread.cpp */,
 				03380B611D2D4B1900CB6B4E /* Thread.h */,
 			);
@@ -473,6 +478,7 @@
 				03380B6A1D2D4B1900CB6B4E /* TCPSocket.cpp in Sources */,
 				03380B631D2D4B1900CB6B4E /* IPAddress.cpp in Sources */,
 				0356BA211D32525B005C95CD /* inet.c in Sources */,
+				030C61D71D545AF9006BC7A5 /* ThreadPool.cpp in Sources */,
 				03D451BE1D34D03200A2C630 /* http_parser.c in Sources */,
 				03380B641D2D4B1900CB6B4E /* Packer.cpp in Sources */,
 				03380C3F1D2D4B1A00CB6B4E /* IOBuffer.cpp in Sources */,

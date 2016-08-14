@@ -51,10 +51,7 @@ void HTTPSession::close()
     
 void HTTPSession::sendRequestInternal(const std::shared_ptr<URLRequest>& request)
 {
-    Packet packet;
-    const std::string& requestData = request->data();
-    packet.append((void*)requestData.c_str(), requestData.size());
-    tcpSession_->send(std::move(packet));
+    tcpSession_->send(request->pack());
 }
     
 void HTTPSession::didConnectComplete(const std::shared_ptr<TCPSession>& session)
@@ -73,7 +70,7 @@ void HTTPSession::didCloseComplete()
     closeCallback_(*this);
 }
 
-void HTTPSession::didRecvMessageComplete(const std::shared_ptr<TCPSession>& session, const std::shared_ptr<Base::IOBuffer>& buffer)
+void HTTPSession::didRecvMessageComplete(const std::shared_ptr<TCPSession>& session, const std::shared_ptr<Packet>& buffer)
 {
     parser_.parse(buffer->data(), buffer->size());
 }
@@ -99,7 +96,7 @@ void HTTPSession::didRecvResponse(URLResponse&& response)
     responseCallback_(*this, paddingRequests_.front(), std::move(response));
 }
 
-void HTTPSession::didRecvData(Base::IOBuffer&& buffer)
+void HTTPSession::didRecvData(Packet&& buffer)
 {
     dataCallback_(*this, paddingRequests_.front(), std::move(buffer));
 }

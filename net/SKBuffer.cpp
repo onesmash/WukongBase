@@ -39,6 +39,22 @@ SKBuffer::SKBuffer(SKBuffer&& buffer): buffer_(std::move(buffer.buffer_))
     buffer.tailIndex_ = 0;
 }
     
+SKBuffer::SKBuffer(const std::vector<char>& buffer)
+:   headIndex_(0),
+    dataIndex_(0),
+    tailIndex_(0)
+{
+    append(buffer.data(), buffer.size());
+}
+
+SKBuffer::SKBuffer(std::vector<char>&& buffer)
+:   headIndex_(0),
+    dataIndex_(0),
+    tailIndex_(buffer.size()),
+    buffer_(std::move(buffer))
+{
+}
+    
 void SKBuffer::swap(SKBuffer& buffer)
 {
     headIndex_ = buffer.headIndex_;

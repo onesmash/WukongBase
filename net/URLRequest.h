@@ -10,6 +10,7 @@
 #define URLRequest_h
 
 #include "net/URL.h"
+#include "net/Packer.h"
 #include <string>
 #include <vector>
 #include <unordered_map>
@@ -18,7 +19,7 @@ namespace WukongBase {
 
 namespace Net {
     
-class URLRequest {
+class URLRequest: public Packer {
 public:
     URLRequest(const std::string& URLString);
     URLRequest(const URL& url);
@@ -39,7 +40,8 @@ public:
     void addHeader(const std::string& field, const std::string& value);
     std::string getHeader(const std::string& field) { return headers_[field]; }
     
-    std::string data();
+    virtual Packet pack() const;
+    virtual bool unpack(Packet& packet);
     
 private:
     URL URL_;

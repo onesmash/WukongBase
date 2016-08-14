@@ -42,11 +42,12 @@ void onReadComplete(uv_stream_t* stream, ssize_t nread, const uv_buf_t* buf)
 {
     if(nread > 0) {
         TCPSocket* socket = (TCPSocket*)stream->data;
-        Base::IOBuffer* buffer = new Base::IOBuffer(buf->base, (int)nread);
-        std::shared_ptr<Base::IOBuffer> ptr = std::shared_ptr<Base::IOBuffer>(buffer);
-        socket->didReadComplete(ptr);
-    } else {
-        
+        std::shared_ptr<Packet> packet(new Packet());
+        packet->append(buf->base, nread);
+        socket->didReadComplete(packet);
+    } else if(nread < 0) {
+        TCPSocket* socket = (TCPSocket*)stream->data;
+        socket->close();
     }
 }
     
@@ -55,6 +56,9 @@ void onWriteComplete(uv_write_t* req, int status)
     bool sucess = status >= 0 && status != UV_ECANCELED;
     TCPSocket* socket = (TCPSocket*)req->handle->data;
     socket->didWriteComplete(req, sucess);
+    if(status < 0) {
+        socket->close();
+    }
 }
     
 void onShutdownComplete(uv_shutdown_t* req, int status)
@@ -173,9 +177,9 @@ void TCPSocket::didConnectComplete(bool success)
     connectCallback_(success);
 }
     
-void TCPSocket::didReadComplete(std::shared_ptr<Base::IOBuffer>& buffer)
+void TCPSocket::didReadComplete(std::shared_ptr<Packet>& packet)
 {
-    readCompleteCallback_(buffer);
+    readCompleteCallback_(packet);
 }
     
 void TCPSocket::didWriteComplete(TCPSocketWriteRequest* request, bool success)

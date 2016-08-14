@@ -80,7 +80,7 @@ void HTTPClient::didRecvResponseComplete(const HTTPSession& session, const std::
     }
 }
 
-void HTTPClient::didRecvData(const HTTPSession& session, const std::shared_ptr<URLRequest>& request, Base::IOBuffer&& buffer)
+void HTTPClient::didRecvData(const HTTPSession& session, const std::shared_ptr<URLRequest>& request, Packet&& buffer)
 {
     dataCallback_(session, request, std::move(buffer));
 }

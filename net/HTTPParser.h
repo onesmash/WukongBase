@@ -16,20 +16,17 @@
 #include <vector>
 
 namespace WukongBase {
-    
-namespace Base {
-class IOBuffer;
-}
 
 namespace Net {
     
+class Packet;
 class URLResponse;
     
 class HTTPParser {
 public:
     typedef std::function<void()> EventCalback;
     typedef std::function<void(URLResponse&&)> ResponseCompleteCalback;
-    typedef std::function<void(Base::IOBuffer&& buffer)> DataCallback;
+    typedef std::function<void(Packet&& buffer)> DataCallback;
     
     HTTPParser();
     ~HTTPParser();
@@ -64,7 +61,7 @@ public:
     void onHeaderField(const std::string& field);
     void onHeaderValue(const std::string& value);
     void onHeadersComplete();
-    void onBody(Base::IOBuffer&& buffer);
+    void onBody(Packet&& buffer);
     
 private:
     

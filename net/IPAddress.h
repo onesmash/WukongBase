@@ -42,6 +42,27 @@ public:
     
     const sockaddr* sockAddress() const;
     
+    bool operator==(const IPAddress& address)
+    {
+        if(!valid_ || address.valid_)
+            return false;
+        if(address_.sin_family != address.address_.sin_family)
+            return false;
+        if(address_.sin_port != address.address_.sin_port)
+            return false;
+        if(address_.sin_family == AF_INET) {
+            return memcmp((const void*)&address_.sin_addr, (const void*)&address.address_.sin_addr, sizeof(address_.sin_addr));
+        } else if(address6_.sin6_family == AF_INET6) {
+            return memcmp((const void*)&address6_.sin6_addr, (const void*)&address.address6_.sin6_addr, sizeof(address6_.sin6_addr));
+        }
+        return false;
+    }
+    
+    bool isIPv6() const
+    {
+        return address6_.sin6_family == AF_INET6;
+    }
+    
     static std::vector<IPAddress> resolve(const std::string& hostName, bool isTCP = true);
     
 private:

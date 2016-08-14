@@ -13,18 +13,24 @@ namespace WukongBase {
 
 namespace Net {
     
-TCPAcceptor::TCPAcceptor(Base::MessageLoop* messageLoop, const IPAddress& listenAddress, bool reusePort)
+TCPAcceptor::TCPAcceptor(Base::MessageLoop* messageLoop, const IPAddress& listenAddress, bool reusePort, int threadNum)
 :   messageLoop_(messageLoop),
-    socket_(new TCPSocket())
+    socket_(new TCPSocket()),
+    threadNum_(threadNum),
+    threadPool_(threadNum_)
 {
     socket_->open(messageLoop_);
     socket_->bind(listenAddress);
     socket_->setAcceptCallback(std::bind(&TCPAcceptor::didReciveConnectRequest, this));
-    
+    socket_->setCloseCallback([this](bool) {
+        stopCallback_();
+    });
+    threadPool_.start();
 }
     
 TCPAcceptor::~TCPAcceptor()
 {
+    threadPool_.stop();
 }
     
 void TCPAcceptor::listen(int backlog)
@@ -32,10 +38,18 @@ void TCPAcceptor::listen(int backlog)
     messageLoop_->postTask(std::bind(&TCPAcceptor::listenInLoop, this, backlog));
 }
     
+void TCPAcceptor::stop()
+{
+    messageLoop_->postTask([this]() {
+        socket_->close();
+    });
+}
+    
 void TCPAcceptor::didReciveConnectRequest()
 {
+    const std::shared_ptr<Base::Thread>& thread = threadPool_.getThread();
     std::shared_ptr<TCPSocket> socket(new TCPSocket());
-    socket->open(messageLoop_);
+    socket->open(thread->messageLoop());
     if(socket_->accept(*socket.get()) <= 0) {
         newTCPSessionCallback_(socket);
     }

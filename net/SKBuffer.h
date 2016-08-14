@@ -19,6 +19,8 @@ public:
     SKBuffer(size_t size);
     SKBuffer(const SKBuffer& buffer);
     SKBuffer(SKBuffer&& buffer);
+    SKBuffer(const std::vector<char>& buffer);
+    SKBuffer(std::vector<char>&& buffer);
     
     ~SKBuffer() {}
     

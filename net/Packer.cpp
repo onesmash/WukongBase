@@ -7,3 +7,19 @@
 //
 
 #include "net/Packer.h"
+
+namespace WukongBase {
+namespace Net {
+
+Packet Packer::pack() const
+{
+    return Packet();
+}
+
+bool Packer::unpack(Packet& packet)
+{
+    return true;
+}
+
+}
+}

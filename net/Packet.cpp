@@ -27,6 +27,14 @@ Packet::Packet(Packet&& packet): buffer_(std::move(packet.buffer_))
 {
 }
     
+Packet::Packet(const std::vector<char>& buffer): buffer_(buffer)
+{
+}
+
+Packet::Packet(std::vector<char>&& buffer): buffer_(std::move(buffer))
+{
+}
+    
 Packet::~Packet()
 {
     
@@ -145,6 +153,19 @@ void Packet::apppendUInt64(uint64_t x)
 {
     apppendInt64(x);
 }
+    
+void Packet::pop(size_t size)
+{
+    size_t popSize = std::min(size, buffer_.size());
+    buffer_.pop(popSize);
+}
+    
+size_t Packet::pop(void* buffer, size_t size)
+{
+    size_t popSize = std::min(size, buffer_.size());
+    memcpy(buffer, buffer_.pop(popSize), popSize);
+    return popSize;
+}
 
 int8_t Packet::popInt8()
 {
@@ -170,6 +191,11 @@ int64_t Packet::popInt64()
     uint64_t d;
     memcpy(&d, buffer_.pop(sizeof(int64_t)), sizeof(int64_t));
     return ntohll(d);
+}
+    
+void Packet::clear()
+{
+    pop(size());
 }
     
 }

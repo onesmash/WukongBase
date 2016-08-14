@@ -22,6 +22,8 @@ public:
     Packet(size_t headRoom = 0, size_t dataRoom = 0);
     Packet(const Packet& packet);
     Packet(Packet&& packet);
+    Packet(const std::vector<char>& buffer);
+    Packet(std::vector<char>&& buffer);
     
     Packet& operator=(const Packet& packet);
     Packet& operator=(Packet&& packet);
@@ -46,7 +48,9 @@ public:
     void appendUInt16(uint16_t x);
     void appendUInt32(uint32_t x);
     void apppendUInt64(uint64_t x);
-    
+
+    void pop(size_t size);
+    size_t pop(void* buffer, size_t size);
     int8_t popInt8();
     int16_t popInt16();
     int32_t popInt32();
@@ -55,6 +59,8 @@ public:
     uint16_t popUInt16();
     uint32_t popUInt32();
     uint64_t popUInt64();
+    
+    void clear();
     
     const char* data() const { return buffer_.data(); }
     size_t size() const { return buffer_.size(); }

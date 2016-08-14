@@ -15,6 +15,8 @@
 namespace WukongBase {
 namespace Net {
     
+class Packet;
+    
 class TCPSession {
     
 public:
@@ -50,7 +52,7 @@ private:
     
     enum State { kDisconnected, kConnecting, kConnected, kDisconnecting };
     
-    void didReadComplete(const std::shared_ptr<Base::IOBuffer>& buffer);
+    void didReadComplete(std::shared_ptr<Packet>& buffer);
     void didWriteComplete(const Packet& packet, bool success);
     void didCloseComplete();
     

@@ -7,7 +7,7 @@
 //
 
 #include "net/HTTPParser.h"
-#include "base/IOBuffer.h"
+#include "net/Packet.h"
 #include "net/URLResponse.h"
 #include <cstdlib>
 #include <cassert>
@@ -73,8 +73,9 @@ int onHeaderComplete(http_parser* parser)
 int onBody(http_parser* parser, const char *at, size_t length)
 {
     HTTPParser* p = (HTTPParser*)parser->data;
-    Base::IOBuffer buffer(at, length);
-    p->onBody(std::move(buffer));
+    Packet packet;
+    packet.append((void*)at, length);
+    p->onBody(std::move(packet));
     return 0;
 }
     
@@ -160,7 +161,7 @@ void HTTPParser::onHeadersComplete()
     responseCompleteCalback_(std::move(response));
 }
 
-void HTTPParser::onBody(Base::IOBuffer&& buffer)
+void HTTPParser::onBody(Packet&& buffer)
 {
     dataCallback_(std::move(buffer));
 }

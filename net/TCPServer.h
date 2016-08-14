@@ -16,21 +16,25 @@
 namespace WukongBase {
 
 namespace Base {
-    class MessageLoop;
-    class IOBuffer;
+class MessageLoop;
 }
 
 namespace Net {
+
+class Packet;
+
 class TCPServer {
 public:
-    typedef std::function<void(const std::shared_ptr<TCPSession>&, const std::shared_ptr<Base::IOBuffer>&)> MessageCallback;
+    typedef std::function<void(const std::shared_ptr<TCPSession>&, std::shared_ptr<Packet>&)> MessageCallback;
     typedef std::function<void(const std::shared_ptr<TCPSession>&)> ConnectCallback;
     typedef std::function<void(const std::shared_ptr<TCPSession>&, const Packet&, bool)> WriteCompleteCallback;
+    typedef std::function<void()> StopCallback;
     
-    TCPServer(Base::MessageLoop* messageLoop, const IPAddress& listenAddress);
+    TCPServer(Base::MessageLoop* messageLoop, const IPAddress& listenAddress, int threadNum = 4);
     ~TCPServer();
     
     void start();
+    void stop();
     
      void setConnectCallback(const ConnectCallback& cb)
     {
@@ -47,15 +51,21 @@ public:
         messageCallback_ = cb;
     }
     
+    void setStopCallback(const StopCallback& cb)
+    {
+        stopCallback_ = cb;
+    }
+    
 private:
     
     void didConnectComplete(const std::shared_ptr<TCPSocket>& socket);
-    void didReadComplete(const std::shared_ptr<TCPSession>&, const std::shared_ptr<Base::IOBuffer>& buffer);
+    void didReadComplete(const std::shared_ptr<TCPSession>&, std::shared_ptr<Packet>& buffer);
     void didWriteComplete(const std::shared_ptr<TCPSession>&, const Packet& packet, bool success);
     
     ConnectCallback connectCallback_;
     WriteCompleteCallback writeCompleteCallback_;
     MessageCallback messageCallback_;
+    StopCallback stopCallback_;
     
     std::shared_ptr<TCPAcceptor> acceptor_;
     

@@ -7,15 +7,17 @@
 //
 
 #include "net/TCPServer.h"
+#include "net/Packet.h"
 
 namespace WukongBase {
 
 namespace Net {
     
-TCPServer::TCPServer(Base::MessageLoop* messageLoop, const IPAddress& listenAddress)
-: acceptor_(new TCPAcceptor(messageLoop, listenAddress, true))
+TCPServer::TCPServer(Base::MessageLoop* messageLoop, const IPAddress& listenAddress, int threadNum)
+: acceptor_(new TCPAcceptor(messageLoop, listenAddress, true, threadNum))
 {
     acceptor_->setNewTCPSessionCallback(std::bind(&TCPServer::didConnectComplete, this, std::placeholders::_1));
+    acceptor_->setStopCallback(stopCallback_);
 }
 
 TCPServer::~TCPServer()
@@ -26,6 +28,11 @@ TCPServer::~TCPServer()
 void TCPServer::start()
 {
     acceptor_->listen(10);
+}
+    
+void TCPServer::stop()
+{
+    acceptor_->stop();
 }
     
 void TCPServer::didConnectComplete(const std::shared_ptr<TCPSocket>& socket)
@@ -40,7 +47,7 @@ void TCPServer::didConnectComplete(const std::shared_ptr<TCPSocket>& socket)
     connectCallback_(session);
 }
 
-void TCPServer::didReadComplete(const std::shared_ptr<TCPSession>& session, const std::shared_ptr<Base::IOBuffer>& buffer)
+void TCPServer::didReadComplete(const std::shared_ptr<TCPSession>& session, std::shared_ptr<Packet>& buffer)
 {
     messageCallback_(session, buffer);
 }

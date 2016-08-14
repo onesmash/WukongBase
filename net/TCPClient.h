@@ -18,14 +18,15 @@ namespace WukongBase {
     
 namespace Base {
 class MessageLoop;
-class IOBuffer;
 }
 
 namespace Net {
     
+class Packet;
+    
 class TCPClient {
 public:
-    typedef std::function<void(const std::shared_ptr<TCPSession>&, const std::shared_ptr<Base::IOBuffer>&)> MessageCallback;
+    typedef std::function<void(const std::shared_ptr<TCPSession>&, std::shared_ptr<Packet>&)> MessageCallback;
     typedef std::function<void(const std::shared_ptr<TCPSession>&, const Packet&, bool)> WriteCompleteCallback;
     typedef std::function<void(const std::shared_ptr<TCPSession>&)> ConnectCallback;
     typedef std::function<void()> CloseCallback;
@@ -62,7 +63,7 @@ public:
 private:
     
     void didConnectComplete(const std::shared_ptr<TCPSocket>& socket);
-    void didReadComplete(const std::shared_ptr<Base::IOBuffer>& buffer);
+    void didReadComplete(std::shared_ptr<Packet>& buffer);
     void didWriteComplete(const Packet& packet, bool success);
     void didCloseComplete();
     

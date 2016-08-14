@@ -10,15 +10,14 @@
 #define __Net__Packer__
 
 #include <memory>
+#include "net/Packet.h"
 
 namespace WukongBase {
 namespace Net {
     
-class Packet;
-    
 class Packer {
 public:
-    virtual bool pack(Packet& packet) = 0;
+    virtual Packet pack() const = 0;
     virtual bool unpack(Packet& packet) = 0;
     
 };

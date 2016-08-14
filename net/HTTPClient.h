@@ -17,7 +17,6 @@ namespace WukongBase {
     
 namespace Base {
 class MessageLoop;
-class IOBuffer;
 }
 
 namespace Net {
@@ -25,12 +24,13 @@ namespace Net {
 class URLRequest;
 class HTTPSession;
 class URLResponse;
+class Packet;
     
 class HTTPClient {
 public:
     typedef std::function<void(const HTTPSession&, const std::shared_ptr<URLRequest>&, bool)> RequestCallback;
     typedef std::function<void(const HTTPSession&, const std::shared_ptr<URLRequest>&, URLResponse&&)> ResponseCallback;
-    typedef std::function<void(const HTTPSession&, const std::shared_ptr<URLRequest>&, Base::IOBuffer&&)> DataCallback;
+    typedef std::function<void(const HTTPSession&, const std::shared_ptr<URLRequest>&, Packet&&)> DataCallback;
     typedef std::function<void(const HTTPSession&, const std::shared_ptr<URLRequest>&)> DataCompleteCallback;
     
     HTTPClient(int threadNum);
@@ -64,7 +64,7 @@ private:
     
     void didSendRequestComplete(const HTTPSession&, const std::shared_ptr<URLRequest>&, bool);
     void didRecvResponseComplete(const HTTPSession&, const std::shared_ptr<URLRequest>&, URLResponse&&, const ResponseCallback& responseCallback);
-    void didRecvData(const HTTPSession&, const std::shared_ptr<URLRequest>&, Base::IOBuffer&&);
+    void didRecvData(const HTTPSession&, const std::shared_ptr<URLRequest>&, Packet&&);
     void didRecvDataComplete(const HTTPSession&, const std::shared_ptr<URLRequest>&);
     void didCloseSessionComplete(const HTTPSession&);
     

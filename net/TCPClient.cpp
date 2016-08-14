@@ -9,6 +9,7 @@
 #include "net/TCPClient.h"
 #include "base/message_loop/MessageLoop.h"
 #include "net/TCPConnector.h"
+#include "net/Packet.h"
 
 namespace WukongBase {
 
@@ -65,7 +66,7 @@ void TCPClient::didConnectComplete(const std::shared_ptr<TCPSocket>& socket)
     }
 }
     
-void TCPClient::didReadComplete(const std::shared_ptr<Base::IOBuffer>& buffer)
+void TCPClient::didReadComplete(std::shared_ptr<Packet>& buffer)
 {
     messageCallback_(session_, buffer);
 }

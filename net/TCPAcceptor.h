@@ -11,6 +11,7 @@
 
 #include "net/IPAddress.h"
 #include "net/TCPSocket.h"
+#include "base/thread/ThreadPool.h"
 
 namespace WukongBase {
 
@@ -23,15 +24,22 @@ namespace Net {
 class TCPAcceptor {
 public:
     typedef std::function<void(const std::shared_ptr<TCPSocket>&)> NewTCPSessionCallback;
+    typedef std::function<void()> StopCallback;
     
-    TCPAcceptor(Base::MessageLoop* messageLoop, const IPAddress& listenAddress, bool reusePort);
+    TCPAcceptor(Base::MessageLoop* messageLoop, const IPAddress& listenAddress, bool reusePort, int threadNum);
     ~TCPAcceptor();
     
     void listen(int backlog);
+    void stop();
     
     void setNewTCPSessionCallback(const NewTCPSessionCallback& cb)
     {
         newTCPSessionCallback_ = cb;
+    }
+    
+    void setStopCallback(const StopCallback& cb)
+    {
+        stopCallback_ = cb;
     }
     
 private:
@@ -43,7 +51,9 @@ private:
     Base::MessageLoop* messageLoop_;
     std::shared_ptr<TCPSocket> socket_;
     NewTCPSessionCallback newTCPSessionCallback_;
-    
+    StopCallback stopCallback_;
+    int threadNum_;
+    Base::ThreadPool threadPool_;
     
 };
 }
