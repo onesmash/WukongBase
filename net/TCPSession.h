@@ -37,6 +37,8 @@ public:
     void shutdown();
     void close();
     
+    bool isClosed();
+    
     const IPAddress& getLocalAddress() const
     {
         return localAddress_;

@@ -29,14 +29,20 @@ TCPSession::TCPSession(const std::shared_ptr<TCPSocket>& socket, const IPAddress
     socket_->setCloseCallback([this](bool) {
         lock_.lock();
         if(state_ != kDisconnecting) {
+            state_ = kDisconnecting;
+            lock_.unlock();
             socket_->messageLoop()->postTask([this]() {
-                close();
+                {
+                    std::lock_guard<std::mutex> guard(lock_);
+                    state_ = kDisconnected;
+                }
+                closeCallback_(true);
             });
         } else {
             state_ = kDisconnected;
+            lock_.unlock();
+            closeCallback_(true);
         }
-        lock_.unlock();
-        closeCallback_(true);
     });
 }
     
@@ -118,15 +124,21 @@ void TCPSession::shutdown()
 void TCPSession::close()
 {
     std::lock_guard<std::mutex> guard(lock_);
+    if(state_ == kDisconnecting || state_ == kDisconnected) return;
     state_ = kDisconnecting;
-    socket_->messageLoop()->postTask([this]() {
-        std::lock_guard<std::mutex> guard(lock_);
-        if(socket_->close()) {
-            state_ = kDisconnected;
-        } else {
-            state_ = kDisconnecting;
-        }
-    });
+    if(Base::MessageLoop::current() == socket_->messageLoop()) {
+        socket_->close();
+    } else {
+        socket_->messageLoop()->postTask([this]() {
+            socket_->close();
+        });
+    }
+}
+    
+bool TCPSession::isClosed()
+{
+    std::lock_guard<std::mutex> guard(lock_);
+    return state_ == kDisconnected;
 }
 
 }
