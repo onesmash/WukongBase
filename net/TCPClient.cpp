@@ -46,10 +46,10 @@ void TCPClient::connect(const std::string& hostName, uint16_t port)
     connector_->connect(hostName, port);
 }
 
-void TCPClient::disconnect()
-{
-    session_->shutdown();
-}
+//void TCPClient::disconnect()
+//{
+//    session_->shutdown();
+//}
     
 void TCPClient::didConnectComplete(const std::shared_ptr<TCPSocket>& socket)
 {
@@ -57,28 +57,20 @@ void TCPClient::didConnectComplete(const std::shared_ptr<TCPSocket>& socket)
         const IPAddress& localAddress = socket->getLocalAddress();
         const IPAddress& peerAddress = socket->getPeerAddress();
         
-        session_ =  std::shared_ptr<TCPSession>(new TCPSession(socket, localAddress, peerAddress));
-        session_->setReadCompleteCallback(std::bind(&TCPClient::didReadComplete, this, std::placeholders::_1));
-        session_->setWriteCompleteCallback(std::bind(&TCPClient::didWriteComplete, this, std::placeholders::_1, std::placeholders::_2));
-        session_->setCloseCallback(std::bind(&TCPClient::didCloseComplete, this));
+        std::shared_ptr<TCPSession> session(new TCPSession(socket, localAddress, peerAddress));
+//        MessageCallback messageCallback = messageCallback_;
+//        session_->setReadCompleteCallback([messageCallback, this](std::shared_ptr<Packet>& buffer) {
+//            messageCallback(session_, buffer);
+//        });
+//        session_->setWriteCompleteCallback([=](const Packet& packet, bool success) {
+//            writeCompleteCallback_(session_, packet, success);
+//        });
+//        session_->setCloseCallback([=](bool) {
+//            closeCallback_();
+//        });
         
-        connectCallback_(session_);
+        connectCallback_(session);
     }
-}
-    
-void TCPClient::didReadComplete(std::shared_ptr<Packet>& buffer)
-{
-    messageCallback_(session_, buffer);
-}
-
-void TCPClient::didWriteComplete(const Packet& packet, bool success)
-{
-    writeCompleteCallback_(session_, packet, success);
-}
-
-void TCPClient::didCloseComplete()
-{
-    closeCallback_();
 }
     
 }

@@ -37,6 +37,10 @@ public:
     virtual ~IPAddress();
     
     void setPort(uint16_t port) { address_.sin_port = htons(port); }
+    uint16_t getPort() const
+    {
+        return ntohs(address_.sin_port);
+    }
     
     bool valid() { return valid_; }
     

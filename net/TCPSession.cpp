@@ -8,6 +8,8 @@
 
 #include "net/TCPSession.h"
 #include "net/Packet.h"
+#include "base/message_loop/MessageLoop.h"
+#include <cassert>
 
 namespace WukongBase {
 namespace Net {
@@ -18,58 +20,113 @@ TCPSession::TCPSession(const std::shared_ptr<TCPSocket>& socket, const IPAddress
         peerAddress_(peerAddress),
         state_(kConnected)
 {
-    socket_->setWriteCompleteCallback(std::bind(&TCPSession::didWriteComplete, this, std::placeholders::_1, std::placeholders::_2));
-    socket_->setReadCompleteCallback(std::bind(&TCPSession::didReadComplete, this, std::placeholders::_1));
-    socket_->setCloseCallback(std::bind(&TCPSession::didCloseComplete, this));
+    socket_->setWriteCompleteCallback([this](const Packet& packet, bool success) {
+        writeCompleteCallback_(packet, success);
+    });
+    socket_->setReadCompleteCallback([this](std::shared_ptr<Packet>& buffer) {
+        readCompleteCallback_(buffer);
+    });
+    socket_->setCloseCallback([this](bool) {
+        lock_.lock();
+        if(state_ != kDisconnecting) {
+            socket_->messageLoop()->postTask([this]() {
+                close();
+            });
+        } else {
+            state_ = kDisconnected;
+        }
+        lock_.unlock();
+        closeCallback_(true);
+    });
+}
+    
+TCPSession::~TCPSession()
+{
+    assert(state_ == kDisconnected);
+    socket_ = nullptr;
 }
     
 void TCPSession::send(const Packet& packet)
 {
-    socket_->write(packet);
+    std::lock_guard<std::mutex> guard(lock_);
+    if(state_ == kConnected) {
+        if(Base::MessageLoop::current() == socket_->messageLoop()) {
+            socket_->write(packet);
+        } else {
+            socket_->messageLoop()->postTask([this, packet]() {
+                std::lock_guard<std::mutex> guard(lock_);
+                if(state_ == kConnected) {
+                    socket_->write(std::move(packet));
+                }
+            });
+        }
+    }
 }
 
 void TCPSession::send(Packet&& packet)
 {
-    socket_->write(std::move(packet));
+    std::lock_guard<std::mutex> guard(lock_);
+    if(state_ == kConnected) {
+        if(Base::MessageLoop::current() == socket_->messageLoop()) {
+            socket_->write(std::move(packet));
+        } else {
+            std::shared_ptr<Packet> p(new Packet(std::move(packet)));
+            socket_->messageLoop()->postTask([this, p]() {
+                std::lock_guard<std::mutex> guard(lock_);
+                if(state_ == kConnected) {
+                    socket_->write(std::move(*p));
+                }
+            });
+        }
+    }
 }
     
 void TCPSession::startRead()
 {
-    socket_->startRead();
+    if(Base::MessageLoop::current() == socket_->messageLoop()) {
+        socket_->startRead();
+    } else {
+        socket_->messageLoop()->postTask([this]() {
+            socket_->startRead();
+        });
+    }
+    
 }
 
 void TCPSession::stopRead()
 {
-    socket_->stopRead();
+    if(Base::MessageLoop::current() == socket_->messageLoop()) {
+        socket_->stopRead();
+    } else {
+        socket_->messageLoop()->postTask([this]() {
+            socket_->stopRead();
+        });
+    }
 }
     
 void TCPSession::shutdown()
 {
-    socket_->shutdown();
+    if(Base::MessageLoop::current() == socket_->messageLoop()) {
+        socket_->shutdown();
+    } else {
+        socket_->messageLoop()->postTask([this]() {
+            socket_->shutdown();
+        });
+    }
 }
     
 void TCPSession::close()
 {
-    if(state_ != kDisconnecting && state_ != kDisconnected) {
-        state_ = kDisconnecting;
-        socket_->close();
-    }
-}
-    
-void TCPSession::didWriteComplete(const Packet& packet, bool success)
-{
-    writeCompleteCallback_(packet, success);
-}
-    
-void TCPSession::didReadComplete(std::shared_ptr<Packet>& buffer)
-{
-    readCompleteCallback_(buffer);
-}
-    
-void TCPSession::didCloseComplete()
-{
-    state_ = kDisconnected;
-    closeCallback_(true);
+    std::lock_guard<std::mutex> guard(lock_);
+    state_ = kDisconnecting;
+    socket_->messageLoop()->postTask([this]() {
+        std::lock_guard<std::mutex> guard(lock_);
+        if(socket_->close()) {
+            state_ = kDisconnected;
+        } else {
+            state_ = kDisconnecting;
+        }
+    });
 }
 
 }

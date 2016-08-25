@@ -26,10 +26,10 @@ class Packet;
     
 class TCPClient {
 public:
-    typedef std::function<void(const std::shared_ptr<TCPSession>&, std::shared_ptr<Packet>&)> MessageCallback;
-    typedef std::function<void(const std::shared_ptr<TCPSession>&, const Packet&, bool)> WriteCompleteCallback;
+//    typedef std::function<void(const std::shared_ptr<TCPSession>&, std::shared_ptr<Packet>&)> MessageCallback;
+//    typedef std::function<void(const std::shared_ptr<TCPSession>&, const Packet&, bool)> WriteCompleteCallback;
     typedef std::function<void(const std::shared_ptr<TCPSession>&)> ConnectCallback;
-    typedef std::function<void()> CloseCallback;
+//    typedef std::function<void()> CloseCallback;
     
     TCPClient(Base::MessageLoop* messageLoop, const IPAddress& serverAddress);
     TCPClient(Base::MessageLoop* messageLoop, const std::string& hostName, uint16_t port);
@@ -38,42 +38,39 @@ public:
     void connect();
     void connect(const IPAddress& serverAddress);
     void connect(const std::string& hostName, uint16_t port);
-    void disconnect();
+    //void disconnect();
     
     void setConnectCallback(const ConnectCallback& cb)
     {
         connectCallback_ = cb;
     }
     
-    void setWriteCompleteCallback(const WriteCompleteCallback& cb)
-    {
-        writeCompleteCallback_ = cb;
-    }
-    
-    void setMessageCallback(const MessageCallback& cb)
-    {
-        messageCallback_ = cb;
-    }
-    
-    void setCloseCallback(const CloseCallback& cb)
-    {
-        closeCallback_ = cb;
-    }
+//    void setWriteCompleteCallback(const WriteCompleteCallback& cb)
+//    {
+//        writeCompleteCallback_ = cb;
+//    }
+//    
+//    void setMessageCallback(const MessageCallback& cb)
+//    {
+//        messageCallback_ = cb;
+//    }
+//    
+//    void setCloseCallback(const CloseCallback& cb)
+//    {
+//        closeCallback_ = cb;
+//    }
     
 private:
     
     void didConnectComplete(const std::shared_ptr<TCPSocket>& socket);
-    void didReadComplete(std::shared_ptr<Packet>& buffer);
-    void didWriteComplete(const Packet& packet, bool success);
-    void didCloseComplete();
     
     ConnectCallback connectCallback_;
-    WriteCompleteCallback writeCompleteCallback_;
-    MessageCallback messageCallback_;
-    CloseCallback closeCallback_;
+//    WriteCompleteCallback writeCompleteCallback_;
+//    MessageCallback messageCallback_;
+//    CloseCallback closeCallback_;
     
     std::shared_ptr<TCPConnector> connector_;
-    std::shared_ptr<TCPSession> session_;
+    //std::shared_ptr<TCPSession> session_;
 };
 }
 }

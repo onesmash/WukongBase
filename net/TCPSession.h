@@ -11,6 +11,7 @@
 
 #include "net/TCPSocket.h"
 #include "net/IPAddress.h"
+#include <thread>
 
 namespace WukongBase {
 namespace Net {
@@ -20,9 +21,12 @@ class Packet;
 class TCPSession {
     
 public:
+    typedef std::function<void(std::shared_ptr<Packet>&)> ReadCompleteCallback;
+    typedef std::function<void(const Packet& packet, bool)> WriteCompleteCallback;
+    typedef std::function<void(bool)> CloseCallback;
     TCPSession(const std::shared_ptr<TCPSocket>& socket, const IPAddress& localAddress, const IPAddress& peerAddress);
     
-    virtual ~TCPSession() {}
+    virtual ~TCPSession();
     
     void send(const Packet& packet);
     void send(Packet&& packet);
@@ -32,6 +36,16 @@ public:
     
     void shutdown();
     void close();
+    
+    const IPAddress& getLocalAddress() const
+    {
+        return localAddress_;
+    }
+    
+    const IPAddress& getPeerAddress() const
+    {
+        return peerAddress_;
+    }
     
     void setReadCompleteCallback(const ReadCompleteCallback& cb)
     {
@@ -52,13 +66,9 @@ private:
     
     enum State { kDisconnected, kConnecting, kConnected, kDisconnecting };
     
-    void didReadComplete(std::shared_ptr<Packet>& buffer);
-    void didWriteComplete(const Packet& packet, bool success);
-    void didCloseComplete();
-    
     void setState(State state) { state_ = state; }
     
-    std::shared_ptr<TCPSocket> socket_;
+    std::mutex lock_;
     
     IPAddress localAddress_;
     IPAddress peerAddress_;
@@ -68,6 +78,8 @@ private:
     ReadCompleteCallback readCompleteCallback_;
     WriteCompleteCallback writeCompleteCallback_;
     CloseCallback closeCallback_;
+    
+    std::shared_ptr<TCPSocket> socket_;
     
 };
     

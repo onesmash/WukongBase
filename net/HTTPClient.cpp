@@ -42,8 +42,9 @@ void HTTPClient::executeRequest(const std::shared_ptr<URLRequest>& request)
     session->setDataCallback(std::bind(&HTTPClient::didRecvData, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
     session->setDataCompleteCallback(std::bind(&HTTPClient::didRecvDataComplete, this, std::placeholders::_1, std::placeholders::_2));
     session->setCloseCallback(std::bind(&HTTPClient::didCloseSessionComplete, this, std::placeholders::_1));
-    sessionMap_[session.get()] = session;
     session->sendRequest(request);
+    std::lock_guard<std::mutex> guard(lock_);
+    sessionMap_[session.get()] = session;
 }
     
 void HTTPClient::executeRequest(const std::shared_ptr<URLRequest>& request, const RequestCallback& requestCallback, const ResponseCallback& responseCallback, const DataCallback& dataCallback, const DataCompleteCallback& dataCompleteCallback)
@@ -60,8 +61,9 @@ void HTTPClient::executeRequest(const std::shared_ptr<URLRequest>& request, cons
     session->setDataCallback(std::bind(dataCallback, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
     session->setDataCompleteCallback(std::bind(dataCompleteCallback, std::placeholders::_1, std::placeholders::_2));
     session->setCloseCallback(std::bind(&HTTPClient::didCloseSessionComplete, this, std::placeholders::_1));
-    sessionMap_[session.get()] = session;
     session->sendRequest(request);
+    std::lock_guard<std::mutex> guard(lock_);
+    sessionMap_[session.get()] = session;
 }
     
 void HTTPClient::didSendRequestComplete(const HTTPSession& session, const std::shared_ptr<URLRequest>& request, bool success)
@@ -92,6 +94,7 @@ void HTTPClient::didRecvDataComplete(const HTTPSession& session, const std::shar
 
 void HTTPClient::didCloseSessionComplete(const HTTPSession& session)
 {
+    std::lock_guard<std::mutex> guard(lock_);
     sessionMap_.erase((HTTPSession*)&session);
 }
     

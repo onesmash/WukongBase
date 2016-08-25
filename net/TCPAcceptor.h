@@ -49,11 +49,12 @@ private:
     void listenInLoop(int backlog);
     
     Base::MessageLoop* messageLoop_;
-    std::shared_ptr<TCPSocket> socket_;
+    
     NewTCPSessionCallback newTCPSessionCallback_;
     StopCallback stopCallback_;
     int threadNum_;
     Base::ThreadPool threadPool_;
+    std::shared_ptr<TCPSocket> socket_;
     
 };
 }

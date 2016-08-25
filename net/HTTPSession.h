@@ -12,6 +12,7 @@
 #include "net/URLRequest.h"
 #include "net/HTTPParser.h"
 #include <list>
+#include <thread>
 
 namespace WukongBase {
     
@@ -104,6 +105,7 @@ private:
     enum State { kDisconnected, kConnecting, kConnected, kDisconnecting };
     
     State state_;
+    std::mutex lock_;
     
     std::list<std::shared_ptr<URLRequest>> paddingRequests_;
     std::shared_ptr<TCPClient> tcpClient_;

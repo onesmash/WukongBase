@@ -59,7 +59,7 @@ IPAddress::IPAddress(const std::string& ip, uint16_t port, bool isIPv6): valid_(
     
 IPAddress::IPAddress(const IPAddress& address): valid_(address.valid_)
 {
-    address_ = address.address_;
+    address6_ = address.address6_;
 }
     
 IPAddress::~IPAddress()
@@ -87,6 +87,7 @@ std::vector<IPAddress> IPAddress::resolve(const std::string& hostName, bool isTC
     for (addrinfo* res = info; res; res = res->ai_next) {
         addresses.push_back(IPAddress(res->ai_addr));
     }
+    freeaddrinfo(info);
     return addresses;
 }
     

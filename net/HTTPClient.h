@@ -12,6 +12,7 @@
 #include "base/thread/ThreadPool.h"
 #include <string>
 #include <unordered_map>
+#include <thread>
 
 namespace WukongBase {
     
@@ -68,6 +69,7 @@ private:
     void didRecvDataComplete(const HTTPSession&, const std::shared_ptr<URLRequest>&);
     void didCloseSessionComplete(const HTTPSession&);
     
+    std::mutex lock_;
     int threadNum_;
     Base::ThreadPool threadPool_;
     std::string userAgent_;

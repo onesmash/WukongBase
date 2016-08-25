@@ -29,16 +29,15 @@ namespace Net {
 #define kReadBufSize 4096
    
 class TCPSocket;
-    
-typedef std::function<void(std::shared_ptr<Packet>&)> ReadCompleteCallback;
-typedef std::function<void(const Packet& packet, bool)> WriteCompleteCallback;
-typedef std::function<void()> AcceptCallback;
-typedef std::function<void(bool)> ConnectCallback;
-typedef std::function<void(bool)> CloseCallback;
 
 class TCPSocket {
 public:
     typedef uv_tcp_t TCPSocketHandle;
+    typedef std::function<void(std::shared_ptr<Packet>&)> ReadCompleteCallback;
+    typedef std::function<void(const Packet& packet, bool)> WriteCompleteCallback;
+    typedef std::function<void()> AcceptCallback;
+    typedef std::function<void(bool)> ConnectCallback;
+    typedef std::function<void(bool)> CloseCallback;
     
     TCPSocket();
     virtual ~TCPSocket();
@@ -72,6 +71,11 @@ public:
     size_t readBufSize() const { return kReadBufSize; }
     
     const TCPSocketHandle* tcpSocketHandle() const { return &tcpSocket_; }
+    
+    Base::MessageLoop* messageLoop() const
+    {
+        return messageLoop_;
+    }
     
     void setAcceptCallback(const AcceptCallback& cb)
     {
@@ -125,6 +129,8 @@ private:
     typedef std::unordered_map<void*, std::shared_ptr<WriteRequest> > WriteRequestMap;
     
     Base::MessageLoop* messageLoop_;
+    
+    bool closed_;
     
     char readBuffer[kReadBufSize];
     TCPSocketHandle tcpSocket_;

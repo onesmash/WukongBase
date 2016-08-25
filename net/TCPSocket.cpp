@@ -10,6 +10,7 @@
 #include "net/Packet.h"
 #include "base/message_loop/MessageLoop.h"
 #include <cstdlib>
+#include <cassert>
 
 namespace WukongBase {
 namespace Net {
@@ -17,14 +18,16 @@ namespace Net {
 void onAllocBuf(uv_handle_t* handle, size_t suggested_size, uv_buf_t* buf)
 {
     TCPSocket* socket = (TCPSocket*)handle->data;
+    if(socket == nullptr) return;
     buf->len = socket->readBufSize();
     buf->base = socket->readBuf();
 }
     
 void onConnectReq(uv_stream_t* server, int status)
 {
+    TCPSocket* serverSocket = (TCPSocket*)server->data;
+    if(serverSocket == nullptr) return;
     if(status == 0) {
-        TCPSocket* serverSocket = (TCPSocket*)server->data;
         serverSocket->didReciveConnectRequest();
     } else {
         
@@ -33,30 +36,33 @@ void onConnectReq(uv_stream_t* server, int status)
     
 void onConnectComplete(uv_connect_t* req, int status)
 {
-    bool sucess = status >= 0 && status != UV_ECANCELED;
     TCPSocket* socket = (TCPSocket*)req->handle->data;
+    if(socket == nullptr) return;
+    bool sucess = status >= 0;
     socket->didConnectComplete(sucess);
 }
     
 void onReadComplete(uv_stream_t* stream, ssize_t nread, const uv_buf_t* buf)
 {
+    TCPSocket* socket = (TCPSocket*)stream->data;
+    if(socket == nullptr) return;
     if(nread > 0) {
-        TCPSocket* socket = (TCPSocket*)stream->data;
         std::shared_ptr<Packet> packet(new Packet());
         packet->append(buf->base, nread);
         socket->didReadComplete(packet);
     } else if(nread < 0) {
-        TCPSocket* socket = (TCPSocket*)stream->data;
+        socket = (TCPSocket*)stream->data;
         socket->close();
     }
 }
     
 void onWriteComplete(uv_write_t* req, int status)
 {
-    bool sucess = status >= 0 && status != UV_ECANCELED;
     TCPSocket* socket = (TCPSocket*)req->handle->data;
+    if(socket == nullptr) return;
+    bool sucess = status >= 0;
     socket->didWriteComplete(req, sucess);
-    if(status < 0) {
+    if(status < 0 && status != UV_ECANCELED && status != UV_SHUTDOWN) {
         socket->close();
     }
 }
@@ -69,15 +75,18 @@ void onShutdownComplete(uv_shutdown_t* req, int status)
 void onCloseComplete(uv_handle_t* handle)
 {
     TCPSocket* socket = (TCPSocket*)handle->data;
+    handle->data = nullptr;
     socket->didCloseComplete();
 }
     
-TCPSocket::TCPSocket()
+TCPSocket::TCPSocket(): closed_(true)
 {
 }
     
 TCPSocket::~TCPSocket()
 {
+    assert(closed_);
+    tcpSocket_.data = nullptr;
 }
     
 int TCPSocket::open(Base::MessageLoop* messageLoop)
@@ -85,6 +94,7 @@ int TCPSocket::open(Base::MessageLoop* messageLoop)
     messageLoop_ = messageLoop;
     int res = -uv_tcp_init(&messageLoop_->eventLoop(), &tcpSocket_);
     tcpSocket_.data = this;
+    closed_ = false;
     return res;
 }
     
@@ -147,24 +157,29 @@ int TCPSocket::shutdown()
     
 int TCPSocket::close()
 {
-    uv_close((uv_handle_t*)&tcpSocket_, onCloseComplete);
-    return 0;
+    // 1 closed, 0 closing
+    if(!uv_is_closing((uv_handle_t*)&tcpSocket_)) {
+        uv_close((uv_handle_t*)&tcpSocket_, onCloseComplete);
+        return 0;
+    } else {
+        return closed_ ? 1 : 0;
+    }
 }
     
-    IPAddress TCPSocket::getLocalAddress()
+IPAddress TCPSocket::getLocalAddress()
 {
     sockaddr_storage addr;
     int len = 0;
-    uv_tcp_getsockname(&tcpSocket_, reinterpret_cast<struct sockaddr*>(&addr), &len);
-    return IPAddress(reinterpret_cast<struct sockaddr*>(&addr));
+    uv_tcp_getsockname(&tcpSocket_, (sockaddr*)(&addr), &len);
+    return IPAddress((sockaddr*)(&addr));
 }
 
 IPAddress TCPSocket::getPeerAddress()
 {
     sockaddr_storage addr;
     int len = 0;
-    uv_tcp_getpeername(&tcpSocket_, reinterpret_cast<struct sockaddr*>(&addr), &len);
-    return IPAddress(reinterpret_cast<struct sockaddr*>(&addr));
+    uv_tcp_getpeername(&tcpSocket_, (sockaddr*)(&addr), &len);
+    return IPAddress((sockaddr*)(&addr));
 }
 
 void TCPSocket::didReciveConnectRequest()
@@ -174,6 +189,9 @@ void TCPSocket::didReciveConnectRequest()
     
 void TCPSocket::didConnectComplete(bool success)
 {
+    if(!success) {
+        closed_ = true;
+    }
     connectCallback_(success);
 }
     
@@ -191,7 +209,10 @@ void TCPSocket::didWriteComplete(TCPSocketWriteRequest* request, bool success)
     
 void TCPSocket::didCloseComplete()
 {
+    closed_ = true;
+    tcpSocket_.data = nullptr;
     closeCallback_(true);
+    
 }
     
     

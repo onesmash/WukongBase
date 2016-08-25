@@ -36,16 +36,24 @@ HTTPSession::~HTTPSession()
 void HTTPSession::sendRequest(const std::shared_ptr<URLRequest>& request)
 {
     if(state_ == kDisconnected) {
-        state_ = kConnecting;
+        {
+            std::lock_guard<std::mutex> guard(lock_);
+            state_ = kConnecting;
+        }
         tcpClient_->connect();
     } else {
         sendRequestInternal(request);
     }
+    std::lock_guard<std::mutex> guard(lock_);
     paddingRequests_.push_back(request);
 }
     
 void HTTPSession::close()
 {
+    {
+        std::lock_guard<std::mutex> guard(lock_);
+        state_ = kConnecting;
+    }
     tcpClient_->disconnect();
 }
     
@@ -56,10 +64,14 @@ void HTTPSession::sendRequestInternal(const std::shared_ptr<URLRequest>& request
     
 void HTTPSession::didConnectComplete(const std::shared_ptr<TCPSession>& session)
 {
-    state_ = kConnected;
+    {
+        std::lock_guard<std::mutex> guard(lock_);
+        state_ = kConnected;
+    }
     
     tcpSession_ = session;
     tcpSession_->startRead();
+    std::lock_guard<std::mutex> guard(lock_);
     for (std::list<std::shared_ptr<URLRequest>>::const_iterator iter = paddingRequests_.begin(); iter != paddingRequests_.end(); ++iter) {
         sendRequestInternal(*iter);
     }
@@ -67,6 +79,10 @@ void HTTPSession::didConnectComplete(const std::shared_ptr<TCPSession>& session)
     
 void HTTPSession::didCloseComplete()
 {
+    {
+        std::lock_guard<std::mutex> guard(lock_);
+        state_ = kConnected;
+    }
     closeCallback_(*this);
 }
 
@@ -88,6 +104,7 @@ void HTTPSession::didBeginParse()
 void HTTPSession::didCompleteParse()
 {
     dataCompleteCallback_(*this, paddingRequests_.front());
+    std::lock_guard<std::mutex> guard(lock_);
     paddingRequests_.pop_back();
 }
 

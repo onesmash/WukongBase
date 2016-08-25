@@ -8,6 +8,7 @@
 
 #include "net/TCPAcceptor.h"
 #include "base/message_loop/MessageLoop.h"
+#include <cassert>
 
 namespace WukongBase {
 
@@ -25,7 +26,7 @@ TCPAcceptor::TCPAcceptor(Base::MessageLoop* messageLoop, const IPAddress& listen
     socket_->setCloseCallback([this](bool) {
         stopCallback_();
     });
-    threadPool_.start();
+    //threadPool_.start();
 }
     
 TCPAcceptor::~TCPAcceptor()
@@ -47,9 +48,9 @@ void TCPAcceptor::stop()
     
 void TCPAcceptor::didReciveConnectRequest()
 {
-    const std::shared_ptr<Base::Thread>& thread = threadPool_.getThread();
+    //const std::shared_ptr<Base::Thread>& thread = threadPool_.getThread();
     std::shared_ptr<TCPSocket> socket(new TCPSocket());
-    socket->open(thread->messageLoop());
+    socket->open(messageLoop_);
     if(socket_->accept(*socket.get()) <= 0) {
         newTCPSessionCallback_(socket);
     }
@@ -57,7 +58,7 @@ void TCPAcceptor::didReciveConnectRequest()
     
 void TCPAcceptor::listenInLoop(int backlog)
 {
-    socket_->listen(backlog);
+    assert(socket_->listen(backlog) == 0);
     socket_->startRead();
 }
 }

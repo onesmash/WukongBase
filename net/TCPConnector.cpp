@@ -82,6 +82,7 @@ void TCPConnector::didConnectComplete(bool success)
     } else {
         newTCPSessionCallback_(std::shared_ptr<TCPSocket>());
     }
+    socket_ = nullptr;
 }
 }
 }
