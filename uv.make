@@ -11,7 +11,15 @@ endif
 .PHONY: clean prebuild prelink
 
 ifeq ($(config),debug_osx)
-  RESCOMP = windres
+  ifeq ($(origin CC), default)
+    CC = clang
+  endif
+  ifeq ($(origin CXX), default)
+    CXX = clang++
+  endif
+  ifeq ($(origin AR), default)
+    AR = ar
+  endif
   TARGETDIR = bin
   TARGET = $(TARGETDIR)/libuv.a
   OBJDIR = obj/osx/debug/uv
@@ -41,7 +49,15 @@ all: $(TARGETDIR) $(OBJDIR) prebuild prelink $(TARGET)
 endif
 
 ifeq ($(config),release_osx)
-  RESCOMP = windres
+  ifeq ($(origin CC), default)
+    CC = clang
+  endif
+  ifeq ($(origin CXX), default)
+    CXX = clang++
+  endif
+  ifeq ($(origin AR), default)
+    AR = ar
+  endif
   TARGETDIR = bin
   TARGET = $(TARGETDIR)/libuv.a
   OBJDIR = obj/osx/release/uv
@@ -54,7 +70,7 @@ ifeq ($(config),release_osx)
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
   LIBS +=
   LDDEPS +=
-  ALL_LDFLAGS += $(LDFLAGS) -Wl,-x
+  ALL_LDFLAGS += $(LDFLAGS)
   LINKCMD = $(AR) -rcs "$@" $(OBJECTS)
   define PREBUILDCMDS
   endef

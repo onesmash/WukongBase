@@ -11,7 +11,15 @@ endif
 .PHONY: clean prebuild prelink
 
 ifeq ($(config),debug_osx)
-  RESCOMP = windres
+  ifeq ($(origin CC), default)
+    CC = clang
+  endif
+  ifeq ($(origin CXX), default)
+    CXX = clang++
+  endif
+  ifeq ($(origin AR), default)
+    AR = ar
+  endif
   TARGETDIR = bin
   TARGET = $(TARGETDIR)/libwukongbase.a
   OBJDIR = obj/osx/debug/wukongbase
@@ -22,7 +30,7 @@ ifeq ($(config),debug_osx)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g
   ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CFLAGS) -std=c++11
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS += -Wl,--start-group bin/libuv.a -lc++ -Wl,--end-group
+  LIBS += bin/libuv.a -lc++
   LDDEPS += bin/libuv.a
   ALL_LDFLAGS += $(LDFLAGS) -Lbin
   LINKCMD = $(AR) -rcs "$@" $(OBJECTS)
@@ -46,7 +54,15 @@ all: $(TARGETDIR) $(OBJDIR) prebuild prelink $(TARGET)
 endif
 
 ifeq ($(config),release_osx)
-  RESCOMP = windres
+  ifeq ($(origin CC), default)
+    CC = clang
+  endif
+  ifeq ($(origin CXX), default)
+    CXX = clang++
+  endif
+  ifeq ($(origin AR), default)
+    AR = ar
+  endif
   TARGETDIR = bin
   TARGET = $(TARGETDIR)/libwukongbase.a
   OBJDIR = obj/osx/release/wukongbase
@@ -57,9 +73,9 @@ ifeq ($(config),release_osx)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS)
   ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CFLAGS) -std=c++11
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS += -Wl,--start-group bin/libuv.a -lc++ -Wl,--end-group
+  LIBS += bin/libuv.a -lc++
   LDDEPS += bin/libuv.a
-  ALL_LDFLAGS += $(LDFLAGS) -Lbin -Wl,-x
+  ALL_LDFLAGS += $(LDFLAGS) -Lbin
   LINKCMD = $(AR) -rcs "$@" $(OBJECTS)
   define PREBUILDCMDS
   endef
@@ -91,7 +107,6 @@ OBJECTS := \
 	$(OBJDIR)/Endian.o \
 	$(OBJDIR)/HTTPClient.o \
 	$(OBJDIR)/HTTPParser.o \
-	$(OBJDIR)/HTTPSession.o \
 	$(OBJDIR)/IPAddress.o \
 	$(OBJDIR)/Packer.o \
 	$(OBJDIR)/Packet.o \
@@ -191,9 +206,6 @@ $(OBJDIR)/HTTPClient.o: net/HTTPClient.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/HTTPParser.o: net/HTTPParser.cpp
-	@echo $(notdir $<)
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/HTTPSession.o: net/HTTPSession.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/IPAddress.o: net/IPAddress.cpp

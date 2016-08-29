@@ -27,6 +27,7 @@ project "wukongbase"
 	}
 	includedirs {".", "bin/include/libuv", "third_party/http_parser/"}
 	files {"base/**.cpp", "net/*.cpp", "third_party/http_parser/http_parser/http_parser.c"}
+	removefiles {"net/HTTPClinet.cpp", "net/HTTPSession.cpp"}
 	libdirs {"bin"}
 	links {"c++", "uv"}
 
