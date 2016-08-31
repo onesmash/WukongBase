@@ -4,24 +4,38 @@
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
-    "DA9C55140B6FB29E68073E7B73D6F0032ABB6E74" : 0,
+    "997B5B2B165F2AA196970132856A166B7B51A6F3" : 0,
     "90C3FD88F8002F902A5FDF9D64063244571F233C" : 0,
-    "BC09C09DC2853BA9B3A84860F78F2E9FD790D8C3" : 0
+    "BC09C09DC2853BA9B3A84860F78F2E9FD790D8C3" : 0,
+    "8CE08F7D8951BBB9285C341F336CC9C2EB9665E5" : 0,
+    "DA9C55140B6FB29E68073E7B73D6F0032ABB6E74" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "A6FAAAB8-DF8A-46C1-907C-5058FD8E1FD9",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "DA9C55140B6FB29E68073E7B73D6F0032ABB6E74" : "WukongBase\/",
+    "997B5B2B165F2AA196970132856A166B7B51A6F3" : "WukongBase\/third_party\/fmt\/fmt\/",
     "90C3FD88F8002F902A5FDF9D64063244571F233C" : "WukongBase\/third_party\/http_parser\/http_parser\/",
-    "BC09C09DC2853BA9B3A84860F78F2E9FD790D8C3" : "WukongBase\/third_party\/libuv\/"
+    "BC09C09DC2853BA9B3A84860F78F2E9FD790D8C3" : "WukongBase\/third_party\/libuv\/",
+    "8CE08F7D8951BBB9285C341F336CC9C2EB9665E5" : "WukongBase\/third_party\/spdlog\/",
+    "DA9C55140B6FB29E68073E7B73D6F0032ABB6E74" : "WukongBase\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "WukongBase",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Xcode-iOS\/WukongBase.xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
     {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/gabime\/spdlog.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8CE08F7D8951BBB9285C341F336CC9C2EB9665E5"
+    },
+    {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/nodejs\/http-parser.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "90C3FD88F8002F902A5FDF9D64063244571F233C"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/fmtlib\/fmt.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "997B5B2B165F2AA196970132856A166B7B51A6F3"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/onesmash\/libuv.git",

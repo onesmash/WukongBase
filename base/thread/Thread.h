@@ -12,6 +12,7 @@
 #include <string>
 #include <thread>
 #include <memory>
+#include <unordered_map>
 
 namespace WukongBase {
     
@@ -37,8 +38,41 @@ public:
     }
     
     static void sleep(double seconds);
+    
+    template<typename T>
+    static void setThreadLocal(const std::string& key, T* value)
+    {
+        std::unordered_map<std::string, std::shared_ptr<void>>* storage = Thread::getThreadLocalStorage();
+        if(storage) {
+            storage->insert({key, std::shared_ptr<T>(value)});
+        }
+    }
+    
+    template<typename T>
+    static std::shared_ptr<T> getThreadLocal(const std::string& key)
+    {
+        std::unordered_map<std::string, std::shared_ptr<void>>* storage = Thread::getThreadLocalStorage();
+        if(storage == nullptr) {
+            return nullptr;
+        }
+        auto iter = storage->find(key);
+        if(iter != storage->end()) {
+            return std::static_pointer_cast<T>(iter->second);
+        }
+        return nullptr;
+    }
+    
+    static void deleteThreadLocal(const std::string& key)
+    {
+        std::unordered_map<std::string, std::shared_ptr<void>>* storage = Thread::getThreadLocalStorage();
+        if(storage) {
+            storage->erase(key);
+        }
+    }
    
 private:
+    
+    static std::unordered_map<std::string, std::shared_ptr<void>>* getThreadLocalStorage();
     
     friend class MessageLoop;
     

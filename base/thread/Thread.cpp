@@ -13,6 +13,8 @@
 namespace WukongBase {
 
 namespace Base {
+    
+static uv_key_t threadLocalStorageKey;
 
 Thread::Thread(const std::string& name):
     name_(name),
@@ -69,6 +71,9 @@ void Thread::threadMain()
 {
     messageLoop_ = new MessageLoop();
     messageLoop_->attachToCurrentThread();
+    uv_key_create(&threadLocalStorageKey);
+    std::unordered_map<std::string, std::shared_ptr<void>>* storage = new std::unordered_map<std::string, std::shared_ptr<void>>();
+    uv_key_set(&threadLocalStorageKey, storage);
     cv_.notify_one();
     
     messageLoop_->run();
@@ -77,6 +82,15 @@ void Thread::threadMain()
 void Thread::sleep(double seconds)
 {
     std::this_thread::sleep_for(std::chrono::microseconds((long long)(seconds * kMicroSecondsPerSecond)));
+}
+    
+std::unordered_map<std::string, std::shared_ptr<void>>* Thread::getThreadLocalStorage()
+{
+    std::unordered_map<std::string, std::shared_ptr<void>>* storage = nullptr;
+    if(threadLocalStorageKey > 0) {
+        storage = (std::unordered_map<std::string, std::shared_ptr<void>>*)uv_key_get(&threadLocalStorageKey);
+    }
+    return storage;
 }
     
 }
