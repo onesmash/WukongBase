@@ -33,7 +33,9 @@ public:
     
     void join();
     
-    MessageLoop* messageLoop() {
+    const std::string& name() const { return name_; }
+    
+    MessageLoop* messageLoop() const {
         return messageLoop_;
     }
     

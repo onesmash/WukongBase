@@ -7,6 +7,8 @@
 //
 
 #include "base/thread/ThreadPool.h"
+#include "base/message_loop/MessageLoop.h"
+#include "base/Logger.h"
 
 namespace WukongBase {
 
@@ -24,6 +26,10 @@ std::shared_ptr<Thread> ThreadPool::getThread()
 {
     if(!pool_.empty()) {
         std::shared_ptr<Thread>& thread = pool_[next_];
+        size_t pendingTaskSize = thread->messageLoop()->pendingTaskQueueSize();
+        if(pendingTaskSize > 20) {
+            Logger::sharedStderrLogger().warn("thread pool - thread#{} too many pending task", next_);
+        }
         next_++;
         if(next_ >= threadNum_) {
             next_ = 0;

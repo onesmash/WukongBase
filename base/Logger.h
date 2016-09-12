@@ -19,11 +19,19 @@ class Logger {
 public:
     enum LoggerType {
         kLoggerTypeStdout,
-        kLoggerTypeStderr
+        kLoggerTypeStderr,
+        kLoggerTypeRotate
     };
     
-    Logger(LoggerType type);
+    Logger(const std::string& path, size_t maxLogSize, size_t maxFiles);
+    Logger(const Logger&) = delete;
+    Logger& operator=(const Logger&) = delete;
     ~Logger();
+    
+    void flush()
+    {
+        logger_->flush();
+    }
     
     template <typename... Args> void trace(const char* fmt, const Args&... args) const
     {
@@ -55,11 +63,12 @@ public:
         logger_->critical(fmt, args...);
     }
     
-    static const Logger& sharedStdoutLogger();
-    static const Logger& sharedStderrLogger();
+    static Logger& sharedStdoutLogger();
+    static Logger& sharedStderrLogger();
     
 private:
-    
+    Logger() {}
+    Logger(LoggerType type);
     LoggerType type_;
     std::shared_ptr<spdlog::logger> logger_;
     

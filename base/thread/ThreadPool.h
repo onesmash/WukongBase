@@ -16,21 +16,21 @@ namespace WukongBase {
 
 namespace Base {
     
-    class ThreadPool {
-    public:
-        ThreadPool(int threadNum);
-        ~ThreadPool();
-        
-        void setThreadNum(int num) { threadNum_ = num; }
-        std::shared_ptr<Thread> getThread();
-        
-        void start();
-        void stop();
-    private:
-        int next_;
-        int threadNum_;
-        std::vector<std::shared_ptr<Thread>> pool_;
-    };
+class ThreadPool {
+public:
+    ThreadPool(int threadNum);
+    ~ThreadPool();
+    
+    void setThreadNum(int num) { threadNum_ = num; }
+    std::shared_ptr<Thread> getThread();
+    
+    void start();
+    void stop();
+private:
+    int next_;
+    int threadNum_;
+    std::vector<std::shared_ptr<Thread>> pool_;
+};
 }
 }
 

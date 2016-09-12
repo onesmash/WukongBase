@@ -7,53 +7,57 @@
 //
 
 #include "Logger.h"
-#include "Thread.h"
 #include <memory>
 
 using namespace WukongBase::Base;
 
-#define kStdoutLoggerTLSKey "kStdoutLoggerTLSKey"
-#define kStderrLoggerTLSKey "kStderrLoggerTLSKey"
+#define kStdoutLoggerName "kStdoutLogger"
+#define kStderrLoggerName "kStderrLogger"
 
 Logger::Logger(LoggerType type): type_(type)
 {
     switch (type_) {
         case kLoggerTypeStdout: {
-            logger_ = spdlog::stdout_logger_mt("StdoutLogger");
+            logger_ = spdlog::get(kStdoutLoggerName);
+            if(logger_ == nullptr) {
+                logger_ = spdlog::stdout_logger_mt(kStdoutLoggerName);
+                logger_->set_pattern("[%x %H:%M:%S:%e] [%l] %v");
+            }
         } break;
         case kLoggerTypeStderr: {
-            logger_ = spdlog::stderr_logger_mt("StderrLogger");
+            logger_ = spdlog::get(kStderrLoggerName);
+            if(logger_ == nullptr) {
+                logger_ = spdlog::stdout_logger_mt(kStderrLoggerName);
+                logger_->set_pattern("[%x %H:%M:%S:%e] [%l] %v");
+            }
         } break;
         default:
             break;
     }
 }
 
+Logger::Logger(const std::string& path, size_t maxLogSize, size_t maxFiles): type_(kLoggerTypeRotate)
+{
+    logger_ = spdlog::get(path);
+    if(logger_ == nullptr) {
+        logger_ = spdlog::rotating_logger_mt(path, path, maxLogSize, maxFiles);
+        logger_->set_pattern("[%x %H:%M:%S:%e] [%l] %v");
+    }
+}
+
 Logger::~Logger()
 {
-    
+    logger_->flush();
 }
 
-const Logger& Logger::sharedStdoutLogger()
+Logger& Logger::sharedStdoutLogger()
 {
-    const std::shared_ptr<Logger>& logger = Thread::getThreadLocal<Logger>(kStdoutLoggerTLSKey);
-    if(logger == nullptr) {
-        Logger* l = new Logger(kLoggerTypeStdout);
-        Thread::setThreadLocal<Logger>(kStdoutLoggerTLSKey, l);
-        return *l;
-    } else {
-        return *logger;
-    }
+    static Logger logger(kLoggerTypeStdout);
+    return logger;
 }
 
-const Logger& Logger::sharedStderrLogger()
+Logger& Logger::sharedStderrLogger()
 {
-    const std::shared_ptr<Logger>& logger = Thread::getThreadLocal<Logger>(kStderrLoggerTLSKey);
-    if(logger == nullptr) {
-        Logger* l = new Logger(kLoggerTypeStderr);
-        Thread::setThreadLocal<Logger>(kStderrLoggerTLSKey, l);
-        return *l;
-    } else {
-        return *logger;
-    }
+    static Logger logger(kLoggerTypeStderr);
+    return logger;
 }

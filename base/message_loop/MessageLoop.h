@@ -49,7 +49,9 @@ public:
     
     char* wakeUpPipeMessageBuf() { return wakeUpPipeMessageBuf_; }
     
-    size_t taskQueueSize() { return taskQueue_.size(); }
+    size_t taskQueueSize() const { return taskQueue_.size(); }
+    
+    size_t pendingTaskQueueSize() const { return pendingTaskQueue_->size(); }
     
     void quite();
     

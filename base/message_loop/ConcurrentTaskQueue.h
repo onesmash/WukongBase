@@ -33,6 +33,8 @@ public:
     
     void swap(TaskQueue& taskQueue);
     
+    size_t size() const { return queue_.size(); }
+    
 private:
     
     void pushTask(Task& task);
