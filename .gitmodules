@@ -6,7 +6,7 @@
 	url = https://github.com/nodejs/http-parser.git
 [submodule "third_party/spdlog/spdlog"]
 	path = third_party/spdlog/spdlog
-	url = https://github.com/gabime/spdlog.git
+	url = https://github.com/onesmash/spdlog.git
 [submodule "third_party/fmt/fmt"]
 	path = third_party/fmt/fmt
 	url = https://github.com/fmtlib/fmt.git
