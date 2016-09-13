@@ -5,3 +5,4 @@ samples/test
 bin
 obj
 .vscode
+xcschememanagement.plist
