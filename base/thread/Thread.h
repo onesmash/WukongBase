@@ -23,6 +23,7 @@ class MessageLoop;
 class Thread {
     
 public:
+    Thread() = delete;
     explicit Thread(const std::string& name);
     
     virtual ~Thread();

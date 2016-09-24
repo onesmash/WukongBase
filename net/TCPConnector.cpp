@@ -58,7 +58,6 @@ void TCPConnector::connectInLoop()
         socket_->open(messageLoop_);
         socket_->setConnectCallback(std::bind(&TCPConnector::didConnectComplete, this, std::placeholders::_1));
         if(socket_->connect(serverAddress_) > 0) {
-            socket_->close();
             didConnectComplete(false);
         }
     } else {
@@ -79,10 +78,10 @@ void TCPConnector::didConnectComplete(bool success)
 {
     if(success) {
         newTCPSessionCallback_(socket_);
+        socket_ = nullptr;
     } else {
         newTCPSessionCallback_(std::shared_ptr<TCPSocket>());
     }
-    socket_ = nullptr;
 }
 }
 }

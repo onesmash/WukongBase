@@ -18,8 +18,8 @@ static uv_key_t threadLocalStorageKey;
 
 Thread::Thread(const std::string& name):
     name_(name),
-    thread_(NULL),
-    messageLoop_(NULL),
+    thread_(nullptr),
+    messageLoop_(nullptr),
     started_(false),
     mutex_(),
     cv_()
@@ -29,7 +29,7 @@ Thread::Thread(const std::string& name):
     
 Thread::~Thread()
 {
-    if(thread_->joinable()) {
+    if(thread_ != nullptr && thread_->joinable()) {
         stop();
         thread_->join();
     }

@@ -72,6 +72,11 @@ const sockaddr* IPAddress::sockAddress() const
     return reinterpret_cast<const struct sockaddr*>(&address6_);
 }
     
+std::string IPAddress::stringify() const
+{
+    return stringify((const struct sockaddr*)&address6_);
+}
+    
 std::vector<IPAddress> IPAddress::resolve(const std::string& hostName, bool isTCP)
 {
     std::vector<IPAddress> addresses;
@@ -89,6 +94,17 @@ std::vector<IPAddress> IPAddress::resolve(const std::string& hostName, bool isTC
     }
     freeaddrinfo(info);
     return addresses;
+}
+    
+std::string IPAddress::stringify(const sockaddr* address)
+{
+    char buf[125] = {0};
+    if(address->sa_family == AF_INET) {
+        uv_ip4_name((const struct sockaddr_in*)address, buf, 125);
+    } else if (address->sa_family == AF_INET6) {
+        uv_ip6_name((const struct sockaddr_in6*)address, buf, 125);
+    }
+    return std::string(buf);
 }
     
 }

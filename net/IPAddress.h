@@ -46,6 +46,8 @@ public:
     
     const sockaddr* sockAddress() const;
     
+    std::string stringify() const;
+    
     bool operator==(const IPAddress& address)
     {
         if(!valid_ || address.valid_)
@@ -68,6 +70,7 @@ public:
     }
     
     static std::vector<IPAddress> resolve(const std::string& hostName, bool isTCP = true);
+    static std::string stringify(const sockaddr* address);
     
 private:
     
