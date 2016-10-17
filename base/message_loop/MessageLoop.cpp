@@ -163,6 +163,7 @@ void MessageLoop::loadPendingTask()
     
 void MessageLoop::runTask(Task& task)
 {
+    if(!running_) return;
     task.run();
 }
     

@@ -61,6 +61,9 @@ public:
     int shutdown();
     
     int close();
+    void kill();
+    
+    bool isClosed() { return closed_;}
     
     IPAddress getLocalAddress();
     IPAddress getPeerAddress();

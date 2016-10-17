@@ -31,6 +31,12 @@ TCPAcceptor::TCPAcceptor(Base::MessageLoop* messageLoop, const IPAddress& listen
     
 TCPAcceptor::~TCPAcceptor()
 {
+    if(!socket_->isClosed()) {
+        std::shared_ptr<TCPSocket> socket = socket_;
+        messageLoop_->postTask([socket]() {
+            socket->kill();
+        });
+    }
     threadPool_.stop();
 }
     

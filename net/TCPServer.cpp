@@ -14,7 +14,7 @@ namespace WukongBase {
 namespace Net {
     
 TCPServer::TCPServer(Base::MessageLoop* messageLoop, const IPAddress& listenAddress, int threadNum)
-: acceptor_(new TCPAcceptor(messageLoop, listenAddress, true, threadNum))
+: acceptor_(new TCPAcceptor(messageLoop, listenAddress, true, threadNum)), isStarted_(false)
 {
     acceptor_->setNewTCPSessionCallback(std::bind(&TCPServer::didConnectComplete, this, std::placeholders::_1));
     acceptor_->setStopCallback([this]() {
@@ -24,17 +24,18 @@ TCPServer::TCPServer(Base::MessageLoop* messageLoop, const IPAddress& listenAddr
 
 TCPServer::~TCPServer()
 {
-    
 }
     
 void TCPServer::start()
 {
     acceptor_->listen(10);
+    isStarted_ = true;
 }
     
 void TCPServer::stop()
 {
     acceptor_->stop();
+    isStarted_ = false;
 }
     
 void TCPServer::didConnectComplete(const std::shared_ptr<TCPSocket>& socket)

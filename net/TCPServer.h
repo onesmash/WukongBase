@@ -34,6 +34,7 @@ public:
     
     void start();
     void stop();
+    bool isStarted() { return isStarted_; }
     
      void setConnectCallback(const ConnectCallback& cb)
     {
@@ -52,6 +53,7 @@ private:
     ConnectCallback connectCallback_;
     StopCallback stopCallback_;
     std::shared_ptr<TCPAcceptor> acceptor_;
+    bool isStarted_;
     
 };
 }

@@ -48,7 +48,13 @@ TCPSession::TCPSession(const std::shared_ptr<TCPSocket>& socket, const IPAddress
     
 TCPSession::~TCPSession()
 {
-    assert(state_ == kDisconnected);
+    //assert(state_ == kDisconnected);
+    if(state_ != kDisconnected) {
+        std::shared_ptr<TCPSocket> socket = socket_;
+        socket_->messageLoop()->postTask([socket]() {
+            socket->kill();
+        });
+    }
     socket_ = nullptr;
 }
     
