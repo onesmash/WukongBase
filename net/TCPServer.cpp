@@ -44,8 +44,15 @@ void TCPServer::didConnectComplete(const std::shared_ptr<TCPSocket>& socket)
     const IPAddress& peerAddress = socket->getPeerAddress();
     
     std::shared_ptr<TCPSession> session(new TCPSession(socket, localAddress, peerAddress));
+    TCPSession* key = session.get();
+    session->setDefaultCloseCallback([key](bool) {
+        TCPServer::sessions_.erase(key);
+    });
+    sessions_.insert({session.get(), session});
     connectCallback_(session);
-}    
+}
+
+std::unordered_map<TCPSession*, std::shared_ptr<TCPSession>> TCPServer::sessions_;
     
 }
 }

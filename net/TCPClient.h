@@ -13,6 +13,7 @@
 #include "net/TCPConnector.h"
 #include "net/TCPSession.h"
 #include <string>
+#include <unordered_map>
 
 namespace WukongBase {
     
@@ -70,6 +71,7 @@ private:
 //    CloseCallback closeCallback_;
     
     std::shared_ptr<TCPConnector> connector_;
+    static std::unordered_map<TCPSession*, std::shared_ptr<TCPSession>> sessions_;
     //std::shared_ptr<TCPSession> session_;
 };
 }

@@ -64,6 +64,11 @@ public:
         closeCallback_ = cb;
     }
     
+    void setDefaultCloseCallback(const CloseCallback& cb)
+    {
+        defaultCloseCallback_ = cb;
+    }
+    
 private:
     
     enum State { kDisconnected, kConnecting, kConnected, kDisconnecting };
@@ -80,6 +85,7 @@ private:
     ReadCompleteCallback readCompleteCallback_;
     WriteCompleteCallback writeCompleteCallback_;
     CloseCallback closeCallback_;
+    CloseCallback defaultCloseCallback_;
     
     std::shared_ptr<TCPSocket> socket_;
     

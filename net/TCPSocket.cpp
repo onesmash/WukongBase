@@ -173,10 +173,10 @@ int TCPSocket::close()
     
 void TCPSocket::kill()
 {
+    tcpSocket_.data = nullptr;
     if(!uv_is_closing((uv_handle_t*)&tcpSocket_)) {
         uv_close((uv_handle_t*)&tcpSocket_, onCloseComplete);
     }
-    tcpSocket_.data = nullptr;
 }
     
 IPAddress TCPSocket::getLocalAddress()

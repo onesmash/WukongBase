@@ -58,20 +58,16 @@ void TCPClient::didConnectComplete(const std::shared_ptr<TCPSocket>& socket)
         const IPAddress& peerAddress = socket->getPeerAddress();
         
         std::shared_ptr<TCPSession> session(new TCPSession(socket, localAddress, peerAddress));
-//        MessageCallback messageCallback = messageCallback_;
-//        session_->setReadCompleteCallback([messageCallback, this](std::shared_ptr<Packet>& buffer) {
-//            messageCallback(session_, buffer);
-//        });
-//        session_->setWriteCompleteCallback([=](const Packet& packet, bool success) {
-//            writeCompleteCallback_(session_, packet, success);
-//        });
-//        session_->setCloseCallback([=](bool) {
-//            closeCallback_();
-//        });
-        
+        TCPSession* key = session.get();
+        session->setDefaultCloseCallback([key](bool) {
+            TCPClient::sessions_.erase(key);
+        });
+        sessions_.insert({session.get(), session});
         connectCallback_(session);
     }
 }
+    
+std::unordered_map<TCPSession*, std::shared_ptr<TCPSession>> TCPClient::sessions_;
     
 }
 }

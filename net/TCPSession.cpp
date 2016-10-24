@@ -37,11 +37,13 @@ TCPSession::TCPSession(const std::shared_ptr<TCPSocket>& socket, const IPAddress
                     state_ = kDisconnected;
                 }
                 closeCallback_(true);
+                defaultCloseCallback_(true);
             });
         } else {
             state_ = kDisconnected;
             lock_.unlock();
             closeCallback_(true);
+            defaultCloseCallback_(true);
         }
     });
 }
@@ -98,7 +100,7 @@ void TCPSession::startRead()
     if(Base::MessageLoop::current() == socket_->messageLoop()) {
         socket_->startRead();
     } else {
-        socket_->messageLoop()->postTask([this]() {
+        socket_->messageLoop()->postTask([=]() {
             socket_->startRead();
         });
     }
@@ -110,7 +112,7 @@ void TCPSession::stopRead()
     if(Base::MessageLoop::current() == socket_->messageLoop()) {
         socket_->stopRead();
     } else {
-        socket_->messageLoop()->postTask([this]() {
+        socket_->messageLoop()->postTask([=]() {
             socket_->stopRead();
         });
     }
@@ -121,7 +123,7 @@ void TCPSession::shutdown()
     if(Base::MessageLoop::current() == socket_->messageLoop()) {
         socket_->shutdown();
     } else {
-        socket_->messageLoop()->postTask([this]() {
+        socket_->messageLoop()->postTask([=]() {
             socket_->shutdown();
         });
     }
@@ -135,7 +137,7 @@ void TCPSession::close()
     if(Base::MessageLoop::current() == socket_->messageLoop()) {
         socket_->close();
     } else {
-        socket_->messageLoop()->postTask([this]() {
+        socket_->messageLoop()->postTask([=]() {
             socket_->close();
         });
     }
