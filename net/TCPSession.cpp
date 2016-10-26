@@ -28,23 +28,16 @@ TCPSession::TCPSession(const std::shared_ptr<TCPSocket>& socket, const IPAddress
     });
     socket_->setCloseCallback([this](bool) {
         lock_.lock();
-        if(state_ != kDisconnecting) {
-            state_ = kDisconnecting;
-            lock_.unlock();
-            socket_->messageLoop()->postTask([this]() {
-                {
-                    std::lock_guard<std::mutex> guard(lock_);
-                    state_ = kDisconnected;
-                }
-                closeCallback_(true);
-                defaultCloseCallback_(true);
-            });
-        } else {
-            state_ = kDisconnected;
-            lock_.unlock();
+        state_ = kDisconnecting;
+        lock_.unlock();
+        socket_->messageLoop()->postTask([this]() {
+            {
+                std::lock_guard<std::mutex> guard(lock_);
+                state_ = kDisconnected;
+            }
             closeCallback_(true);
             defaultCloseCallback_(true);
-        }
+        });
     });
 }
     

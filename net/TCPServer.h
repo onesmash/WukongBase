@@ -49,7 +49,9 @@ public:
 private:
     
     void didConnectComplete(const std::shared_ptr<TCPSocket>& socket);
-    
+    Base::MessageLoop* messageLoop_;
+    IPAddress listenAddress_;
+    int threadNum_;
     ConnectCallback connectCallback_;
     StopCallback stopCallback_;
     std::shared_ptr<TCPAcceptor> acceptor_;
