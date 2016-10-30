@@ -35,7 +35,7 @@ public:
     void stopRead();
     
     void shutdown();
-    void close();
+    void close(); // 必须调用，否则session无法释放
     
     bool isClosed();
     

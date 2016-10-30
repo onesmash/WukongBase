@@ -17,7 +17,6 @@ namespace Net {
     
 void onAllocBuf(uv_handle_t* handle, size_t suggested_size, uv_buf_t* buf)
 {
-    if(handle->data == nullptr) return;
     TCPSocket* socket = (TCPSocket*)handle->data;
     if(socket == nullptr) return;
     buf->len = socket->readBufSize();
@@ -26,7 +25,6 @@ void onAllocBuf(uv_handle_t* handle, size_t suggested_size, uv_buf_t* buf)
     
 void onConnectReq(uv_stream_t* server, int status)
 {
-    if(server->data == nullptr) return;
     TCPSocket* serverSocket = (TCPSocket*)server->data;
     if(serverSocket == nullptr) return;
     if(status == 0) {
@@ -38,7 +36,6 @@ void onConnectReq(uv_stream_t* server, int status)
     
 void onConnectComplete(uv_connect_t* req, int status)
 {
-    if(req->handle->data == nullptr) return;
     TCPSocket* socket = (TCPSocket*)req->handle->data;
     if(socket == nullptr) return;
     bool sucess = status >= 0;
@@ -47,7 +44,6 @@ void onConnectComplete(uv_connect_t* req, int status)
     
 void onReadComplete(uv_stream_t* stream, ssize_t nread, const uv_buf_t* buf)
 {
-    if(stream->data == nullptr) return;
     TCPSocket* socket = (TCPSocket*)stream->data;
     if(socket == nullptr) return;
     if(nread > 0) {
@@ -62,7 +58,6 @@ void onReadComplete(uv_stream_t* stream, ssize_t nread, const uv_buf_t* buf)
     
 void onWriteComplete(uv_write_t* req, int status)
 {
-    if(req->handle->data == nullptr) return;
     TCPSocket* socket = (TCPSocket*)req->handle->data;
     if(socket == nullptr) return;
     bool sucess = status >= 0;
@@ -91,7 +86,7 @@ TCPSocket::TCPSocket(): closed_(true)
     
 TCPSocket::~TCPSocket()
 {
-    tcpSocket_.data = nullptr;
+    assert(tcpSocket_.data == nullptr);
 }
     
 int TCPSocket::open(Base::MessageLoop* messageLoop)

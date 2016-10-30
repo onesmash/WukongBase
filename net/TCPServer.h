@@ -56,6 +56,7 @@ private:
     StopCallback stopCallback_;
     std::shared_ptr<TCPAcceptor> acceptor_;
     bool isStarted_;
+    static std::mutex lock_;
     static std::unordered_map<TCPSession*, std::shared_ptr<TCPSession>> sessions_;
     
 };

@@ -48,12 +48,18 @@ void TCPServer::didConnectComplete(const std::shared_ptr<TCPSocket>& socket)
     std::shared_ptr<TCPSession> session(new TCPSession(socket, localAddress, peerAddress));
     TCPSession* key = session.get();
     session->setDefaultCloseCallback([key](bool) {
+        TCPServer::lock_.lock();
         TCPServer::sessions_.erase(key);
+        TCPServer::lock_.unlock();
     });
+    TCPServer::lock_.lock();
     sessions_.insert({session.get(), session});
+    TCPServer::lock_.unlock();
     connectCallback_(session);
 }
 
+std::mutex TCPServer::lock_;
+    
 std::unordered_map<TCPSession*, std::shared_ptr<TCPSession>> TCPServer::sessions_;
     
 }

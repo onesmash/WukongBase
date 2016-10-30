@@ -71,6 +71,7 @@ private:
 //    CloseCallback closeCallback_;
     
     std::shared_ptr<TCPConnector> connector_;
+    static std::mutex lock_;
     static std::unordered_map<TCPSession*, std::shared_ptr<TCPSession>> sessions_;
     //std::shared_ptr<TCPSession> session_;
 };

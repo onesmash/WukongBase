@@ -9,6 +9,7 @@
 #include "net/TCPConnector.h"
 #include "base/message_loop/MessageLoop.h"
 #include <vector>
+#include <cassert>
 
 namespace WukongBase {
 

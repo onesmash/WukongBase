@@ -32,6 +32,7 @@ TCPSession::TCPSession(const std::shared_ptr<TCPSocket>& socket, const IPAddress
         lock_.unlock();
         socket_->messageLoop()->postTask([this]() {
             {
+                assert(state_ != kDisconnected);
                 std::lock_guard<std::mutex> guard(lock_);
                 state_ = kDisconnected;
             }
@@ -43,14 +44,6 @@ TCPSession::TCPSession(const std::shared_ptr<TCPSocket>& socket, const IPAddress
     
 TCPSession::~TCPSession()
 {
-    //assert(state_ == kDisconnected);
-    if(state_ != kDisconnected) {
-        std::shared_ptr<TCPSocket> socket = socket_;
-        socket_->messageLoop()->postTask([socket]() {
-            socket->kill();
-        });
-    }
-    socket_ = nullptr;
 }
     
 void TCPSession::send(const Packet& packet)

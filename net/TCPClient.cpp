@@ -53,19 +53,27 @@ void TCPClient::connect(const std::string& hostName, uint16_t port)
     
 void TCPClient::didConnectComplete(const std::shared_ptr<TCPSocket>& socket)
 {
-    if(socket) {
+    if(socket != nullptr) {
         const IPAddress& localAddress = socket->getLocalAddress();
         const IPAddress& peerAddress = socket->getPeerAddress();
         
         std::shared_ptr<TCPSession> session(new TCPSession(socket, localAddress, peerAddress));
         TCPSession* key = session.get();
         session->setDefaultCloseCallback([key](bool) {
+            TCPClient::lock_.lock();
             TCPClient::sessions_.erase(key);
+            TCPClient::lock_.unlock();
         });
+        TCPClient::lock_.lock();
         sessions_.insert({session.get(), session});
+        TCPClient::lock_.unlock();
         connectCallback_(session);
+    } else {
+        connectCallback_(nullptr);
     }
 }
+    
+std::mutex TCPClient::lock_;
     
 std::unordered_map<TCPSession*, std::shared_ptr<TCPSession>> TCPClient::sessions_;
     
