@@ -25,9 +25,9 @@ project "wukongbase"
 		"{COPY} base/thread/*.h %{cfg.targetdir}/include/base/thread",
 		"{COPY} net/*.h %{cfg.targetdir}/include/net"
 	}
-	includedirs {".", "bin/include/libuv", "third_party/http_parser/"}
-	files {"base/**.cpp", "net/*.cpp", "third_party/http_parser/http_parser/http_parser.c"}
-	removefiles {"net/HTTPClinet.cpp", "net/HTTPSession.cpp"}
+	includedirs {".", "bin/include/libuv", "third_party/http_parser/", "third_party/spdlog/spdlog/include", "third_party/fmt/fmt"}
+	files {"base/**.cpp", "net/*.cpp", "third_party/http_parser/http_parser/http_parser.c", "third_party/fmt/fmt/fmt/*.cc"}
+	removefiles {"net/HTTPClinet.cpp", "net/HTTPSession.cpp", "third_party/spdlog/include/spdlog/fmt/*"}
 	libdirs {"bin"}
 	links {"c++", "uv"}
 

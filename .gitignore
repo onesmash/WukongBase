@@ -6,3 +6,7 @@ bin
 obj
 .vscode
 xcschememanagement.plist
+wukongbase.make
+uv.make
+third_party/libuv/uv.make
+third_party/libuv/Makefile
